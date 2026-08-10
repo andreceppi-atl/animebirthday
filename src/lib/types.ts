@@ -1,0 +1,89 @@
+export type DemoTag = "Shounen" | "Shoujo" | "Seinen" | "Josei";
+
+export const DEMO_TAGS: DemoTag[] = ["Shounen", "Shoujo", "Seinen", "Josei"];
+
+export type ShowRecord = {
+  id: number;
+  anilistId: number | null;
+  titleRomaji: string;
+  titleEnglish: string | null;
+  titleNative: string | null;
+  coverImage: string | null;
+  genres: string[];
+  demos: string[];
+  popularity: number;
+  favourites: number;
+  siteUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CharacterRecord = {
+  id: number;
+  anilistId: number | null;
+  slug: string;
+  nameFull: string;
+  nameFirst: string | null;
+  nameLast: string | null;
+  nameNative: string | null;
+  image: string | null;
+  birthMonth: number;
+  birthDay: number;
+  favourites: number;
+  showId: number | null;
+  wikiUrl: string | null;
+  description: string | null;
+  source: "anilist" | "wiki";
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type HashtagRecord = {
+  id: number;
+  characterId: number;
+  tag: string;
+  kind: string;
+};
+
+export type TiktokVideoRecord = {
+  id: number;
+  characterId: number;
+  videoUrl: string;
+  title: string | null;
+  authorName: string | null;
+  thumbnailUrl: string | null;
+  embedHtml: string | null;
+  createdAt: string;
+};
+
+export type IngestRunRecord = {
+  id: number;
+  source: string;
+  status: string;
+  charactersUpserted: number;
+  showsUpserted: number;
+  error: string | null;
+  startedAt: string;
+  finishedAt: string | null;
+};
+
+export type StoreData = {
+  shows: ShowRecord[];
+  characters: CharacterRecord[];
+  hashtags: HashtagRecord[];
+  tiktokVideos: TiktokVideoRecord[];
+  ingestRuns: IngestRunRecord[];
+  nextIds: {
+    shows: number;
+    characters: number;
+    hashtags: number;
+    tiktokVideos: number;
+    ingestRuns: number;
+  };
+};
+
+export type CharacterWithShow = CharacterRecord & {
+  show: ShowRecord | null;
+  hashtags: HashtagRecord[];
+  tiktokVideos: TiktokVideoRecord[];
+};

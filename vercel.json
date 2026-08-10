@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/ingest?source=anilist&pages=8",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/ingest?source=wiki",
+      "schedule": "0 7 * * 0"
+    }
+  ]
+}

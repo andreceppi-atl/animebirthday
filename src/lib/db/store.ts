@@ -4,6 +4,7 @@ import type {
   CharacterRecord,
   HashtagRecord,
   IngestRunRecord,
+  MomentRecord,
   ShowRecord,
   StoreData,
   TiktokVideoRecord,
@@ -18,12 +19,14 @@ function emptyStore(): StoreData {
     characters: [],
     hashtags: [],
     tiktokVideos: [],
+    moments: [],
     ingestRuns: [],
     nextIds: {
       shows: 1,
       characters: 1,
       hashtags: 1,
       tiktokVideos: 1,
+      moments: 1,
       ingestRuns: 1,
     },
   };
@@ -32,7 +35,19 @@ function emptyStore(): StoreData {
 export async function readStore(): Promise<StoreData> {
   try {
     const raw = await fs.readFile(STORE_PATH, "utf8");
-    return JSON.parse(raw) as StoreData;
+    const data = JSON.parse(raw) as StoreData;
+    if (!data.moments) data.moments = [];
+    if (!data.nextIds.moments) data.nextIds.moments = 1;
+    for (const c of data.characters) {
+      if (c.ugcVolume === undefined) c.ugcVolume = null;
+      if (c.ugcUpdatedAt === undefined) c.ugcUpdatedAt = null;
+    }
+    for (const m of data.moments) {
+      if (m.ugcVolume === undefined) m.ugcVolume = null;
+      if (m.ugcUpdatedAt === undefined) m.ugcUpdatedAt = null;
+      if (!m.tags) m.tags = [];
+    }
+    return data;
   } catch {
     return emptyStore();
   }
@@ -124,11 +139,25 @@ export async function upsertCharacter(
     wikiUrl: input.wikiUrl,
     description: input.description,
     source: input.source,
+    ugcVolume: input.ugcVolume ?? null,
+    ugcUpdatedAt: input.ugcUpdatedAt ?? null,
     createdAt: now,
     updatedAt: now,
   };
   store.characters.push(character);
   return character;
+}
+
+export function setCharacterUgc(
+  store: StoreData,
+  characterId: number,
+  ugcVolume: number,
+) {
+  const c = store.characters.find((x) => x.id === characterId);
+  if (!c) return;
+  c.ugcVolume = ugcVolume;
+  c.ugcUpdatedAt = new Date().toISOString();
+  c.updatedAt = c.ugcUpdatedAt;
 }
 
 export function replaceHashtags(
@@ -178,4 +207,57 @@ export function addIngestRun(
   };
   store.ingestRuns.push(run);
   return run;
+}
+
+export async function upsertMoment(
+  store: StoreData,
+  input: Omit<MomentRecord, "id" | "createdAt" | "updatedAt"> & { id?: number },
+): Promise<MomentRecord> {
+  const now = new Date().toISOString();
+  const existing = store.moments.find((m) => m.slug === input.slug);
+  if (existing) {
+    Object.assign(existing, {
+      ...input,
+      id: existing.id,
+      ugcVolume: input.ugcVolume ?? existing.ugcVolume,
+      ugcUpdatedAt: input.ugcUpdatedAt ?? existing.ugcUpdatedAt,
+      createdAt: existing.createdAt,
+      updatedAt: now,
+    });
+    return existing;
+  }
+  const moment: MomentRecord = {
+    id: store.nextIds.moments++,
+    slug: input.slug,
+    title: input.title,
+    summary: input.summary,
+    kind: input.kind,
+    franchise: input.franchise,
+    image: input.image,
+    month: input.month,
+    day: input.day,
+    year: input.year,
+    significance: input.significance,
+    wikiUrl: input.wikiUrl,
+    source: input.source,
+    tags: input.tags,
+    ugcVolume: input.ugcVolume ?? null,
+    ugcUpdatedAt: input.ugcUpdatedAt ?? null,
+    createdAt: now,
+    updatedAt: now,
+  };
+  store.moments.push(moment);
+  return moment;
+}
+
+export function setMomentUgc(
+  store: StoreData,
+  momentId: number,
+  ugcVolume: number,
+) {
+  const m = store.moments.find((x) => x.id === momentId);
+  if (!m) return;
+  m.ugcVolume = ugcVolume;
+  m.ugcUpdatedAt = new Date().toISOString();
+  m.updatedAt = m.ugcUpdatedAt;
 }

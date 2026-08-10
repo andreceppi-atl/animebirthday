@@ -1,0 +1,363 @@
+[
+  {
+    "title": "Naruto vs Pain",
+    "summary": "Naruto's climactic battle with Pain in Konoha — a defining shonen combat peak.",
+    "kind": "combat",
+    "franchise": "Naruto",
+    "image": null,
+    "month": 5,
+    "day": 12,
+    "year": 2010,
+    "significance": 98,
+    "wikiUrl": "https://naruto.fandom.com/wiki/Naruto_Uzamakivs._Pain",
+    "source": "seed",
+    "tags": [
+      "naruto",
+      "pain",
+      "combat",
+      "edit"
+    ]
+  },
+  {
+    "title": "Goku vs Frieza (Namek)",
+    "summary": "First Super Saiyan transformation and the Namek showdown.",
+    "kind": "combat",
+    "franchise": "Dragon Ball Z",
+    "image": null,
+    "month": 4,
+    "day": 19,
+    "year": 1991,
+    "significance": 97,
+    "wikiUrl": "https://dragonball.fandom.com/wiki/Frieza_Saga",
+    "source": "seed",
+    "tags": [
+      "dragonball",
+      "goku",
+      "frieza",
+      "combat"
+    ]
+  },
+  {
+    "title": "Levi vs Beast Titan",
+    "summary": "Levi's brutal charge against Zeke — Attack on Titan combat iconography.",
+    "kind": "combat",
+    "franchise": "Attack on Titan",
+    "image": null,
+    "month": 8,
+    "day": 20,
+    "year": 2018,
+    "significance": 92,
+    "wikiUrl": "https://attackontitan.fandom.com/wiki/Beast_Titan",
+    "source": "seed",
+    "tags": [
+      "aot",
+      "levi",
+      "combat"
+    ]
+  },
+  {
+    "title": "Gojo vs Sukuna (Shinjuku)",
+    "summary": "The modern Jujutsu Kaisen apex duel — massive UGC magnet.",
+    "kind": "combat",
+    "franchise": "Jujutsu Kaisen",
+    "image": null,
+    "month": 9,
+    "day": 24,
+    "year": 2023,
+    "significance": 96,
+    "wikiUrl": "https://jujutsu-kaisen.fandom.com/wiki/Satoru_Gojo",
+    "source": "seed",
+    "tags": [
+      "jjk",
+      "gojo",
+      "sukuna",
+      "combat"
+    ]
+  },
+  {
+    "title": "Eren's Rumbling begins",
+    "summary": "The Rumbling sequence — franchise-defining catastrophic moment.",
+    "kind": "cultural",
+    "franchise": "Attack on Titan",
+    "image": null,
+    "month": 3,
+    "day": 4,
+    "year": 2023,
+    "significance": 94,
+    "wikiUrl": "https://attackontitan.fandom.com/wiki/Rumbling",
+    "source": "seed",
+    "tags": [
+      "aot",
+      "rumbling",
+      "cultural"
+    ]
+  },
+  {
+    "title": "Ace's death",
+    "summary": "Portgas D. Ace's death at Marineford — landmark shonen tragedy.",
+    "kind": "death",
+    "franchise": "One Piece",
+    "image": null,
+    "month": 2,
+    "day": 14,
+    "year": 2010,
+    "significance": 95,
+    "wikiUrl": "https://onepiece.fandom.com/wiki/Portgas_D._Ace",
+    "source": "seed",
+    "tags": [
+      "onepiece",
+      "ace",
+      "death"
+    ]
+  },
+  {
+    "title": "Jiraiya's death",
+    "summary": "Jiraiya falls to Pain — major Naruto emotional beat.",
+    "kind": "death",
+    "franchise": "Naruto",
+    "image": null,
+    "month": 11,
+    "day": 12,
+    "year": 2008,
+    "significance": 90,
+    "wikiUrl": "https://naruto.fandom.com/wiki/Jiraiya",
+    "source": "seed",
+    "tags": [
+      "naruto",
+      "jiraiya",
+      "death"
+    ]
+  },
+  {
+    "title": "Maes Hughes' death",
+    "summary": "Hughes' murder in Fullmetal Alchemist — infamous gut-punch scene.",
+    "kind": "death",
+    "franchise": "Fullmetal Alchemist",
+    "image": null,
+    "month": 8,
+    "day": 4,
+    "year": 2004,
+    "significance": 91,
+    "wikiUrl": "https://fma.fandom.com/wiki/Maes_Hughes",
+    "source": "seed",
+    "tags": [
+      "fma",
+      "hughes",
+      "death"
+    ]
+  },
+  {
+    "title": "Itachi's death",
+    "summary": "Itachi Uchiha's final battle with Sasuke and truth reveal.",
+    "kind": "death",
+    "franchise": "Naruto",
+    "image": null,
+    "month": 7,
+    "day": 31,
+    "year": 2008,
+    "significance": 93,
+    "wikiUrl": "https://naruto.fandom.com/wiki/Itachi_Uchiha",
+    "source": "seed",
+    "tags": [
+      "naruto",
+      "itachi",
+      "death",
+      "combat"
+    ]
+  },
+  {
+    "title": "Neon Genesis Evangelion TV finale",
+    "summary": "Original Evangelion series ending — polarizing cultural landmark.",
+    "kind": "anniversary",
+    "franchise": "Neon Genesis Evangelion",
+    "image": null,
+    "month": 3,
+    "day": 27,
+    "year": 1996,
+    "significance": 88,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion",
+    "source": "seed",
+    "tags": [
+      "evangelion",
+      "anniversary"
+    ]
+  },
+  {
+    "title": "Akira theatrical release (Japan)",
+    "summary": "Akira hits Japanese theaters — cyberpunk anime landmark.",
+    "kind": "release",
+    "franchise": "Akira",
+    "image": null,
+    "month": 7,
+    "day": 16,
+    "year": 1988,
+    "significance": 94,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Akira_(1988_film)",
+    "source": "seed",
+    "tags": [
+      "akira",
+      "film",
+      "release"
+    ]
+  },
+  {
+    "title": "Spirited Away Oscar win",
+    "summary": "Spirited Away wins Academy Award for Best Animated Feature.",
+    "kind": "cultural",
+    "franchise": "Studio Ghibli",
+    "image": null,
+    "month": 3,
+    "day": 23,
+    "year": 2003,
+    "significance": 92,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Spirited_Away",
+    "source": "seed",
+    "tags": [
+      "ghibli",
+      "spiritedaway",
+      "cultural"
+    ]
+  },
+  {
+    "title": "First Godzilla film release",
+    "summary": "Ishiro Honda's Godzilla (1954) — kaiju cinema origin point.",
+    "kind": "kaiju",
+    "franchise": "Godzilla",
+    "image": null,
+    "month": 11,
+    "day": 3,
+    "year": 1954,
+    "significance": 99,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Godzilla_(1954_film)",
+    "source": "seed",
+    "tags": [
+      "godzilla",
+      "kaiju",
+      "release"
+    ]
+  },
+  {
+    "title": "Shin Godzilla release",
+    "summary": "Anno/Higuchi Shin Godzilla revitalizes the franchise.",
+    "kind": "kaiju",
+    "franchise": "Godzilla",
+    "image": null,
+    "month": 7,
+    "day": 29,
+    "year": 2016,
+    "significance": 86,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Shin_Godzilla",
+    "source": "seed",
+    "tags": [
+      "godzilla",
+      "shin",
+      "kaiju"
+    ]
+  },
+  {
+    "title": "All Might vs All For One",
+    "summary": "Symbol of Peace's last stand — My Hero Academia combat peak.",
+    "kind": "combat",
+    "franchise": "My Hero Academia",
+    "image": null,
+    "month": 10,
+    "day": 28,
+    "year": 2017,
+    "significance": 87,
+    "wikiUrl": "https://myheroacademia.fandom.com/wiki/All_Might",
+    "source": "seed",
+    "tags": [
+      "mha",
+      "allmight",
+      "combat"
+    ]
+  },
+  {
+    "title": "L vs Light (Death Note)",
+    "summary": "The intellectual duel that defined early-2000s anime discourse.",
+    "kind": "combat",
+    "franchise": "Death Note",
+    "image": null,
+    "month": 10,
+    "day": 4,
+    "year": 2006,
+    "significance": 89,
+    "wikiUrl": "https://deathnote.fandom.com/wiki/L",
+    "source": "seed",
+    "tags": [
+      "deathnote",
+      "combat",
+      "cultural"
+    ]
+  },
+  {
+    "title": "Cowboy Bebop series premiere",
+    "summary": "See you, space cowboy — premiere anniversary.",
+    "kind": "release",
+    "franchise": "Cowboy Bebop",
+    "image": null,
+    "month": 4,
+    "day": 3,
+    "year": 1998,
+    "significance": 90,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Cowboy_Bebop",
+    "source": "seed",
+    "tags": [
+      "cowboybebop",
+      "premiere"
+    ]
+  },
+  {
+    "title": "Your Name theatrical release (Japan)",
+    "summary": "Kimi no Na wa becomes a global anime film phenomenon.",
+    "kind": "release",
+    "franchise": "Your Name",
+    "image": null,
+    "month": 8,
+    "day": 26,
+    "year": 2016,
+    "significance": 93,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Your_Name",
+    "source": "seed",
+    "tags": [
+      "yourname",
+      "shinkai",
+      "film"
+    ]
+  },
+  {
+    "title": "Madoka Magica: Rebellion release",
+    "summary": "Rebellion film anniversary — major magical-girl genre disruption.",
+    "kind": "release",
+    "franchise": "Puella Magi Madoka Magica",
+    "image": null,
+    "month": 10,
+    "day": 26,
+    "year": 2013,
+    "significance": 85,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Puella_Magi_Madoka_Magica:_Rebellion",
+    "source": "seed",
+    "tags": [
+      "madoka",
+      "film"
+    ]
+  },
+  {
+    "title": "Saitama vs Boros",
+    "summary": "One Punch Man Season 1 finale clash — viral combat spectacle.",
+    "kind": "combat",
+    "franchise": "One Punch Man",
+    "image": null,
+    "month": 12,
+    "day": 19,
+    "year": 2015,
+    "significance": 88,
+    "wikiUrl": "https://onepunchman.fandom.com/wiki/Boros",
+    "source": "seed",
+    "tags": [
+      "opm",
+      "saitama",
+      "combat"
+    ]
+  }
+]

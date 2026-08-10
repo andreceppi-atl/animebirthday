@@ -34,6 +34,9 @@ export type CharacterRecord = {
   wikiUrl: string | null;
   description: string | null;
   source: "anilist" | "wiki";
+  /** ChartEx TikTok sound / create volume when known */
+  ugcVolume: number | null;
+  ugcUpdatedAt: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -62,9 +65,42 @@ export type IngestRunRecord = {
   status: string;
   charactersUpserted: number;
   showsUpserted: number;
+  momentsUpserted?: number;
   error: string | null;
   startedAt: string;
   finishedAt: string | null;
+};
+
+export type MomentKind =
+  | "combat"
+  | "death"
+  | "release"
+  | "anniversary"
+  | "cultural"
+  | "kaiju"
+  | "other";
+
+export type MomentRecord = {
+  id: number;
+  slug: string;
+  title: string;
+  summary: string | null;
+  kind: MomentKind;
+  /** Franchise / series label (Naruto, Godzilla, etc.) */
+  franchise: string | null;
+  image: string | null;
+  month: number;
+  day: number;
+  /** Original year if known (for display); recurrence is month/day */
+  year: number | null;
+  significance: number;
+  wikiUrl: string | null;
+  source: "wiki" | "anilist" | "seed";
+  tags: string[];
+  ugcVolume: number | null;
+  ugcUpdatedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type StoreData = {
@@ -72,12 +108,14 @@ export type StoreData = {
   characters: CharacterRecord[];
   hashtags: HashtagRecord[];
   tiktokVideos: TiktokVideoRecord[];
+  moments: MomentRecord[];
   ingestRuns: IngestRunRecord[];
   nextIds: {
     shows: number;
     characters: number;
     hashtags: number;
     tiktokVideos: number;
+    moments: number;
     ingestRuns: number;
   };
 };
@@ -87,3 +125,5 @@ export type CharacterWithShow = CharacterRecord & {
   hashtags: HashtagRecord[];
   tiktokVideos: TiktokVideoRecord[];
 };
+
+export type FeedKind = "birthday" | "moment";

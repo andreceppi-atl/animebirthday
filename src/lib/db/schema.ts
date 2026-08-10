@@ -47,6 +47,8 @@ export const characters = pgTable(
     wikiUrl: text("wiki_url"),
     description: text("description"),
     source: varchar("source", { length: 32 }).notNull().default("anilist"),
+    ugcVolume: integer("ugc_volume"),
+    ugcUpdatedAt: timestamp("ugc_updated_at"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
@@ -84,13 +86,40 @@ export const ingestRuns = pgTable("ingest_runs", {
   status: varchar("status", { length: 32 }).notNull(),
   charactersUpserted: integer("characters_upserted").notNull().default(0),
   showsUpserted: integer("shows_upserted").notNull().default(0),
+  momentsUpserted: integer("moments_upserted").notNull().default(0),
   error: text("error"),
   startedAt: timestamp("started_at").defaultNow().notNull(),
   finishedAt: timestamp("finished_at"),
 });
+
+export const moments = pgTable(
+  "moments",
+  {
+    id: serial("id").primaryKey(),
+    slug: varchar("slug", { length: 255 }).notNull(),
+    title: text("title").notNull(),
+    summary: text("summary"),
+    kind: varchar("kind", { length: 32 }).notNull().default("other"),
+    franchise: text("franchise"),
+    image: text("image"),
+    month: integer("month").notNull(),
+    day: integer("day").notNull(),
+    year: integer("year"),
+    significance: integer("significance").notNull().default(50),
+    wikiUrl: text("wiki_url"),
+    source: varchar("source", { length: 32 }).notNull().default("wiki"),
+    tags: jsonb("tags").$type<string[]>().notNull().default([]),
+    ugcVolume: integer("ugc_volume"),
+    ugcUpdatedAt: timestamp("ugc_updated_at"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => [uniqueIndex("moments_slug_idx").on(table.slug)],
+);
 
 export type Show = typeof shows.$inferSelect;
 export type Character = typeof characters.$inferSelect;
 export type CharacterHashtag = typeof characterHashtags.$inferSelect;
 export type TiktokVideo = typeof tiktokVideos.$inferSelect;
 export type IngestRun = typeof ingestRuns.$inferSelect;
+export type Moment = typeof moments.$inferSelect;

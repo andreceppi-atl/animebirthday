@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ChartexPanel } from "@/components/ChartexPanel";
 import { HashtagBar } from "@/components/HashtagBar";
 import { TikTokSection } from "@/components/TikTokSection";
 import { getCharacterBySlug } from "@/lib/queries";
@@ -113,6 +114,21 @@ export default async function CharacterPage({ params }: Props) {
           ))}
         </div>
       </section>
+
+      <div className="mt-10">
+        <ChartexPanel
+          defaultQuery={showTitle || character.nameFull}
+          characterSlug={character.slug}
+        />
+        {character.ugcVolume != null && (
+          <p className="mt-2 text-xs text-[var(--muted)]">
+            Stamped UGC volume: {character.ugcVolume.toLocaleString()}
+            {character.ugcUpdatedAt
+              ? ` · updated ${new Date(character.ugcUpdatedAt).toLocaleDateString()}`
+              : ""}
+          </p>
+        )}
+      </div>
 
       <div className="mt-14 border-t border-[var(--line)] pt-10">
         <TikTokSection slug={character.slug} videos={character.tiktokVideos} />

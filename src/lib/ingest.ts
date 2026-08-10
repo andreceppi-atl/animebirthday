@@ -8,19 +8,22 @@ import {
   readStore,
   replaceHashtags,
   upsertCharacter,
+  upsertMoment,
   upsertShow,
   writeStore,
 } from "@/lib/db/store";
 import { hasDatabaseUrl, syncStoreToPostgres } from "@/lib/db/postgres";
 import { generateHashtags } from "@/lib/tiktok/hashtags";
-import { extractDemos, slugify } from "@/lib/utils";
+import { daysUntilBirthday, extractDemos, slugify } from "@/lib/utils";
 import { scrapeWikiBirthdays } from "@/lib/wiki/scrape";
+import { scrapeSignificantMoments } from "@/lib/wiki/moments";
 import type { StoreData } from "@/lib/types";
 
 export type IngestResult = {
   source: string;
   charactersUpserted: number;
   showsUpserted: number;
+  momentsUpserted?: number;
   status: "success" | "error";
   error?: string;
   syncedToPostgres?: boolean;
@@ -122,6 +125,8 @@ export async function ingestFromAniList(options?: {
         wikiUrl: c.siteUrl,
         description: c.description,
         source: "anilist",
+        ugcVolume: null,
+        ugcUpdatedAt: null,
       });
 
       replaceHashtags(
@@ -243,6 +248,8 @@ export async function ingestFromWiki(): Promise<IngestResult> {
         wikiUrl: entry.wikiUrl,
         description: null,
         source: "wiki",
+        ugcVolume: null,
+        ugcUpdatedAt: null,
       });
 
       replaceHashtags(
@@ -287,13 +294,222 @@ export async function ingestFromWiki(): Promise<IngestResult> {
 export async function runFullIngest(options?: {
   maxPages?: number;
   includeWiki?: boolean;
+  includeMoments?: boolean;
 }): Promise<IngestResult[]> {
   const results: IngestResult[] = [];
   results.push(await ingestFromAniList({ maxPages: options?.maxPages }));
   if (options?.includeWiki !== false) {
     results.push(await ingestFromWiki());
   }
+  if (options?.includeMoments !== false) {
+    results.push(await ingestMoments());
+  }
   return results;
+}
+
+export async function ingestMoments(): Promise<IngestResult> {
+  const store = await readStore();
+  const run = addIngestRun(store, {
+    source: "moments",
+    status: "running",
+    charactersUpserted: 0,
+    showsUpserted: 0,
+    momentsUpserted: 0,
+    error: null,
+    startedAt: new Date().toISOString(),
+    finishedAt: null,
+  });
+
+  try {
+    const scraped = await scrapeSignificantMoments();
+    const used = new Set(store.moments.map((m) => m.slug));
+    let momentsUpserted = 0;
+
+    for (const m of scraped) {
+      let slug = slugify(m.title) || `moment-${m.month}-${m.day}`;
+      if (used.has(slug) && !store.moments.find((x) => x.slug === slug)) {
+        let i = 2;
+        while (used.has(`${slug}-${i}`)) i++;
+        slug = `${slug}-${i}`;
+      }
+      used.add(slug);
+
+      await upsertMoment(store, {
+        slug,
+        title: m.title,
+        summary: m.summary,
+        kind: m.kind,
+        franchise: m.franchise,
+        image: m.image,
+        month: m.month,
+        day: m.day,
+        year: m.year,
+        significance: m.significance,
+        wikiUrl: m.wikiUrl,
+        source: m.source,
+        tags: m.tags,
+        ugcVolume: null,
+        ugcUpdatedAt: null,
+      });
+      momentsUpserted++;
+    }
+
+    run.status = "success";
+    run.momentsUpserted = momentsUpserted;
+    run.finishedAt = new Date().toISOString();
+    const syncedToPostgres = await persistStore(store);
+    return {
+      source: "moments",
+      charactersUpserted: 0,
+      showsUpserted: 0,
+      momentsUpserted,
+      status: "success",
+      syncedToPostgres,
+    };
+  } catch (err) {
+    run.status = "error";
+    run.error = err instanceof Error ? err.message : String(err);
+    run.finishedAt = new Date().toISOString();
+    await writeStore(store);
+    return {
+      source: "moments",
+      charactersUpserted: 0,
+      showsUpserted: 0,
+      momentsUpserted: 0,
+      status: "error",
+      error: run.error,
+    };
+  }
+}
+
+/**
+ * Deep AniList crawl to saturate birthdays in the next `windowDays` (default 60).
+ * Keeps paging until coverage plateaus or maxPages hit.
+ */
+export async function saturateBirthdayWindow(options?: {
+  windowDays?: number;
+  maxPages?: number;
+}): Promise<IngestResult & { windowDays: number; matchedInWindow: number }> {
+  const windowDays = options?.windowDays ?? 60;
+  const maxPages = options?.maxPages ?? 40;
+  const store = await readStore();
+  const run = addIngestRun(store, {
+    source: "saturate",
+    status: "running",
+    charactersUpserted: 0,
+    showsUpserted: 0,
+    error: null,
+    startedAt: new Date().toISOString(),
+    finishedAt: null,
+  });
+
+  try {
+    const characters = await fetchTopCharactersWithBirthdays({
+      maxPages,
+      perPage: 50,
+      delayMs: 650,
+    });
+
+    const usedSlugs = new Set(store.characters.map((c) => c.slug));
+    let charactersUpserted = 0;
+    let showsUpserted = 0;
+    let matchedInWindow = 0;
+
+    for (const c of characters) {
+      const month = c.dateOfBirth.month!;
+      const day = c.dateOfBirth.day!;
+      const daysUntil = daysUntilBirthday(month, day);
+      if (daysUntil > windowDays) continue;
+      matchedInWindow++;
+
+      const media = pickPrimaryMedia(c.media?.nodes ?? []);
+      let showId: number | null = null;
+
+      if (media) {
+        const tagNames = (media.tags ?? []).map((t) => t.name);
+        const demos = extractDemos(media.genres ?? [], tagNames);
+        const show = await upsertShow(store, {
+          anilistId: media.id,
+          titleRomaji: media.title.romaji,
+          titleEnglish: media.title.english,
+          titleNative: media.title.native,
+          coverImage: media.coverImage.large ?? media.coverImage.medium,
+          genres: media.genres ?? [],
+          demos,
+          popularity: media.popularity ?? 0,
+          favourites: media.favourites ?? 0,
+          siteUrl: media.siteUrl,
+        });
+        showId = show.id;
+        showsUpserted++;
+      }
+
+      const existing = store.characters.find((x) => x.anilistId === c.id);
+      const slug =
+        existing?.slug ?? uniqueSlug(slugify(c.name.full), usedSlugs, c.id);
+      const showTitle = media?.title.english || media?.title.romaji || null;
+
+      const character = await upsertCharacter(store, {
+        anilistId: c.id,
+        slug,
+        nameFull: c.name.full,
+        nameFirst: c.name.first,
+        nameLast: c.name.last,
+        nameNative: c.name.native,
+        image: c.image.large ?? c.image.medium,
+        birthMonth: month,
+        birthDay: day,
+        favourites: c.favourites ?? 0,
+        showId,
+        wikiUrl: c.siteUrl,
+        description: c.description,
+        source: "anilist",
+        ugcVolume: existing?.ugcVolume ?? null,
+        ugcUpdatedAt: existing?.ugcUpdatedAt ?? null,
+      });
+
+      replaceHashtags(
+        store,
+        character.id,
+        generateHashtags({
+          nameFull: c.name.full,
+          nameFirst: c.name.first,
+          showTitle,
+        }),
+      );
+      charactersUpserted++;
+    }
+
+    run.status = "success";
+    run.charactersUpserted = charactersUpserted;
+    run.showsUpserted = showsUpserted;
+    run.finishedAt = new Date().toISOString();
+    const syncedToPostgres = await persistStore(store);
+
+    return {
+      source: "saturate",
+      charactersUpserted,
+      showsUpserted,
+      status: "success",
+      syncedToPostgres,
+      windowDays,
+      matchedInWindow,
+    };
+  } catch (err) {
+    run.status = "error";
+    run.error = err instanceof Error ? err.message : String(err);
+    run.finishedAt = new Date().toISOString();
+    await writeStore(store);
+    return {
+      source: "saturate",
+      charactersUpserted: 0,
+      showsUpserted: 0,
+      status: "error",
+      error: run.error,
+      windowDays,
+      matchedInWindow: 0,
+    };
+  }
 }
 
 /** Map a raw AniList character into store shape without persistence (live fallback). */

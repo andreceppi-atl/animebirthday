@@ -1,5 +1,6 @@
+import { Suspense } from "react";
 import Link from "next/link";
-import { UpcomingList } from "@/components/UpcomingList";
+import { UpcomingExplorer } from "@/components/UpcomingExplorer";
 import {
   getBiggestThisWeek,
   getCharacterCount,
@@ -9,9 +10,31 @@ import { formatBirthday } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
+type Props = {
+  searchParams: Promise<{
+    q?: string;
+    sort?: string;
+    demo?: string;
+    days?: string;
+    type?: string;
+  }>;
+};
+
+export default async function HomePage({ searchParams }: Props) {
+  const params = await searchParams;
+  const days = Number(params.days ?? "60");
+  const sort = (params.sort as "date" | "popularity" | "relevance" | "ugc") || "relevance";
+  const type = (params.type as "birthday" | "moment" | "all") || "birthday";
+
   const [upcoming, biggest, count] = await Promise.all([
-    getUpcomingCharacters({ days: 14, limit: 40 }),
+    getUpcomingCharacters({
+      days,
+      limit: 100,
+      q: params.q,
+      sort,
+      demo: params.demo,
+      type,
+    }),
     getBiggestThisWeek(1),
     getCharacterCount(),
   ]);
@@ -20,7 +43,7 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto max-w-5xl px-5 pb-20 pt-10 sm:px-8 sm:pt-14">
-      <section className="relative mb-14 min-h-[55vh] overflow-hidden sm:mb-20 sm:min-h-[60vh]">
+      <section className="relative mb-14 min-h-[50vh] overflow-hidden sm:mb-16 sm:min-h-[55vh]">
         {hero?.image && (
           <div className="pointer-events-none absolute inset-y-0 right-0 w-full sm:w-[58%]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -43,8 +66,8 @@ export default async function HomePage() {
             <span className="block text-[var(--accent)]">character birthday.</span>
           </h1>
           <p className="max-w-md text-base text-[var(--muted)] sm:text-lg">
-            Who&apos;s coming up, who&apos;s biggest, what show — and the TikTok hashtags
-            for the edit.
+            Next 2 months of birthdays (default) plus significant JP media
+            moments — fights, deaths, premieres, kaiju dates.
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Link
@@ -62,7 +85,7 @@ export default async function HomePage() {
           </div>
           {count === 0 && (
             <p className="text-sm text-[var(--muted)]">
-              Catalog empty — run <code className="text-[var(--accent)]">npm run seed</code>
+              Catalog empty — run <code className="text-[var(--accent)]">npm run saturate</code>
             </p>
           )}
         </div>
@@ -96,20 +119,9 @@ export default async function HomePage() {
         </section>
       )}
 
-      <section id="upcoming" className="scroll-mt-8">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl tracking-tight text-[var(--ink)]">
-              Upcoming · 14 days
-            </h2>
-            <p className="mt-1 text-sm text-[var(--muted)]">
-              Sorted by date, then popularity — pick who to edit next.
-            </p>
-          </div>
-          <span className="text-xs text-[var(--muted)]">{upcoming.length} chars</span>
-        </div>
-        <UpcomingList items={upcoming} />
-      </section>
+      <Suspense fallback={<p className="text-sm text-[var(--muted)]">Loading filters…</p>}>
+        <UpcomingExplorer initialItems={upcoming} initialDays={days} />
+      </Suspense>
     </div>
   );
 }

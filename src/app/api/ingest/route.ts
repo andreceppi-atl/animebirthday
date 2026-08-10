@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
-import { runFullIngest, ingestFromAniList, ingestFromWiki } from "@/lib/ingest";
+import {
+  runFullIngest,
+  ingestFromAniList,
+  ingestFromWiki,
+  ingestMoments,
+  saturateBirthdayWindow,
+} from "@/lib/ingest";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -20,6 +26,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const source = searchParams.get("source") ?? "all";
   const maxPages = Number(searchParams.get("pages") ?? "10");
+  const windowDays = Number(searchParams.get("days") ?? "60");
 
   try {
     if (source === "anilist") {
@@ -30,7 +37,23 @@ export async function GET(request: Request) {
       const result = await ingestFromWiki();
       return NextResponse.json({ results: [result] });
     }
-    const results = await runFullIngest({ maxPages, includeWiki: true });
+    if (source === "moments") {
+      const result = await ingestMoments();
+      return NextResponse.json({ results: [result] });
+    }
+    if (source === "saturate" || source === "monthly") {
+      const birthday = await saturateBirthdayWindow({
+        windowDays,
+        maxPages: Number(searchParams.get("pages") ?? "40"),
+      });
+      const moments = await ingestMoments();
+      return NextResponse.json({ results: [birthday, moments] });
+    }
+    const results = await runFullIngest({
+      maxPages,
+      includeWiki: true,
+      includeMoments: true,
+    });
     return NextResponse.json({ results });
   } catch (err) {
     return NextResponse.json(

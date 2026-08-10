@@ -10,6 +10,8 @@
     "seed": "tsx scripts/seed.ts",
     "seed:wiki": "tsx scripts/seed.ts --wiki",
     "seed:tiktok": "tsx scripts/seed-tiktok.ts",
+    "saturate": "tsx scripts/saturate.ts",
+    "moments": "tsx scripts/moments.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:sync": "tsx scripts/sync-postgres.ts",
@@ -34,6 +36,7 @@
     "eslint-config-next": "16.3.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.12",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vercel": "^58.9.1"
   }
 }

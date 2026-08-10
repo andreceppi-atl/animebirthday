@@ -1,7 +1,10 @@
 import Link from "next/link";
-import type { CharacterRecord, ShowRecord } from "@/lib/types";
+import type { CharacterRecord, MomentRecord, ShowRecord } from "@/lib/types";
 
-type DayChars = Array<CharacterRecord & { show: ShowRecord | null }>;
+type DayBucket = {
+  characters: Array<CharacterRecord & { show: ShowRecord | null }>;
+  moments: MomentRecord[];
+};
 
 export function BirthdayCalendar({
   year,
@@ -10,7 +13,7 @@ export function BirthdayCalendar({
 }: {
   year: number;
   month: number;
-  byDay: Record<number, DayChars>;
+  byDay: Record<number, DayBucket>;
 }) {
   const firstDow = new Date(year, month - 1, 1).getDay();
   const daysInMonth = new Date(year, month, 0).getDate();
@@ -60,8 +63,10 @@ export function BirthdayCalendar({
           if (cell.day === null) {
             return <div key={`e-${i}`} className="min-h-24 bg-[var(--bg)] sm:min-h-28" />;
           }
-          const chars = byDay[cell.day] ?? [];
-          const top = chars[0];
+          const bucket = byDay[cell.day] ?? { characters: [], moments: [] };
+          const topChar = bucket.characters[0];
+          const topMoment = bucket.moments[0];
+          const count = bucket.characters.length + bucket.moments.length;
           return (
             <div
               key={cell.day}
@@ -69,33 +74,56 @@ export function BirthdayCalendar({
             >
               <div className="flex items-start justify-between gap-1">
                 <span className="text-xs text-[var(--muted)]">{cell.day}</span>
-                {chars.length > 0 && (
-                  <span className="text-[10px] text-[var(--accent)]">{chars.length}</span>
+                {count > 0 && (
+                  <span className="text-[10px] text-[var(--accent)]">{count}</span>
                 )}
               </div>
-              {top && (
+              {topChar && (
                 <Link
-                  href={`/character/${top.slug}`}
+                  href={`/character/${topChar.slug}`}
                   className="mt-1 block"
-                  title={top.nameFull}
+                  title={topChar.nameFull}
                 >
                   <div className="relative mx-auto aspect-[3/4] w-full max-w-[72px] overflow-hidden bg-[var(--surface)]">
-                    {top.image ? (
+                    {topChar.image ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={top.image}
-                        alt={top.nameFull}
+                        src={topChar.image}
+                        alt={topChar.nameFull}
                         className="h-full w-full object-cover"
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center p-1 text-[9px] leading-tight text-[var(--muted)]">
-                        {top.nameFull}
+                        {topChar.nameFull}
                       </div>
                     )}
                   </div>
                   <p className="mt-1 hidden truncate text-[10px] text-[var(--ink)] sm:block">
-                    {top.nameFull}
+                    {topChar.nameFull}
                   </p>
+                </Link>
+              )}
+              {!topChar && topMoment && (
+                <Link
+                  href={`/moment/${topMoment.slug}`}
+                  className="mt-1 block"
+                  title={topMoment.title}
+                >
+                  <p className="line-clamp-3 text-[10px] leading-snug text-[var(--accent-soft)]">
+                    {topMoment.title}
+                  </p>
+                  <p className="mt-0.5 text-[9px] uppercase tracking-wide text-[var(--muted)]">
+                    {topMoment.kind}
+                  </p>
+                </Link>
+              )}
+              {topChar && topMoment && (
+                <Link
+                  href={`/moment/${topMoment.slug}`}
+                  className="mt-1 hidden text-[9px] uppercase tracking-wide text-[var(--accent-soft)] sm:block"
+                >
+                  +{bucket.moments.length} moment
+                  {bucket.moments.length === 1 ? "" : "s"}
                 </Link>
               )}
             </div>

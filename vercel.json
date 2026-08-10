@@ -7,6 +7,14 @@
     {
       "path": "/api/ingest?source=wiki",
       "schedule": "0 7 * * 0"
+    },
+    {
+      "path": "/api/ingest?source=moments",
+      "schedule": "30 7 * * 0"
+    },
+    {
+      "path": "/api/ingest?source=monthly&days=60&pages=40",
+      "schedule": "0 8 1 * *"
     }
   ]
 }

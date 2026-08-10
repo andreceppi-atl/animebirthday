@@ -20,7 +20,8 @@ export default async function CalendarPage({ searchParams }: Props) {
         Calendar
       </p>
       <p className="mb-10 max-w-lg text-sm text-[var(--muted)]">
-        Browse by day. Each cell shows the most-favorited character born that date.
+        Birthdays take the cell when present; otherwise significant moments
+        (combat, releases, kaiju, deaths). Counts include both.
       </p>
       <BirthdayCalendar year={data.year} month={data.month} byDay={data.byDay} />
     </div>

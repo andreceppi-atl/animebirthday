@@ -4,6 +4,7 @@ import {
   characterHashtags,
   characters,
   ingestRuns,
+  moments,
   shows,
   tiktokVideos,
 } from "@/lib/db/schema";
@@ -54,6 +55,8 @@ function mapCharacter(row: typeof characters.$inferSelect): CharacterRecord {
     wikiUrl: row.wikiUrl,
     description: row.description,
     source: (row.source as "anilist" | "wiki") ?? "anilist",
+    ugcVolume: row.ugcVolume ?? null,
+    ugcUpdatedAt: row.ugcUpdatedAt ? row.ugcUpdatedAt.toISOString() : null,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
   };
@@ -235,6 +238,7 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
   await db.delete(tiktokVideos);
   await db.delete(characterHashtags);
   await db.delete(characters);
+  await db.delete(moments);
   await db.delete(shows);
 
   const showIdMap = new Map<number, number>();
@@ -280,6 +284,8 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
         wikiUrl: c.wikiUrl,
         description: c.description,
         source: c.source,
+        ugcVolume: c.ugcVolume,
+        ugcUpdatedAt: c.ugcUpdatedAt ? new Date(c.ugcUpdatedAt) : null,
         createdAt: now,
         updatedAt: now,
       })
@@ -311,12 +317,35 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
     });
   }
 
+  for (const m of store.moments ?? []) {
+    await db.insert(moments).values({
+      slug: m.slug,
+      title: m.title,
+      summary: m.summary,
+      kind: m.kind,
+      franchise: m.franchise,
+      image: m.image,
+      month: m.month,
+      day: m.day,
+      year: m.year,
+      significance: m.significance,
+      wikiUrl: m.wikiUrl,
+      source: m.source,
+      tags: m.tags,
+      ugcVolume: m.ugcVolume,
+      ugcUpdatedAt: m.ugcUpdatedAt ? new Date(m.ugcUpdatedAt) : null,
+      createdAt: now,
+      updatedAt: now,
+    });
+  }
+
   for (const run of store.ingestRuns.slice(-20)) {
     await db.insert(ingestRuns).values({
       source: run.source,
       status: run.status,
       charactersUpserted: run.charactersUpserted,
       showsUpserted: run.showsUpserted,
+      momentsUpserted: run.momentsUpserted ?? 0,
       error: run.error,
       startedAt: new Date(run.startedAt),
       finishedAt: run.finishedAt ? new Date(run.finishedAt) : null,

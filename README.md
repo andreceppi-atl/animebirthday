@@ -54,6 +54,17 @@ Wiki scrape order: Jikan (MAL) → optional `WIKI_BIRTHDAY_URL` HTML table → A
 
 ## Pages
 
-- `/` — upcoming 14 days + biggest this week
+- `/` — upcoming 60 days + filters (popularity / relevance / UGC) + biggest this week
 - `/calendar` — month grid
-- `/character/[slug]` — demos, hashtag deep links, TikTok oEmbed
+- `/character/[slug]` — demos, hashtag deep links, ChartEx lookup, TikTok oEmbed
+
+### ChartEx
+
+Add credentials from [ChartEx API Dashboard](https://chartex.com/apidocs/dashboard):
+
+```bash
+CHARTEX_APP_ID=...
+CHARTEX_APP_TOKEN=...
+```
+
+Then on a character page, use **ChartEx check** to look up anime TikTok sound volume and optionally stamp it for UGC sorting.

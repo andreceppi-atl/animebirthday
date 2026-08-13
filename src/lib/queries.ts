@@ -67,6 +67,10 @@ export type UpcomingItem = {
     demos: string[];
     genres: string[];
   } | null;
+  alsoShows?: Array<{
+    titleEnglish: string | null;
+    titleRomaji: string;
+  }>;
 };
 
 export async function getCharacterCount(): Promise<number> {
@@ -85,7 +89,11 @@ async function loadCharacters(): Promise<CharacterWithShow[]> {
   const showMap = new Map(store.shows.map((s) => [s.id, s]));
   return store.characters.map((c) => ({
     ...c,
+    alsoShowIds: c.alsoShowIds ?? [],
     show: c.showId ? showMap.get(c.showId) ?? null : null,
+    alsoShows: (c.alsoShowIds ?? [])
+      .map((id) => showMap.get(id))
+      .filter((s): s is NonNullable<typeof s> => Boolean(s)),
     hashtags: store.hashtags.filter((h) => h.characterId === c.id),
     tiktokVideos: store.tiktokVideos.filter((v) => v.characterId === c.id),
   }));
@@ -155,6 +163,10 @@ function characterToFeedItem(c: CharacterWithShow): UpcomingItem {
           genres: c.show.genres,
         }
       : null,
+    alsoShows: (c.alsoShows ?? []).map((s) => ({
+      titleEnglish: s.titleEnglish,
+      titleRomaji: s.titleRomaji,
+    })),
   };
 }
 
@@ -196,6 +208,7 @@ function momentToFeedItem(m: MomentRecord): UpcomingItem {
           genres: m.tags.slice(0, 4),
         }
       : null,
+    alsoShows: [],
   };
 }
 
@@ -332,7 +345,11 @@ export async function getCharacterBySlug(
     : null;
   return {
     ...character,
+    alsoShowIds: character.alsoShowIds ?? [],
     show,
+    alsoShows: (character.alsoShowIds ?? [])
+      .map((id) => store.shows.find((s) => s.id === id))
+      .filter((s): s is NonNullable<typeof s> => Boolean(s)),
     hashtags: store.hashtags.filter((h) => h.characterId === character.id),
     tiktokVideos: store.tiktokVideos.filter((v) => v.characterId === character.id),
   };

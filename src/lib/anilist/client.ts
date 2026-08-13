@@ -1,5 +1,7 @@
 const ANILIST_URL = "https://graphql.anilist.co";
 
+export type CharacterRole = "MAIN" | "SUPPORTING" | "BACKGROUND" | string;
+
 export type AniListCharacterPage = {
   Page: {
     pageInfo: {
@@ -10,6 +12,27 @@ export type AniListCharacterPage = {
     };
     characters: AniListCharacter[];
   };
+};
+
+export type AniListMedia = {
+  id: number;
+  type: "ANIME" | "MANGA";
+  format?: string | null;
+  title: {
+    romaji: string;
+    english: string | null;
+    native: string | null;
+  };
+  coverImage: { large: string | null; medium: string | null };
+  genres: string[];
+  tags: { name: string; category: string | null }[];
+  popularity: number;
+  favourites: number;
+  siteUrl: string;
+};
+
+export type AniListMediaWithRole = AniListMedia & {
+  characterRole?: CharacterRole;
 };
 
 export type AniListCharacter = {
@@ -26,25 +49,26 @@ export type AniListCharacter = {
   favourites: number;
   siteUrl: string;
   media: {
-    nodes: AniListMedia[];
+    nodes?: AniListMedia[];
+    edges?: Array<{
+      characterRole: CharacterRole;
+      node: AniListMedia;
+    }>;
   };
 };
 
-export type AniListMedia = {
-  id: number;
-  type: "ANIME" | "MANGA";
-  title: {
-    romaji: string;
-    english: string | null;
-    native: string | null;
-  };
-  coverImage: { large: string | null; medium: string | null };
-  genres: string[];
-  tags: { name: string; category: string | null }[];
-  popularity: number;
-  favourites: number;
-  siteUrl: string;
-};
+const MEDIA_FIELDS = `
+  id
+  type
+  format
+  title { romaji english native }
+  coverImage { large medium }
+  genres
+  tags { name category }
+  popularity
+  favourites
+  siteUrl
+`;
 
 const CHARACTER_QUERY = `
 query ($page: Int, $perPage: Int) {
@@ -63,17 +87,10 @@ query ($page: Int, $perPage: Int) {
       dateOfBirth { month day year }
       favourites
       siteUrl
-      media(sort: POPULARITY_DESC, type: ANIME, perPage: 3) {
-        nodes {
-          id
-          type
-          title { romaji english native }
-          coverImage { large medium }
-          genres
-          tags { name category }
-          popularity
-          favourites
-          siteUrl
+      media(sort: POPULARITY_DESC, type: ANIME, perPage: 8) {
+        edges {
+          characterRole
+          node { ${MEDIA_FIELDS} }
         }
       }
     }
@@ -93,18 +110,31 @@ query ($page: Int, $perPage: Int) {
       dateOfBirth { month day year }
       favourites
       siteUrl
-      media(sort: POPULARITY_DESC, type: ANIME, perPage: 3) {
-        nodes {
-          id
-          type
-          title { romaji english native }
-          coverImage { large medium }
-          genres
-          tags { name category }
-          popularity
-          favourites
-          siteUrl
+      media(sort: POPULARITY_DESC, type: ANIME, perPage: 8) {
+        edges {
+          characterRole
+          node { ${MEDIA_FIELDS} }
         }
+      }
+    }
+  }
+}
+`;
+
+const CHARACTER_BY_ID_QUERY = `
+query ($id: Int) {
+  Character(id: $id) {
+    id
+    name { full first last native }
+    image { large medium }
+    description
+    dateOfBirth { month day year }
+    favourites
+    siteUrl
+    media(sort: POPULARITY_DESC, type: ANIME, perPage: 12) {
+      edges {
+        characterRole
+        node { ${MEDIA_FIELDS} }
       }
     }
   }
@@ -114,6 +144,7 @@ query ($page: Int, $perPage: Int) {
 async function anilistFetch<T>(
   query: string,
   variables: Record<string, unknown>,
+  rateLimitRetries = 0,
 ): Promise<T> {
   const res = await fetch(ANILIST_URL, {
     method: "POST",
@@ -122,13 +153,16 @@ async function anilistFetch<T>(
       Accept: "application/json",
     },
     body: JSON.stringify({ query, variables }),
-    next: { revalidate: 0 },
+    signal: AbortSignal.timeout(20000),
   });
 
   if (res.status === 429) {
+    if (rateLimitRetries >= 5) {
+      throw new Error("AniList rate-limited too many times");
+    }
     const retryAfter = Number(res.headers.get("Retry-After") ?? "5");
-    await sleep(retryAfter * 1000);
-    return anilistFetch(query, variables);
+    await sleep(Math.min(retryAfter, 30) * 1000);
+    return anilistFetch(query, variables, rateLimitRetries + 1);
   }
 
   if (!res.ok) {
@@ -192,9 +226,175 @@ export async function fetchTodaysBirthdayCharacters(): Promise<AniListCharacter[
   return results;
 }
 
+export async function fetchCharacterById(
+  anilistId: number,
+): Promise<AniListCharacter | null> {
+  const data = await anilistFetch<{ Character: AniListCharacter | null }>(
+    CHARACTER_BY_ID_QUERY,
+    { id: anilistId },
+  );
+  return data.Character;
+}
+
+/** Flatten media edges (preferred) or legacy nodes into role-aware rows. */
+export function mediaWithRoles(
+  character: AniListCharacter,
+): AniListMediaWithRole[] {
+  if (character.media?.edges?.length) {
+    return character.media.edges.map((e) => ({
+      ...e.node,
+      characterRole: e.characterRole,
+    }));
+  }
+  return (character.media?.nodes ?? []).map((n) => ({ ...n }));
+}
+
+function roleScore(role?: CharacterRole): number {
+  // BACKGROUND cameos must lose even against less-popular MAIN/SUPPORTING series
+  // (Saiki BACKGROUND in Assassination Classroom vs MAIN in Saiki K.).
+  // Do NOT let MAIN crush SUPPORTING on ensemble casts (Levi is SUPPORTING in AoT S1
+  // but MAIN in S3 — flagship popularity should win).
+  if (role === "BACKGROUND") return 0;
+  if (role === "MAIN") return 530;
+  if (role === "SUPPORTING") return 500;
+  return 480;
+}
+
+function formatScore(format?: string | null): number {
+  const f = (format ?? "TV").toUpperCase();
+  if (f === "TV" || f === "TV_SHORT" || f === "MOVIE") return 40;
+  if (f === "ONA") return 0;
+  if (f === "OVA" || f === "SPECIAL" || f === "MUSIC") return -80;
+  return 0;
+}
+
+function sequelPenalty(media: AniListMedia): number {
+  const title = `${media.title.romaji} ${media.title.english ?? ""}`;
+  if (
+    /\b(season|part|final season|2nd|3rd|4th|cour)\b/i.test(title) ||
+    /\s+\d+(st|nd|rd|th)\s+season/i.test(title)
+  ) {
+    return -90;
+  }
+  return 0;
+}
+
+function normalizeTokens(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((t) => t.length > 2);
+}
+
+/** Overlap between character name tokens and show title (catches Saiki → Saiki K.). */
+export function nameTitleOverlapScore(
+  characterName: string,
+  media: AniListMedia,
+): number {
+  const nameTokens = new Set(normalizeTokens(characterName));
+  if (!nameTokens.size) return 0;
+  const title = [
+    media.title.romaji,
+    media.title.english ?? "",
+    media.title.native ?? "",
+  ].join(" ");
+  const titleLower = title.toLowerCase();
+  let hits = 0;
+  for (const t of nameTokens) {
+    if (titleLower.includes(t)) hits++;
+  }
+  return hits * 55;
+}
+
+/**
+ * Pick the show a character is actually from.
+ * Prefer non-BACKGROUND appearances, flagship popularity, and name overlap —
+ * not raw popularity alone (which promotes cameos in mega-hits).
+ */
 export function pickPrimaryMedia(
-  media: AniListMedia[],
-): AniListMedia | null {
-  const anime = media.filter((m) => m.type === "ANIME");
-  return anime[0] ?? media[0] ?? null;
+  media: AniListMediaWithRole[] | AniListMedia[],
+  characterName?: string,
+): AniListMediaWithRole | null {
+  const anime = (media as AniListMediaWithRole[]).filter(
+    (m) => m.type === "ANIME",
+  );
+  if (!anime.length) {
+    return (media as AniListMediaWithRole[])[0] ?? null;
+  }
+
+  const scored = anime.map((m) => {
+    const role = roleScore(m.characterRole);
+    const nameBoost = characterName
+      ? nameTitleOverlapScore(characterName, m)
+      : 0;
+    const pop = Math.log10(Math.max(m.popularity ?? 1, 1)) * 100;
+    const format = formatScore(m.format);
+    const sequel = sequelPenalty(m);
+    return {
+      media: m,
+      score: role + nameBoost + pop + format + sequel,
+    };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored[0]?.media ?? null;
+}
+
+function franchiseTokens(media: AniListMedia): Set<string> {
+  const stop = new Set([
+    "season",
+    "part",
+    "final",
+    "movie",
+    "the",
+    "and",
+    "ova",
+    "ona",
+    "tv",
+  ]);
+  return new Set(
+    normalizeTokens(
+      `${media.title.romaji} ${media.title.english ?? ""} ${media.title.native ?? ""}`,
+    ).filter((t) => !stop.has(t) && !/^\d+$/.test(t)),
+  );
+}
+
+function sharesFranchise(a: AniListMedia, b: AniListMedia): boolean {
+  const ta = franchiseTokens(a);
+  const tb = franchiseTokens(b);
+  for (const t of ta) {
+    if (tb.has(t)) return true;
+  }
+  return false;
+}
+
+/**
+ * Notable crossover / cameo appearances distinct from the primary series.
+ * e.g. Kusuo Saiki MAIN in Saiki K. + BACKGROUND in Assassination Classroom.
+ */
+export function pickCrossoverMedia(
+  media: AniListMediaWithRole[] | AniListMedia[],
+  primary: AniListMediaWithRole | null,
+  options?: { limit?: number; minPopularity?: number },
+): AniListMediaWithRole[] {
+  if (!primary) return [];
+  const limit = options?.limit ?? 3;
+  const minPopularity = options?.minPopularity ?? 40_000;
+  const anime = (media as AniListMediaWithRole[]).filter(
+    (m) => m.type === "ANIME" && m.id !== primary.id,
+  );
+
+  const crossovers = anime.filter((m) => {
+    if (sharesFranchise(m, primary)) return false;
+    // Cameo in another franchise, or any non-primary appearance tagged BACKGROUND
+    if (m.characterRole === "BACKGROUND") return true;
+    // Rare: MAIN/SUPPORTING in a totally different franchise (true crossover)
+    return (m.popularity ?? 0) >= minPopularity * 2;
+  });
+
+  return crossovers
+    .filter((m) => (m.popularity ?? 0) >= minPopularity)
+    .sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
+    .slice(0, limit);
 }

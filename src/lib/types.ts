@@ -31,6 +31,8 @@ export type CharacterRecord = {
   birthDay: number;
   favourites: number;
   showId: number | null;
+  /** Secondary shows (cameos / crossovers) — listed alongside primary */
+  alsoShowIds: number[];
   wikiUrl: string | null;
   description: string | null;
   source: "anilist" | "wiki";
@@ -122,6 +124,7 @@ export type StoreData = {
 
 export type CharacterWithShow = CharacterRecord & {
   show: ShowRecord | null;
+  alsoShows: ShowRecord[];
   hashtags: HashtagRecord[];
   tiktokVideos: TiktokVideoRecord[];
 };

@@ -47,6 +47,7 @@ export async function readStore(): Promise<StoreData> {
     for (const c of data.characters) {
       if (c.ugcVolume === undefined) c.ugcVolume = null;
       if (c.ugcUpdatedAt === undefined) c.ugcUpdatedAt = null;
+      if (!Array.isArray(c.alsoShowIds)) c.alsoShowIds = [];
     }
     for (const m of data.moments) {
       if (m.ugcVolume === undefined) m.ugcVolume = null;
@@ -164,6 +165,7 @@ export async function upsertCharacter(
   if (existing) {
     Object.assign(existing, {
       ...input,
+      alsoShowIds: input.alsoShowIds ?? existing.alsoShowIds ?? [],
       id: existing.id,
       createdAt: existing.createdAt,
       updatedAt: now,
@@ -184,6 +186,7 @@ export async function upsertCharacter(
     birthDay: input.birthDay,
     favourites: input.favourites,
     showId: input.showId,
+    alsoShowIds: input.alsoShowIds ?? [],
     wikiUrl: input.wikiUrl,
     description: input.description,
     source: input.source,

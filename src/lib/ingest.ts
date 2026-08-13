@@ -1,8 +1,10 @@
 import {
   fetchTopCharactersWithBirthdays,
+  mediaWithRoles,
   pickPrimaryMedia,
   type AniListCharacter,
 } from "@/lib/anilist/client";
+import { linkShowsForAniListCharacter } from "@/lib/anilist/linkShows";
 import {
   addIngestRun,
   loadWorkingStore,
@@ -77,27 +79,11 @@ export async function ingestFromAniList(options?: {
     let showsUpserted = 0;
 
     for (const c of characters) {
-      const media = pickPrimaryMedia(c.media?.nodes ?? []);
-      let showId: number | null = null;
-
-      if (media) {
-        const tagNames = (media.tags ?? []).map((t) => t.name);
-        const demos = extractDemos(media.genres ?? [], tagNames);
-        const show = await upsertShow(store, {
-          anilistId: media.id,
-          titleRomaji: media.title.romaji,
-          titleEnglish: media.title.english,
-          titleNative: media.title.native,
-          coverImage: media.coverImage.large ?? media.coverImage.medium,
-          genres: media.genres ?? [],
-          demos,
-          popularity: media.popularity ?? 0,
-          favourites: media.favourites ?? 0,
-          siteUrl: media.siteUrl,
-        });
-        showId = show.id;
-        showsUpserted++;
-      }
+      const linked = await linkShowsForAniListCharacter(store, c);
+      const showId = linked.showId;
+      const alsoShowIds = linked.alsoShowIds;
+      if (linked.primary) showsUpserted++;
+      showsUpserted += linked.crossovers.length;
 
       const baseSlug = slugify(c.name.full);
       // Reserve slug if new
@@ -105,7 +91,7 @@ export async function ingestFromAniList(options?: {
       const slug = existing?.slug ?? uniqueSlug(baseSlug, usedSlugs, c.id);
 
       const showTitle =
-        media?.title.english || media?.title.romaji || null;
+        linked.primary?.title.english || linked.primary?.title.romaji || null;
 
       const character = await upsertCharacter(store, {
         anilistId: c.id,
@@ -119,6 +105,7 @@ export async function ingestFromAniList(options?: {
         birthDay: c.dateOfBirth.day!,
         favourites: c.favourites ?? 0,
         showId,
+        alsoShowIds,
         wikiUrl: c.siteUrl,
         description: c.description,
         source: "anilist",
@@ -246,6 +233,7 @@ export async function ingestFromWiki(): Promise<IngestResult> {
         birthDay: entry.birthDay,
         favourites: 0,
         showId,
+        alsoShowIds: [],
         wikiUrl: entry.wikiUrl,
         description: null,
         source: "wiki",
@@ -433,32 +421,17 @@ export async function saturateBirthdayWindow(options?: {
       if (daysUntil > windowDays) continue;
       matchedInWindow++;
 
-      const media = pickPrimaryMedia(c.media?.nodes ?? []);
-      let showId: number | null = null;
-
-      if (media) {
-        const tagNames = (media.tags ?? []).map((t) => t.name);
-        const demos = extractDemos(media.genres ?? [], tagNames);
-        const show = await upsertShow(store, {
-          anilistId: media.id,
-          titleRomaji: media.title.romaji,
-          titleEnglish: media.title.english,
-          titleNative: media.title.native,
-          coverImage: media.coverImage.large ?? media.coverImage.medium,
-          genres: media.genres ?? [],
-          demos,
-          popularity: media.popularity ?? 0,
-          favourites: media.favourites ?? 0,
-          siteUrl: media.siteUrl,
-        });
-        showId = show.id;
-        showsUpserted++;
-      }
+      const linked = await linkShowsForAniListCharacter(store, c);
+      const showId = linked.showId;
+      const alsoShowIds = linked.alsoShowIds;
+      if (linked.primary) showsUpserted++;
+      showsUpserted += linked.crossovers.length;
 
       const existing = store.characters.find((x) => x.anilistId === c.id);
       const slug =
         existing?.slug ?? uniqueSlug(slugify(c.name.full), usedSlugs, c.id);
-      const showTitle = media?.title.english || media?.title.romaji || null;
+      const showTitle =
+        linked.primary?.title.english || linked.primary?.title.romaji || null;
 
       const character = await upsertCharacter(store, {
         anilistId: c.id,
@@ -472,6 +445,7 @@ export async function saturateBirthdayWindow(options?: {
         birthDay: day,
         favourites: c.favourites ?? 0,
         showId,
+        alsoShowIds,
         wikiUrl: c.siteUrl,
         description: c.description,
         source: "anilist",
@@ -529,7 +503,7 @@ export async function saturateBirthdayWindow(options?: {
 
 /** Map a raw AniList character into store shape without persistence (live fallback). */
 export function mapAniListCharacter(c: AniListCharacter) {
-  const media = pickPrimaryMedia(c.media?.nodes ?? []);
+  const media = pickPrimaryMedia(mediaWithRoles(c), c.name.full);
   const demos = media
     ? extractDemos(
         media.genres ?? [],

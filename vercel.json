@@ -17,6 +17,10 @@
       "schedule": "0 9 * * 1"
     },
     {
+      "path": "/api/ingest?source=factcheck&repair=1&limit=250",
+      "schedule": "0 10 * * 2"
+    },
+    {
       "path": "/api/ingest?source=monthly&days=60&pages=40",
       "schedule": "0 8 1 * *"
     }

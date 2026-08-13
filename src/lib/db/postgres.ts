@@ -189,6 +189,7 @@ function mapCharacter(row: typeof characters.$inferSelect): CharacterRecord {
     birthDay: row.birthDay,
     favourites: row.favourites,
     showId: row.showId,
+    alsoShowIds: row.alsoShowIds ?? [],
     wikiUrl: row.wikiUrl,
     description: row.description,
     source: (row.source as "anilist" | "wiki") ?? "anilist",
@@ -249,6 +250,9 @@ export async function pgGetAllCharactersWithRelations(): Promise<
     return {
       ...character,
       show: c.showId ? showMap.get(c.showId) ?? null : null,
+      alsoShows: (character.alsoShowIds ?? [])
+        .map((id) => showMap.get(id))
+        .filter((s): s is ShowRecord => Boolean(s)),
       hashtags: tagsByChar.get(c.id) ?? [],
       tiktokVideos: videosByChar.get(c.id) ?? [],
     };
@@ -263,11 +267,20 @@ export async function pgGetCharacterBySlug(
   const row = rows[0];
   if (!row) return null;
 
-  const show = row.showId
-    ? (
-        await db.select().from(shows).where(eq(shows.id, row.showId)).limit(1)
-      )[0]
-    : null;
+  const character = mapCharacter(row);
+  const showIds = [
+    ...(row.showId ? [row.showId] : []),
+    ...(character.alsoShowIds ?? []),
+  ];
+  const uniqueShowIds = [...new Set(showIds)];
+  const showRows =
+    uniqueShowIds.length > 0
+      ? await db.select().from(shows)
+      : [];
+  const showMap = new Map(
+    showRows.map((s) => [s.id, mapShow(s)] as const),
+  );
+
   const tags = await db
     .select()
     .from(characterHashtags)
@@ -278,8 +291,11 @@ export async function pgGetCharacterBySlug(
     .where(eq(tiktokVideos.characterId, row.id));
 
   return {
-    ...mapCharacter(row),
-    show: show ? mapShow(show) : null,
+    ...character,
+    show: row.showId ? showMap.get(row.showId) ?? null : null,
+    alsoShows: (character.alsoShowIds ?? [])
+      .map((id) => showMap.get(id))
+      .filter((s): s is ShowRecord => Boolean(s)),
     hashtags: tags.map((t) => ({
       id: t.id,
       characterId: t.characterId,
@@ -430,6 +446,9 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
         birthDay: c.birthDay,
         favourites: c.favourites,
         showId: c.showId ? showIdMap.get(c.showId) ?? null : null,
+        alsoShowIds: (c.alsoShowIds ?? [])
+          .map((id) => showIdMap.get(id))
+          .filter((id): id is number => typeof id === "number"),
         wikiUrl: c.wikiUrl,
         description: c.description,
         source: c.source,

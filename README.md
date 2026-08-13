@@ -56,6 +56,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | Sunday 07:00 | `wiki` | Coverage fill (Jikan → wiki → AniList deep → seed) |
 | Sunday 07:30 | `moments` | JP media moments scrape |
 | Monday 09:00 | `chartex` | Stamp UGC volumes on upcoming entries |
+| Tuesday 10:00 | `factcheck` | Repair wrong character→show links; attach crossover/cameo shows |
 | 1st of month 08:00 | `monthly` | Saturate next-60-day birthdays + moments |
 
 Set `CRON_SECRET` in Vercel; cron requests send `Authorization: Bearer <CRON_SECRET>` (or `x-cron-secret`).
@@ -75,6 +76,7 @@ curl -H "Authorization: Bearer $CRON_SECRET" \
 - `npm run seed:wiki` — AniList + wiki/MAL/Jikan coverage fill
 - `npm run moments` — significant moments scrape → store
 - `npm run stamp:ugc` — ChartEx batch stamp for UGC sort
+- `npm run factcheck:shows` — audit character→show links vs AniList roles (`--repair` fixes BACKGROUND cameos + fills crossover `alsoShowIds`; add `--force` for soft season/franchise disagreements)
 - `npm run seed:tiktok` — oEmbed seed edit URLs from `data/tiktok-seeds.json`
 - `npm run saturate` — deep AniList crawl for near-term birthdays
 - `npm run db:push` — push Drizzle schema to Neon when `DATABASE_URL` is set

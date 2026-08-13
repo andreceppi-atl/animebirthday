@@ -7,6 +7,7 @@ import {
   saturateBirthdayWindow,
 } from "@/lib/ingest";
 import { stampUpcomingUgc } from "@/lib/chartex/stamp";
+import { factCheckCharacterShows } from "@/lib/factcheck/shows";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -29,6 +30,7 @@ export async function GET(request: Request) {
   const maxPages = Number(searchParams.get("pages") ?? "10");
   const windowDays = Number(searchParams.get("days") ?? "60");
   const limit = Number(searchParams.get("limit") ?? "40");
+  const repair = searchParams.get("repair") !== "0";
 
   try {
     if (source === "anilist") {
@@ -47,6 +49,15 @@ export async function GET(request: Request) {
       const result = await stampUpcomingUgc({
         characterLimit: limit,
         momentLimit: Number(searchParams.get("moments") ?? "20"),
+      });
+      return NextResponse.json({ results: [result] });
+    }
+    if (source === "factcheck" || source === "factcheck-shows") {
+      const result = await factCheckCharacterShows({
+        repair,
+        force: searchParams.get("force") === "1",
+        limit: Number(searchParams.get("limit") ?? "200"),
+        minFavourites: Number(searchParams.get("minFavourites") ?? "0"),
       });
       return NextResponse.json({ results: [result] });
     }

@@ -60,6 +60,20 @@ export default async function CharacterPage({ params }: Props) {
                 From
               </p>
               <p className="text-xl text-[var(--ink)]">{showTitle}</p>
+              {character.alsoShows?.length ? (
+                <div className="space-y-1 pt-1">
+                  <p className="text-xs uppercase tracking-wider text-[var(--muted)]">
+                    Also appears in
+                  </p>
+                  <ul className="space-y-0.5">
+                    {character.alsoShows.map((s) => (
+                      <li key={s.id} className="text-sm text-[var(--ink)]">
+                        {s.titleEnglish || s.titleRomaji}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
               {character.show?.demos?.length ? (
                 <p className="text-sm text-[var(--accent-soft)]">
                   Popular with {character.show.demos.join(" · ")} audiences

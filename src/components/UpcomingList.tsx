@@ -25,6 +25,10 @@ export type UpcomingItem = {
     demos: string[];
     genres: string[];
   } | null;
+  alsoShows?: Array<{
+    titleEnglish: string | null;
+    titleRomaji: string;
+  }>;
 };
 
 function hrefFor(item: UpcomingItem) {
@@ -106,6 +110,11 @@ export function UpcomingList({ items }: { items: UpcomingItem[] }) {
                   : item.franchise
                     ? ` · ${item.franchise}`
                     : ""}
+                {item.alsoShows?.length
+                  ? ` · also ${item.alsoShows
+                      .map((s) => s.titleEnglish || s.titleRomaji)
+                      .join(", ")}`
+                  : ""}
                 {item.feedKind === "birthday"
                   ? ` · ${item.favourites.toLocaleString()} favs`
                   : ""}

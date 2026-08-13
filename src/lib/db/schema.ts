@@ -44,6 +44,7 @@ export const characters = pgTable(
     birthDay: integer("birth_day").notNull(),
     favourites: integer("favourites").notNull().default(0),
     showId: integer("show_id").references(() => shows.id),
+    alsoShowIds: jsonb("also_show_ids").$type<number[]>().notNull().default([]),
     wikiUrl: text("wiki_url"),
     description: text("description"),
     source: varchar("source", { length: 32 }).notNull().default("anilist"),

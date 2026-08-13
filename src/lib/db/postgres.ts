@@ -371,6 +371,18 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
   const db = getDb();
   const now = new Date();
 
+  // Never drop moments just because an AniList-only working store omitted them
+  let momentsToWrite = store.moments ?? [];
+  if (momentsToWrite.length === 0) {
+    const existingMomentRows = await db.select().from(moments);
+    if (existingMomentRows.length > 0) {
+      momentsToWrite = existingMomentRows.map(mapMoment);
+      console.warn(
+        `syncStoreToPostgres: preserving ${momentsToWrite.length} existing moments (incoming empty)`,
+      );
+    }
+  }
+
   // Clear dependent tables first
   await db.delete(tiktokVideos);
   await db.delete(characterHashtags);
@@ -454,7 +466,7 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
     });
   }
 
-  for (const m of store.moments ?? []) {
+  for (const m of momentsToWrite) {
     await db.insert(moments).values({
       slug: m.slug,
       title: m.title,

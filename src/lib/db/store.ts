@@ -63,13 +63,22 @@ export async function readStore(): Promise<StoreData> {
  * Working store for ingest/mutations.
  * When DATABASE_URL is set and Neon already has catalog rows, Postgres is the authority
  * (avoids Vercel cron wiping Neon from an ephemeral empty store.json).
- * Otherwise fall back to local JSON (dev / first sync).
+ * If Neon has characters but zero moments, hydrate moments from local JSON so
+ * AniList-only syncs cannot permanently drop the moments catalog.
  */
 export async function loadWorkingStore(): Promise<StoreData> {
   if (hasDatabaseUrl()) {
     try {
       const fromPg = await loadStoreFromPostgres();
       if (fromPg.characters.length > 0 || fromPg.moments.length > 0) {
+        if (fromPg.moments.length === 0) {
+          const json = await readStore();
+          if (json.moments.length > 0) {
+            fromPg.moments = json.moments;
+            fromPg.nextIds.moments =
+              Math.max(0, ...json.moments.map((m) => m.id)) + 1;
+          }
+        }
         return fromPg;
       }
     } catch (err) {

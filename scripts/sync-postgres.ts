@@ -1,4 +1,7 @@
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
+config();
+
 import { readStore } from "../src/lib/db/store";
 import { hasDatabaseUrl, syncStoreToPostgres } from "../src/lib/db/postgres";
 
@@ -9,7 +12,7 @@ async function main() {
   }
   const store = await readStore();
   console.log(
-    `Syncing ${store.characters.length} characters / ${store.shows.length} shows to Postgres...`,
+    `Syncing ${store.characters.length} characters / ${store.shows.length} shows / ${store.moments?.length ?? 0} moments to Postgres...`,
   );
   await syncStoreToPostgres(store);
   console.log("Done.");

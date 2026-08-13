@@ -1,4 +1,7 @@
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
+config();
+
 import { ingestFromAniList, ingestFromWiki } from "../src/lib/ingest";
 
 async function main() {

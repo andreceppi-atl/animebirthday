@@ -12,6 +12,7 @@
     "seed:tiktok": "tsx scripts/seed-tiktok.ts",
     "saturate": "tsx scripts/saturate.ts",
     "moments": "tsx scripts/moments.ts",
+    "stamp:ugc": "tsx scripts/stamp-ugc.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:sync": "tsx scripts/sync-postgres.ts",

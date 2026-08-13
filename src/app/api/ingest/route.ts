@@ -6,6 +6,7 @@ import {
   ingestMoments,
   saturateBirthdayWindow,
 } from "@/lib/ingest";
+import { stampUpcomingUgc } from "@/lib/chartex/stamp";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -27,6 +28,7 @@ export async function GET(request: Request) {
   const source = searchParams.get("source") ?? "all";
   const maxPages = Number(searchParams.get("pages") ?? "10");
   const windowDays = Number(searchParams.get("days") ?? "60");
+  const limit = Number(searchParams.get("limit") ?? "40");
 
   try {
     if (source === "anilist") {
@@ -39,6 +41,13 @@ export async function GET(request: Request) {
     }
     if (source === "moments") {
       const result = await ingestMoments();
+      return NextResponse.json({ results: [result] });
+    }
+    if (source === "chartex" || source === "ugc") {
+      const result = await stampUpcomingUgc({
+        characterLimit: limit,
+        momentLimit: Number(searchParams.get("moments") ?? "20"),
+      });
       return NextResponse.json({ results: [result] });
     }
     if (source === "saturate" || source === "monthly") {

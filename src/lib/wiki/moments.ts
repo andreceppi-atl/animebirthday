@@ -183,6 +183,32 @@ export async function scrapeGodzillaFilms(): Promise<ScrapedMoment[]> {
   });
 }
 
+export async function scrapeGameraFilms(): Promise<ScrapedMoment[]> {
+  const page = "List_of_Gamera_films";
+  const html = await wikiParseHtml(page);
+  if (!html) return [];
+  return scrapeReleaseTable(html, {
+    franchise: "Gamera",
+    kind: "kaiju",
+    significance: 62,
+    pageUrl: `https://en.wikipedia.org/wiki/${page}`,
+    tags: ["gamera", "kaiju", "release"],
+  });
+}
+
+export async function scrapeUltramanSeries(): Promise<ScrapedMoment[]> {
+  const page = "List_of_Ultraman_series";
+  const html = await wikiParseHtml(page);
+  if (!html) return [];
+  return scrapeReleaseTable(html, {
+    franchise: "Ultraman",
+    kind: "kaiju",
+    significance: 64,
+    pageUrl: `https://en.wikipedia.org/wiki/${page}`,
+    tags: ["ultraman", "kaiju", "tokusatsu"],
+  });
+}
+
 export async function scrapeGhibliFilms(): Promise<ScrapedMoment[]> {
   const page = "List_of_Studio_Ghibli_works";
   const html = await wikiParseHtml(page);
@@ -219,6 +245,7 @@ export async function scrapeAniListPremieres(options?: {
 }): Promise<ScrapedMoment[]> {
   const maxPages = options?.maxPages ?? 10;
   const out: ScrapedMoment[] = [];
+  let rateLimitHits = 0;
   const query = `
     query ($page: Int) {
       Page(page: $page, perPage: 50) {
@@ -242,13 +269,19 @@ export async function scrapeAniListPremieres(options?: {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ query, variables: { page } }),
-      signal: AbortSignal.timeout(15000),
+      signal: AbortSignal.timeout(12000),
     });
     if (res.status === 429) {
+      rateLimitHits++;
+      if (rateLimitHits > 3) {
+        console.warn("Moments: AniList rate-limited — stopping premieres");
+        break;
+      }
       await sleep(2000);
       page--;
       continue;
     }
+    rateLimitHits = 0;
     if (!res.ok) break;
     const json = (await res.json()) as {
       data?: {
@@ -333,6 +366,24 @@ export async function scrapeSignificantMoments(): Promise<ScrapedMoment[]> {
   await sleep(400);
 
   try {
+    const gamera = await scrapeGameraFilms();
+    console.log(`Moments: Gamera ${gamera.length}`);
+    all.push(...gamera);
+  } catch (err) {
+    console.warn("Moments: Gamera scrape failed", err);
+  }
+  await sleep(400);
+
+  try {
+    const ultraman = await scrapeUltramanSeries();
+    console.log(`Moments: Ultraman ${ultraman.length}`);
+    all.push(...ultraman);
+  } catch (err) {
+    console.warn("Moments: Ultraman scrape failed", err);
+  }
+  await sleep(400);
+
+  try {
     const ghibli = await scrapeGhibliFilms();
     console.log(`Moments: Ghibli ${ghibli.length}`);
     all.push(...ghibli);
@@ -351,7 +402,8 @@ export async function scrapeSignificantMoments(): Promise<ScrapedMoment[]> {
   await sleep(400);
 
   try {
-    const premieres = await scrapeAniListPremieres({ maxPages: 8 });
+    // Cap premieres so curated combat/death/kaiju seeds stay visible in feeds
+    const premieres = await scrapeAniListPremieres({ maxPages: 4 });
     console.log(`Moments: AniList premieres ${premieres.length}`);
     all.push(...premieres);
   } catch (err) {

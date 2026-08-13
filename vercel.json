@@ -13,6 +13,10 @@
       "schedule": "30 7 * * 0"
     },
     {
+      "path": "/api/ingest?source=chartex&limit=30&moments=15",
+      "schedule": "0 9 * * 1"
+    },
+    {
       "path": "/api/ingest?source=monthly&days=60&pages=40",
       "schedule": "0 8 1 * *"
     }

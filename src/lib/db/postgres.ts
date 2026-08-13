@@ -12,6 +12,8 @@ import type {
   CharacterRecord,
   CharacterWithShow,
   HashtagRecord,
+  IngestRunRecord,
+  MomentRecord,
   ShowRecord,
   StoreData,
   TiktokVideoRecord,
@@ -19,6 +21,141 @@ import type {
 import { generateHashtags } from "@/lib/tiktok/hashtags";
 
 export { hasDatabaseUrl };
+
+function mapMoment(row: typeof moments.$inferSelect): MomentRecord {
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    summary: row.summary,
+    kind: row.kind as MomentRecord["kind"],
+    franchise: row.franchise,
+    image: row.image,
+    month: row.month,
+    day: row.day,
+    year: row.year,
+    significance: row.significance,
+    wikiUrl: row.wikiUrl,
+    source: (row.source as MomentRecord["source"]) ?? "wiki",
+    tags: row.tags ?? [],
+    ugcVolume: row.ugcVolume ?? null,
+    ugcUpdatedAt: row.ugcUpdatedAt ? row.ugcUpdatedAt.toISOString() : null,
+    createdAt: row.createdAt.toISOString(),
+    updatedAt: row.updatedAt.toISOString(),
+  };
+}
+
+/** Load full catalog from Neon into the in-memory store shape (source of truth when DATABASE_URL is set). */
+export async function loadStoreFromPostgres(): Promise<StoreData> {
+  const db = getDb();
+  const [showRows, charRows, tagRows, videoRows, momentRows, runRows] =
+    await Promise.all([
+      db.select().from(shows),
+      db.select().from(characters),
+      db.select().from(characterHashtags),
+      db.select().from(tiktokVideos),
+      db.select().from(moments),
+      db.select().from(ingestRuns).orderBy(asc(ingestRuns.id)),
+    ]);
+
+  const mappedShows = showRows.map(mapShow);
+  const mappedChars = charRows.map(mapCharacter);
+  const mappedTags: HashtagRecord[] = tagRows.map((t) => ({
+    id: t.id,
+    characterId: t.characterId,
+    tag: t.tag,
+    kind: t.kind,
+  }));
+  const mappedVideos: TiktokVideoRecord[] = videoRows.map((v) => ({
+    id: v.id,
+    characterId: v.characterId,
+    videoUrl: v.videoUrl,
+    title: v.title,
+    authorName: v.authorName,
+    thumbnailUrl: v.thumbnailUrl,
+    embedHtml: v.embedHtml,
+    createdAt: v.createdAt.toISOString(),
+  }));
+  const mappedMoments = momentRows.map(mapMoment);
+  const mappedRuns: IngestRunRecord[] = runRows.map((r) => ({
+    id: r.id,
+    source: r.source,
+    status: r.status as IngestRunRecord["status"],
+    charactersUpserted: r.charactersUpserted,
+    showsUpserted: r.showsUpserted,
+    momentsUpserted: r.momentsUpserted ?? 0,
+    error: r.error,
+    startedAt: r.startedAt.toISOString(),
+    finishedAt: r.finishedAt ? r.finishedAt.toISOString() : null,
+  }));
+
+  const maxId = (ids: number[]) => (ids.length ? Math.max(...ids) : 0);
+
+  return {
+    shows: mappedShows,
+    characters: mappedChars,
+    hashtags: mappedTags,
+    tiktokVideos: mappedVideos,
+    moments: mappedMoments,
+    ingestRuns: mappedRuns,
+    nextIds: {
+      shows: maxId(mappedShows.map((s) => s.id)) + 1,
+      characters: maxId(mappedChars.map((c) => c.id)) + 1,
+      hashtags: maxId(mappedTags.map((h) => h.id)) + 1,
+      tiktokVideos: maxId(mappedVideos.map((v) => v.id)) + 1,
+      moments: maxId(mappedMoments.map((m) => m.id)) + 1,
+      ingestRuns: maxId(mappedRuns.map((r) => r.id)) + 1,
+    },
+  };
+}
+
+export async function pgGetAllMoments(): Promise<MomentRecord[]> {
+  const db = getDb();
+  const rows = await db.select().from(moments);
+  return rows.map(mapMoment);
+}
+
+export async function pgGetMomentBySlug(
+  slug: string,
+): Promise<MomentRecord | null> {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(moments)
+    .where(eq(moments.slug, slug))
+    .limit(1);
+  return rows[0] ? mapMoment(rows[0]) : null;
+}
+
+export async function pgUpdateCharacterUgc(
+  slug: string,
+  ugcVolume: number,
+): Promise<CharacterRecord> {
+  const db = getDb();
+  const now = new Date();
+  const [row] = await db
+    .update(characters)
+    .set({ ugcVolume, ugcUpdatedAt: now, updatedAt: now })
+    .where(eq(characters.slug, slug))
+    .returning();
+  if (!row) throw new Error("Character not found");
+  return mapCharacter(row);
+}
+
+export async function pgUpdateMomentUgc(
+  slug: string,
+  ugcVolume: number,
+): Promise<MomentRecord> {
+  const db = getDb();
+  const now = new Date();
+  const [row] = await db
+    .update(moments)
+    .set({ ugcVolume, ugcUpdatedAt: now, updatedAt: now })
+    .where(eq(moments.slug, slug))
+    .returning();
+  if (!row) throw new Error("Moment not found");
+  return mapMoment(row);
+}
 
 function mapShow(row: typeof shows.$inferSelect): ShowRecord {
   return {
@@ -339,6 +476,8 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
     });
   }
 
+  // Replace ingest history with the latest window — avoid unbounded duplicates on every sync
+  await db.delete(ingestRuns);
   for (const run of store.ingestRuns.slice(-20)) {
     await db.insert(ingestRuns).values({
       source: run.source,

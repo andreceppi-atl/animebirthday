@@ -48,15 +48,28 @@ export async function scrapeJikanBirthdays(options?: {
   const maxPages = options?.maxPages ?? 3;
   const delayMs = options?.delayMs ?? 500;
   const entries: WikiBirthdayEntry[] = [];
+  let rateLimitRetries = 0;
+  const maxRateLimitRetries = 3;
 
   for (let page = 1; page <= maxPages; page++) {
     const url = `https://api.jikan.moe/v4/top/characters?page=${page}`;
-    const res = await fetch(url, {
-      headers: { "User-Agent": UA, Accept: "application/json" },
-      signal: AbortSignal.timeout(12000),
-    });
+    let res: Response;
+    try {
+      res = await fetch(url, {
+        headers: { "User-Agent": UA, Accept: "application/json" },
+        signal: AbortSignal.timeout(8000),
+      });
+    } catch {
+      console.warn(`Wiki: Jikan page ${page} timed out — stopping Jikan`);
+      break;
+    }
 
     if (res.status === 429) {
+      rateLimitRetries++;
+      if (rateLimitRetries > maxRateLimitRetries) {
+        console.warn("Wiki: Jikan rate-limited too often — stopping");
+        break;
+      }
       await sleep(delayMs * 3);
       page--;
       continue;
@@ -66,6 +79,8 @@ export async function scrapeJikanBirthdays(options?: {
       if (entries.length) return dedupeEntries(entries);
       throw new Error(`Jikan top characters failed (${res.status}) page ${page}`);
     }
+
+    rateLimitRetries = 0;
 
     const json = (await res.json()) as {
       data: Array<{ mal_id: number; name: string; url: string }>;
@@ -78,7 +93,7 @@ export async function scrapeJikanBirthdays(options?: {
           `https://api.jikan.moe/v4/characters/${c.mal_id}`,
           {
             headers: { "User-Agent": UA, Accept: "application/json" },
-            signal: AbortSignal.timeout(10000),
+            signal: AbortSignal.timeout(8000),
           },
         );
 
@@ -180,6 +195,7 @@ export async function scrapeAniListBirthdayList(options?: {
   const startPage = options?.startPage ?? 16;
   const maxPages = options?.maxPages ?? 8;
   const entries: WikiBirthdayEntry[] = [];
+  let rateLimitHits = 0;
 
   const query = `
     query ($page: Int) {
@@ -202,14 +218,20 @@ export async function scrapeAniListBirthdayList(options?: {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ query, variables: { page } }),
-      signal: AbortSignal.timeout(15000),
+      signal: AbortSignal.timeout(12000),
     });
 
     if (res.status === 429) {
+      rateLimitHits++;
+      if (rateLimitHits > 3) {
+        console.warn("Wiki: AniList deep list rate-limited — stopping");
+        break;
+      }
       await sleep(2000);
       page--;
       continue;
     }
+    rateLimitHits = 0;
     if (!res.ok) break;
 
     const json = (await res.json()) as {

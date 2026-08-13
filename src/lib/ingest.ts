@@ -5,14 +5,14 @@ import {
 } from "@/lib/anilist/client";
 import {
   addIngestRun,
-  readStore,
+  loadWorkingStore,
+  persistWorkingStore,
   replaceHashtags,
   upsertCharacter,
   upsertMoment,
   upsertShow,
   writeStore,
 } from "@/lib/db/store";
-import { hasDatabaseUrl, syncStoreToPostgres } from "@/lib/db/postgres";
 import { generateHashtags } from "@/lib/tiktok/hashtags";
 import { daysUntilBirthday, extractDemos, slugify } from "@/lib/utils";
 import { scrapeWikiBirthdays } from "@/lib/wiki/scrape";
@@ -30,10 +30,7 @@ export type IngestResult = {
 };
 
 async function persistStore(store: StoreData): Promise<boolean> {
-  await writeStore(store);
-  if (!hasDatabaseUrl()) return false;
-  await syncStoreToPostgres(store);
-  return true;
+  return persistWorkingStore(store);
 }
 
 function uniqueSlug(base: string, used: Set<string>, anilistId?: number): string {
@@ -59,7 +56,7 @@ function uniqueSlug(base: string, used: Set<string>, anilistId?: number): string
 export async function ingestFromAniList(options?: {
   maxPages?: number;
 }): Promise<IngestResult> {
-  const store = await readStore();
+  const store = await loadWorkingStore();
   const run = addIngestRun(store, {
     source: "anilist",
     status: "running",
@@ -125,8 +122,8 @@ export async function ingestFromAniList(options?: {
         wikiUrl: c.siteUrl,
         description: c.description,
         source: "anilist",
-        ugcVolume: null,
-        ugcUpdatedAt: null,
+        ugcVolume: existing?.ugcVolume ?? null,
+        ugcUpdatedAt: existing?.ugcUpdatedAt ?? null,
       });
 
       replaceHashtags(
@@ -159,7 +156,11 @@ export async function ingestFromAniList(options?: {
     run.status = "error";
     run.error = err instanceof Error ? err.message : String(err);
     run.finishedAt = new Date().toISOString();
-    await writeStore(store);
+    try {
+      await writeStore(store);
+    } catch {
+      /* ignore read-only FS */
+    }
     return {
       source: "anilist",
       charactersUpserted: 0,
@@ -171,7 +172,7 @@ export async function ingestFromAniList(options?: {
 }
 
 export async function ingestFromWiki(): Promise<IngestResult> {
-  const store = await readStore();
+  const store = await loadWorkingStore();
   const run = addIngestRun(store, {
     source: "wiki",
     status: "running",
@@ -280,7 +281,11 @@ export async function ingestFromWiki(): Promise<IngestResult> {
     run.status = "error";
     run.error = err instanceof Error ? err.message : String(err);
     run.finishedAt = new Date().toISOString();
-    await writeStore(store);
+    try {
+      await writeStore(store);
+    } catch {
+      /* ignore */
+    }
     return {
       source: "wiki",
       charactersUpserted: 0,
@@ -308,7 +313,7 @@ export async function runFullIngest(options?: {
 }
 
 export async function ingestMoments(): Promise<IngestResult> {
-  const store = await readStore();
+  const store = await loadWorkingStore();
   const run = addIngestRun(store, {
     source: "moments",
     status: "running",
@@ -327,13 +332,15 @@ export async function ingestMoments(): Promise<IngestResult> {
 
     for (const m of scraped) {
       let slug = slugify(m.title) || `moment-${m.month}-${m.day}`;
-      if (used.has(slug) && !store.moments.find((x) => x.slug === slug)) {
+      const existingBySlug = store.moments.find((x) => x.slug === slug);
+      if (used.has(slug) && !existingBySlug) {
         let i = 2;
         while (used.has(`${slug}-${i}`)) i++;
         slug = `${slug}-${i}`;
       }
       used.add(slug);
 
+      const existing = store.moments.find((x) => x.slug === slug);
       await upsertMoment(store, {
         slug,
         title: m.title,
@@ -348,8 +355,8 @@ export async function ingestMoments(): Promise<IngestResult> {
         wikiUrl: m.wikiUrl,
         source: m.source,
         tags: m.tags,
-        ugcVolume: null,
-        ugcUpdatedAt: null,
+        ugcVolume: existing?.ugcVolume ?? null,
+        ugcUpdatedAt: existing?.ugcUpdatedAt ?? null,
       });
       momentsUpserted++;
     }
@@ -370,7 +377,11 @@ export async function ingestMoments(): Promise<IngestResult> {
     run.status = "error";
     run.error = err instanceof Error ? err.message : String(err);
     run.finishedAt = new Date().toISOString();
-    await writeStore(store);
+    try {
+      await writeStore(store);
+    } catch {
+      /* ignore */
+    }
     return {
       source: "moments",
       charactersUpserted: 0,
@@ -392,7 +403,7 @@ export async function saturateBirthdayWindow(options?: {
 }): Promise<IngestResult & { windowDays: number; matchedInWindow: number }> {
   const windowDays = options?.windowDays ?? 60;
   const maxPages = options?.maxPages ?? 40;
-  const store = await readStore();
+  const store = await loadWorkingStore();
   const run = addIngestRun(store, {
     source: "saturate",
     status: "running",
@@ -499,7 +510,11 @@ export async function saturateBirthdayWindow(options?: {
     run.status = "error";
     run.error = err instanceof Error ? err.message : String(err);
     run.finishedAt = new Date().toISOString();
-    await writeStore(store);
+    try {
+      await writeStore(store);
+    } catch {
+      /* ignore */
+    }
     return {
       source: "saturate",
       charactersUpserted: 0,

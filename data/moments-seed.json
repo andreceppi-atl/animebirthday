@@ -359,5 +359,241 @@
       "saitama",
       "combat"
     ]
+  },
+  {
+    "title": "Tanjiro vs Rui",
+    "summary": "Demon Slayer Entertainment District warmup — Rui fight cemented the show's UGC wave.",
+    "kind": "combat",
+    "franchise": "Demon Slayer",
+    "image": null,
+    "month": 6,
+    "day": 22,
+    "year": 2019,
+    "significance": 91,
+    "wikiUrl": "https://kimetsu-no-yaiba.fandom.com/wiki/Rui",
+    "source": "seed",
+    "tags": [
+      "demonslayer",
+      "tanjiro",
+      "rui",
+      "combat"
+    ]
+  },
+  {
+    "title": "Edward vs Father (Promised Day)",
+    "summary": "Fullmetal Alchemist Brotherhood final confrontation — alchemy vs godhood.",
+    "kind": "combat",
+    "franchise": "Fullmetal Alchemist",
+    "image": null,
+    "month": 7,
+    "day": 4,
+    "year": 2010,
+    "significance": 92,
+    "wikiUrl": "https://fma.fandom.com/wiki/Father",
+    "source": "seed",
+    "tags": [
+      "fma",
+      "edward",
+      "combat"
+    ]
+  },
+  {
+    "title": "Ichigo vs Aizen (Fake Karakura)",
+    "summary": "Bleach climactic bankai showdown — long-form shonen combat icon.",
+    "kind": "combat",
+    "franchise": "Bleach",
+    "image": null,
+    "month": 9,
+    "day": 15,
+    "year": 2010,
+    "significance": 90,
+    "wikiUrl": "https://bleach.fandom.com/wiki/S%C5%8Dsuke_Aizen",
+    "source": "seed",
+    "tags": [
+      "bleach",
+      "ichigo",
+      "aizen",
+      "combat"
+    ]
+  },
+  {
+    "title": "Killua vs Youpi",
+    "summary": "Hunter x Hunter Chimera Ant arc — Killua's Godspeed debut.",
+    "kind": "combat",
+    "franchise": "Hunter x Hunter",
+    "image": null,
+    "month": 8,
+    "day": 8,
+    "year": 2014,
+    "significance": 89,
+    "wikiUrl": "https://hunterxhunter.fandom.com/wiki/Menthuthuyoupi",
+    "source": "seed",
+    "tags": [
+      "hxh",
+      "killua",
+      "combat"
+    ]
+  },
+  {
+    "title": "Meruem's death",
+    "summary": "Chimera Ant King falls after the palace invasion — HxH tragedy peak.",
+    "kind": "death",
+    "franchise": "Hunter x Hunter",
+    "image": null,
+    "month": 9,
+    "day": 14,
+    "year": 2014,
+    "significance": 94,
+    "wikiUrl": "https://hunterxhunter.fandom.com/wiki/Meruem",
+    "source": "seed",
+    "tags": [
+      "hxh",
+      "meruem",
+      "death"
+    ]
+  },
+  {
+    "title": "Asuka's mind rape sequence",
+    "summary": "End of Evangelion atrocity — infamous cultural trauma moment.",
+    "kind": "cultural",
+    "franchise": "Neon Genesis Evangelion",
+    "image": null,
+    "month": 7,
+    "day": 19,
+    "year": 1997,
+    "significance": 91,
+    "wikiUrl": "https://en.wikipedia.org/wiki/The_End_of_Evangelion",
+    "source": "seed",
+    "tags": [
+      "evangelion",
+      "eoe",
+      "cultural"
+    ]
+  },
+  {
+    "title": "Kamina's death",
+    "summary": "Gurren Lagann mid-series death that redefined the show's stakes.",
+    "kind": "death",
+    "franchise": "Gurren Lagann",
+    "image": null,
+    "month": 6,
+    "day": 17,
+    "year": 2007,
+    "significance": 93,
+    "wikiUrl": "https://gurrenlagann.fandom.com/wiki/Kamina",
+    "source": "seed",
+    "tags": [
+      "gurren",
+      "kamina",
+      "death"
+    ]
+  },
+  {
+    "title": "Gamera vs Gyaos (1965)",
+    "summary": "Classic kaiju rivalry origin — Gamera's defining opponent.",
+    "kind": "kaiju",
+    "franchise": "Gamera",
+    "image": null,
+    "month": 3,
+    "day": 27,
+    "year": 1965,
+    "significance": 82,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Gamera_vs._Gyaos",
+    "source": "seed",
+    "tags": [
+      "gamera",
+      "gyaos",
+      "kaiju"
+    ]
+  },
+  {
+    "title": "Ultraman first episode airdate",
+    "summary": "Original Ultraman premiere — tokusatsu/kaiju TV landmark.",
+    "kind": "kaiju",
+    "franchise": "Ultraman",
+    "image": null,
+    "month": 7,
+    "day": 17,
+    "year": 1966,
+    "significance": 88,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Ultraman_(1966_TV_series)",
+    "source": "seed",
+    "tags": [
+      "ultraman",
+      "kaiju",
+      "tokusatsu"
+    ]
+  },
+  {
+    "title": "Denji vs Gun Devil",
+    "summary": "Chainsaw Man Part 1 climax — modern seinen combat spectacle.",
+    "kind": "combat",
+    "franchise": "Chainsaw Man",
+    "image": null,
+    "month": 12,
+    "day": 28,
+    "year": 2022,
+    "significance": 90,
+    "wikiUrl": "https://chainsaw-man.fandom.com/wiki/Gun_Devil",
+    "source": "seed",
+    "tags": [
+      "csm",
+      "denji",
+      "combat"
+    ]
+  },
+  {
+    "title": "Power's death",
+    "summary": "Chainsaw Man emotional gut-punch — massive edit culture driver.",
+    "kind": "death",
+    "franchise": "Chainsaw Man",
+    "image": null,
+    "month": 12,
+    "day": 27,
+    "year": 2022,
+    "significance": 92,
+    "wikiUrl": "https://chainsaw-man.fandom.com/wiki/Power",
+    "source": "seed",
+    "tags": [
+      "csm",
+      "power",
+      "death"
+    ]
+  },
+  {
+    "title": "Vegeta vs Frieza (resurrection arc energy)",
+    "summary": "Prince of Saiyans rage moments that fuel endless DBZ edits.",
+    "kind": "combat",
+    "franchise": "Dragon Ball Z",
+    "image": null,
+    "month": 5,
+    "day": 18,
+    "year": 1991,
+    "significance": 86,
+    "wikiUrl": "https://dragonball.fandom.com/wiki/Vegeta",
+    "source": "seed",
+    "tags": [
+      "dragonball",
+      "vegeta",
+      "combat"
+    ]
+  },
+  {
+    "title": "Mothra vs Godzilla (1964)",
+    "summary": "Toho crossover that locked kaiju team-up grammar.",
+    "kind": "kaiju",
+    "franchise": "Godzilla",
+    "image": null,
+    "month": 4,
+    "day": 29,
+    "year": 1964,
+    "significance": 84,
+    "wikiUrl": "https://en.wikipedia.org/wiki/Mothra_vs._Godzilla",
+    "source": "seed",
+    "tags": [
+      "godzilla",
+      "mothra",
+      "kaiju"
+    ]
   }
 ]

@@ -9,6 +9,11 @@ import type {
   StoreData,
   TiktokVideoRecord,
 } from "@/lib/types";
+import {
+  hasDatabaseUrl,
+  loadStoreFromPostgres,
+  syncStoreToPostgres,
+} from "@/lib/db/postgres";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const STORE_PATH = path.join(DATA_DIR, "store.json");
@@ -38,6 +43,7 @@ export async function readStore(): Promise<StoreData> {
     const data = JSON.parse(raw) as StoreData;
     if (!data.moments) data.moments = [];
     if (!data.nextIds.moments) data.nextIds.moments = 1;
+    if (!data.nextIds.ingestRuns) data.nextIds.ingestRuns = 1;
     for (const c of data.characters) {
       if (c.ugcVolume === undefined) c.ugcVolume = null;
       if (c.ugcUpdatedAt === undefined) c.ugcUpdatedAt = null;
@@ -53,9 +59,42 @@ export async function readStore(): Promise<StoreData> {
   }
 }
 
+/**
+ * Working store for ingest/mutations.
+ * When DATABASE_URL is set and Neon already has catalog rows, Postgres is the authority
+ * (avoids Vercel cron wiping Neon from an ephemeral empty store.json).
+ * Otherwise fall back to local JSON (dev / first sync).
+ */
+export async function loadWorkingStore(): Promise<StoreData> {
+  if (hasDatabaseUrl()) {
+    try {
+      const fromPg = await loadStoreFromPostgres();
+      if (fromPg.characters.length > 0 || fromPg.moments.length > 0) {
+        return fromPg;
+      }
+    } catch (err) {
+      console.warn("loadWorkingStore: Postgres load failed, using JSON", err);
+    }
+  }
+  return readStore();
+}
+
 export async function writeStore(data: StoreData): Promise<void> {
   await fs.mkdir(DATA_DIR, { recursive: true });
   await fs.writeFile(STORE_PATH, JSON.stringify(data, null, 2), "utf8");
+}
+
+/** Persist working store: always attempt JSON write; sync full catalog to Neon when configured. */
+export async function persistWorkingStore(store: StoreData): Promise<boolean> {
+  try {
+    await writeStore(store);
+  } catch (err) {
+    // Ephemeral serverless FS may be read-only — Neon sync is what matters in prod
+    console.warn("persistWorkingStore: JSON write skipped", err);
+  }
+  if (!hasDatabaseUrl()) return false;
+  await syncStoreToPostgres(store);
+  return true;
 }
 
 export async function upsertShow(

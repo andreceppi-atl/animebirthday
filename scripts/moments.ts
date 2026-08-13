@@ -1,4 +1,7 @@
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
+config();
+
 import { ingestMoments } from "../src/lib/ingest";
 
 async function main() {

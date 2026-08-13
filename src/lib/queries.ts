@@ -1,5 +1,6 @@
 import {
   addTiktokVideo,
+  loadWorkingStore,
   readStore,
   setCharacterUgc,
   setMomentUgc,
@@ -10,8 +11,11 @@ import {
   pgAddTiktokVideo,
   pgCharacterCount,
   pgGetAllCharactersWithRelations,
+  pgGetAllMoments,
   pgGetCharacterBySlug,
-  syncStoreToPostgres,
+  pgGetMomentBySlug,
+  pgUpdateCharacterUgc,
+  pgUpdateMomentUgc,
 } from "@/lib/db/postgres";
 import type {
   CharacterWithShow,
@@ -88,6 +92,9 @@ async function loadCharacters(): Promise<CharacterWithShow[]> {
 }
 
 async function loadMoments(): Promise<MomentRecord[]> {
+  if (hasDatabaseUrl()) {
+    return pgGetAllMoments();
+  }
   const store = await readStore();
   return store.moments ?? [];
 }
@@ -334,6 +341,9 @@ export async function getCharacterBySlug(
 export async function getMomentBySlug(
   slug: string,
 ): Promise<MomentRecord | null> {
+  if (hasDatabaseUrl()) {
+    return pgGetMomentBySlug(slug);
+  }
   const store = await readStore();
   return store.moments.find((m) => m.slug === slug) ?? null;
 }
@@ -380,25 +390,44 @@ export async function addCharacterTikTokVideo(
 }
 
 export async function updateCharacterUgc(slug: string, ugcVolume: number) {
+  if (hasDatabaseUrl()) {
+    const character = await pgUpdateCharacterUgc(slug, ugcVolume);
+    // Keep JSON mirror in sync when writable (local / durable FS)
+    try {
+      const store = await loadWorkingStore();
+      setCharacterUgc(store, character.id, ugcVolume);
+      await writeStore(store);
+    } catch {
+      /* ignore */
+    }
+    return character;
+  }
+
   const store = await readStore();
   const character = store.characters.find((c) => c.slug === slug);
   if (!character) throw new Error("Character not found");
   setCharacterUgc(store, character.id, ugcVolume);
   await writeStore(store);
-  if (hasDatabaseUrl()) {
-    await syncStoreToPostgres(store);
-  }
   return character;
 }
 
 export async function updateMomentUgc(slug: string, ugcVolume: number) {
+  if (hasDatabaseUrl()) {
+    const moment = await pgUpdateMomentUgc(slug, ugcVolume);
+    try {
+      const store = await loadWorkingStore();
+      setMomentUgc(store, moment.id, ugcVolume);
+      await writeStore(store);
+    } catch {
+      /* ignore */
+    }
+    return moment;
+  }
+
   const store = await readStore();
   const moment = store.moments.find((m) => m.slug === slug);
   if (!moment) throw new Error("Moment not found");
   setMomentUgc(store, moment.id, ugcVolume);
   await writeStore(store);
-  if (hasDatabaseUrl()) {
-    await syncStoreToPostgres(store);
-  }
   return moment;
 }

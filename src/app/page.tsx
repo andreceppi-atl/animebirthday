@@ -2,9 +2,10 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { UpcomingExplorer } from "@/components/UpcomingExplorer";
 import {
-  getBiggestThisWeek,
   getCharacterCount,
+  getTopPriorityThisMonth,
   getUpcomingCharacters,
+  type UpcomingItem,
 } from "@/lib/queries";
 import { formatBirthday } from "@/lib/utils";
 
@@ -20,13 +21,27 @@ type Props = {
   }>;
 };
 
+function itemHref(item: UpcomingItem) {
+  return item.feedKind === "moment"
+    ? `/moment/${item.slug}`
+    : `/character/${item.slug}`;
+}
+
+function itemKindLabel(item: UpcomingItem) {
+  if (item.feedKind === "moment") {
+    return item.momentKind ? `Moment · ${item.momentKind}` : "Moment";
+  }
+  return "Birthday";
+}
+
 export default async function HomePage({ searchParams }: Props) {
   const params = await searchParams;
   const days = Number(params.days ?? "60");
-  const sort = (params.sort as "date" | "popularity" | "relevance" | "ugc") || "relevance";
+  const sort =
+    (params.sort as "date" | "popularity" | "relevance" | "ugc") || "relevance";
   const type = (params.type as "birthday" | "moment" | "all") || "birthday";
 
-  const [upcoming, biggest, count] = await Promise.all([
+  const [upcoming, monthPriority, count] = await Promise.all([
     getUpcomingCharacters({
       days,
       limit: 100,
@@ -35,11 +50,12 @@ export default async function HomePage({ searchParams }: Props) {
       demo: params.demo,
       type,
     }),
-    getBiggestThisWeek(1),
+    getTopPriorityThisMonth(),
     getCharacterCount(),
   ]);
 
-  const hero = biggest[0] ?? upcoming[0] ?? null;
+  const hero = monthPriority.priority ?? upcoming[0] ?? null;
+  const secondary = monthPriority.contenders.filter((c) => c.id !== hero?.id).slice(0, 2);
 
   return (
     <div className="mx-auto max-w-5xl px-5 pb-20 pt-10 sm:px-8 sm:pt-14">
@@ -85,7 +101,8 @@ export default async function HomePage({ searchParams }: Props) {
           </div>
           {count === 0 && (
             <p className="text-sm text-[var(--muted)]">
-              Catalog empty — run <code className="text-[var(--accent)]">npm run saturate</code>
+              Catalog empty — run{" "}
+              <code className="text-[var(--accent)]">npm run saturate</code>
             </p>
           )}
         </div>
@@ -93,11 +110,18 @@ export default async function HomePage({ searchParams }: Props) {
 
       {hero && (
         <section className="mb-14 animate-fade-up border-t border-[var(--line)] pt-10">
-          <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-            Biggest this week
+          <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
+            Top priority · {monthPriority.monthLabel}
           </p>
-          <Link href={`/character/${hero.slug}`} className="group mt-3 block">
-            <h2 className="font-[family-name:var(--font-display)] text-3xl text-[var(--ink)] transition group-hover:text-[var(--accent)] sm:text-4xl">
+          <p className="mt-2 max-w-xl text-sm text-[var(--muted)]">
+            Highest-demand birthday or moment still left this month — hit this
+            first.
+          </p>
+          <Link href={itemHref(hero)} className="group mt-5 block">
+            <p className="text-[11px] uppercase tracking-wider text-[var(--muted)]">
+              {itemKindLabel(hero)}
+            </p>
+            <h2 className="mt-1 font-[family-name:var(--font-display)] text-3xl text-[var(--ink)] transition group-hover:text-[var(--accent)] sm:text-4xl">
               {hero.nameFull}
             </h2>
             <p className="mt-2 text-[var(--muted)]">
@@ -106,9 +130,14 @@ export default async function HomePage({ searchParams }: Props) {
                 ? " · today"
                 : ` · in ${hero.daysUntil} day${hero.daysUntil === 1 ? "" : "s"}`}
               {` · ${hero.favourites.toLocaleString()} AniList favs`}
+              {hero.ugcScore > 0 && !hero.ugcEstimated
+                ? ` · ${hero.ugcScore.toLocaleString()} UGC`
+                : ""}
               {hero.show
                 ? ` · ${hero.show.titleEnglish || hero.show.titleRomaji}`
-                : ""}
+                : hero.franchise
+                  ? ` · ${hero.franchise}`
+                  : ""}
             </p>
             {hero.show?.demos?.length ? (
               <p className="mt-2 text-xs uppercase tracking-wider text-[var(--accent-soft)]">
@@ -116,10 +145,44 @@ export default async function HomePage({ searchParams }: Props) {
               </p>
             ) : null}
           </Link>
+
+          {secondary.length > 0 && (
+            <div className="mt-8 space-y-4 border-t border-[var(--line)] pt-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+                Also this month
+              </p>
+              <ul className="space-y-3">
+                {secondary.map((item) => (
+                  <li key={`${item.feedKind}-${item.id}`}>
+                    <Link
+                      href={itemHref(item)}
+                      className="group flex flex-wrap items-baseline gap-x-3 gap-y-1"
+                    >
+                      <span className="text-[11px] uppercase tracking-wider text-[var(--muted)]">
+                        {itemKindLabel(item)}
+                      </span>
+                      <span className="text-lg text-[var(--ink)] transition group-hover:text-[var(--accent)]">
+                        {item.nameFull}
+                      </span>
+                      <span className="text-sm text-[var(--muted)]">
+                        {formatBirthday(item.birthMonth, item.birthDay)}
+                        {item.daysUntil === 0
+                          ? " · today"
+                          : ` · in ${item.daysUntil}d`}
+                        {` · ${item.favourites.toLocaleString()} favs`}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </section>
       )}
 
-      <Suspense fallback={<p className="text-sm text-[var(--muted)]">Loading filters…</p>}>
+      <Suspense
+        fallback={<p className="text-sm text-[var(--muted)]">Loading filters…</p>}
+      >
         <UpcomingExplorer initialItems={upcoming} initialDays={days} />
       </Suspense>
     </div>

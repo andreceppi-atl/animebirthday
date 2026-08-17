@@ -308,6 +308,120 @@ export async function getBiggestThisWeek(limit = 5) {
   return upcoming.slice(0, limit);
 }
 
+export type MonthPriority = {
+  year: number;
+  month: number;
+  monthLabel: string;
+  /** Hottest remaining item this month (birthday or moment) — post this first */
+  priority: UpcomingItem | null;
+  topBirthday: UpcomingItem | null;
+  topMoment: UpcomingItem | null;
+  contenders: UpcomingItem[];
+};
+
+/**
+ * Most popular birthday + moment still ahead this calendar month,
+ * ranked so creators know what needs priority ASAP.
+ */
+export async function getTopPriorityThisMonth(
+  from: Date = new Date(),
+): Promise<MonthPriority> {
+  const year = from.getFullYear();
+  const month = from.getMonth() + 1;
+  const monthLabel = from.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+  const end = new Date(year, month, 0);
+  end.setHours(0, 0, 0, 0);
+  const start = new Date(from);
+  start.setHours(0, 0, 0, 0);
+  const daysLeft = Math.max(
+    0,
+    Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)),
+  );
+
+  const windowDays = Math.max(daysLeft, 0);
+  const [birthdays, moments] = await Promise.all([
+    windowDays === 0
+      ? Promise.resolve([] as UpcomingItem[])
+      : getUpcomingCharacters({
+          days: windowDays,
+          limit: 200,
+          sort: "popularity",
+          type: "birthday",
+        }),
+    windowDays === 0
+      ? Promise.resolve([] as UpcomingItem[])
+      : getUpcomingCharacters({
+          days: windowDays,
+          limit: 200,
+          sort: "popularity",
+          type: "moment",
+        }),
+  ]);
+
+  const inThisMonth = (item: UpcomingItem) => item.birthMonth === month;
+  const monthBirthdays = birthdays.filter(inThisMonth);
+  const monthMoments = moments.filter(inThisMonth);
+
+  const topBirthday = monthBirthdays[0] ?? null;
+  const topMoment = monthMoments[0] ?? null;
+
+  const asapScore = (item: UpcomingItem) => {
+    const urgency =
+      item.daysUntil === 0
+        ? 3
+        : item.daysUntil <= 3
+          ? 2.25
+          : item.daysUntil <= 7
+            ? 1.6
+            : 1;
+    // Favourites × urgency; UGC only as a light tie-break (log scale)
+    return (
+      item.favourites * urgency +
+      Math.log10(Math.max(item.ugcScore, 1)) * 40
+    );
+  };
+
+  const pooled = [...monthBirthdays, ...monthMoments].sort((a, b) => {
+    const diff = asapScore(b) - asapScore(a);
+    if (diff !== 0) return diff;
+    return a.daysUntil - b.daysUntil;
+  });
+
+  const contenders: UpcomingItem[] = [];
+  const pushUnique = (item: UpcomingItem | null) => {
+    if (!item) return;
+    if (
+      contenders.some(
+        (c) => c.id === item.id && c.feedKind === item.feedKind,
+      )
+    ) {
+      return;
+    }
+    contenders.push(item);
+  };
+  // Always surface the month's top birthday + top moment, then fill by ASAP score
+  pushUnique(pooled[0] ?? null);
+  pushUnique(topBirthday);
+  pushUnique(topMoment);
+  for (const item of pooled) {
+    if (contenders.length >= 3) break;
+    pushUnique(item);
+  }
+
+  return {
+    year,
+    month,
+    monthLabel,
+    priority: pooled[0] ?? null,
+    topBirthday,
+    topMoment,
+    contenders: contenders.slice(0, 3),
+  };
+}
+
 export async function getCalendarMonth(year: number, month: number) {
   const [characters, moments] = await Promise.all([
     loadCharacters(),

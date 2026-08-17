@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { getBiggestThisWeek, getUpcomingCharacters } from "@/lib/queries";
+import {
+  getBiggestThisWeek,
+  getTopPriorityThisMonth,
+  getUpcomingCharacters,
+} from "@/lib/queries";
 import type { SortMode, TypeFilter } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
@@ -14,14 +18,16 @@ export async function GET(request: Request) {
   const demo = searchParams.get("demo") ?? undefined;
   const minFavourites = Number(searchParams.get("minFavourites") ?? "0");
 
-  const [upcoming, biggest] = await Promise.all([
+  const [upcoming, biggest, monthPriority] = await Promise.all([
     getUpcomingCharacters({ days, limit, q, sort, type, demo, minFavourites }),
     getBiggestThisWeek(5),
+    getTopPriorityThisMonth(),
   ]);
 
   return NextResponse.json({
     upcoming,
     biggest,
+    monthPriority,
     meta: { days, sort, q, demo, type },
   });
 }

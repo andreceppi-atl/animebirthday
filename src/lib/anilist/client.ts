@@ -352,6 +352,9 @@ function franchiseTokens(media: AniListMedia): Set<string> {
     "ova",
     "ona",
     "tv",
+    "series",
+    "black",
+    "white",
   ]);
   return new Set(
     normalizeTokens(
@@ -360,11 +363,42 @@ function franchiseTokens(media: AniListMedia): Set<string> {
   );
 }
 
+function titleAlnumForms(media: AniListMedia): string[] {
+  return [media.title.romaji, media.title.english ?? "", media.title.native ?? ""]
+    .map((t) => t.toLowerCase().replace(/[^a-z0-9]+/g, ""))
+    .filter((t) => t.length >= 3);
+}
+
+/** Longest common substring length — catches Bake/Nise/Neko*monogatari compounds. */
+function longestCommonSubstringLen(a: string, b: string): number {
+  if (!a || !b) return 0;
+  const short = a.length <= b.length ? a : b;
+  const long = a.length <= b.length ? b : a;
+  let best = 0;
+  for (let i = 0; i < short.length; i++) {
+    for (let j = i + best + 1; j <= short.length; j++) {
+      const sub = short.slice(i, j);
+      if (long.includes(sub)) best = sub.length;
+      else break;
+    }
+  }
+  return best;
+}
+
 function sharesFranchise(a: AniListMedia, b: AniListMedia): boolean {
   const ta = franchiseTokens(a);
   const tb = franchiseTokens(b);
   for (const t of ta) {
     if (tb.has(t)) return true;
+  }
+  // Compare each title form separately so word joins can't invent false stems
+  // (e.g. subarashii+sekai → "isekai" inside KONOSUBA vs Isekai Quartet).
+  const formsA = titleAlnumForms(a);
+  const formsB = titleAlnumForms(b);
+  for (const fa of formsA) {
+    for (const fb of formsB) {
+      if (longestCommonSubstringLen(fa, fb) >= 8) return true;
+    }
   }
   return false;
 }

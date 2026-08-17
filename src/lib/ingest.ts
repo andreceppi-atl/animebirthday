@@ -19,6 +19,7 @@ import { generateHashtags } from "@/lib/tiktok/hashtags";
 import { daysUntilBirthday, extractDemos, slugify } from "@/lib/utils";
 import { scrapeWikiBirthdays } from "@/lib/wiki/scrape";
 import { scrapeSignificantMoments } from "@/lib/wiki/moments";
+import { mergeDuplicateWikiStubs } from "@/lib/catalog/refresh";
 import type { StoreData } from "@/lib/types";
 
 export type IngestResult = {
@@ -126,6 +127,9 @@ export async function ingestFromAniList(options?: {
       charactersUpserted++;
     }
 
+    // Collapse wiki stubs that duplicate AniList records (e.g. enjin vs enjin-266438)
+    mergeDuplicateWikiStubs(store);
+
     run.status = "success";
     run.charactersUpserted = charactersUpserted;
     run.showsUpserted = showsUpserted;
@@ -189,6 +193,23 @@ export async function ingestFromWiki(): Promise<IngestResult> {
         if (!existing.wikiUrl && entry.wikiUrl) {
           existing.wikiUrl = entry.wikiUrl;
           existing.updatedAt = new Date().toISOString();
+          charactersUpserted++;
+        }
+        continue;
+      }
+
+      // Skip wiki stub when AniList already covers this name + birthday
+      const anilistTwin = store.characters.find(
+        (c) =>
+          c.anilistId != null &&
+          slugify(c.nameFull) === nameKey &&
+          c.birthMonth === entry.birthMonth &&
+          c.birthDay === entry.birthDay,
+      );
+      if (anilistTwin) {
+        if (!anilistTwin.wikiUrl && entry.wikiUrl) {
+          anilistTwin.wikiUrl = entry.wikiUrl;
+          anilistTwin.updatedAt = new Date().toISOString();
           charactersUpserted++;
         }
         continue;

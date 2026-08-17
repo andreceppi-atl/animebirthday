@@ -237,6 +237,19 @@ export async function getUpcomingCharacters(
     .filter((c) => c.daysUntil >= 0 && c.daysUntil <= days)
     .filter((c) => c.favourites >= minFavourites);
 
+  // Drop empty wiki stubs when a richer AniList twin exists (same name + birthday)
+  const anilistKeys = new Set(
+    characters
+      .filter((c) => c.anilistId != null)
+      .map((c) => `${c.nameFull.toLowerCase()}|${c.birthMonth}|${c.birthDay}`),
+  );
+  items = items.filter((item) => {
+    if (item.feedKind !== "birthday") return true;
+    if (item.favourites > 0 || item.image) return true;
+    const key = `${item.nameFull.toLowerCase()}|${item.birthMonth}|${item.birthDay}`;
+    return !anilistKeys.has(key);
+  });
+
   if (momentKind) {
     items = items.filter(
       (c) => c.feedKind !== "moment" || c.momentKind === momentKind,

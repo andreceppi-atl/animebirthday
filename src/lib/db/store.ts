@@ -228,6 +228,15 @@ export function replaceHashtags(
   }
 }
 
+/** Remove a character and dependent hashtags / tiktok rows from the working store. */
+export function removeCharacter(store: StoreData, characterId: number) {
+  store.characters = store.characters.filter((c) => c.id !== characterId);
+  store.hashtags = store.hashtags.filter((h) => h.characterId !== characterId);
+  store.tiktokVideos = store.tiktokVideos.filter(
+    (v) => v.characterId !== characterId,
+  );
+}
+
 export function addTiktokVideo(
   store: StoreData,
   input: Omit<TiktokVideoRecord, "id" | "createdAt">,

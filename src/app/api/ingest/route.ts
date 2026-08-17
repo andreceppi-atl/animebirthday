@@ -8,6 +8,7 @@ import {
 } from "@/lib/ingest";
 import { stampUpcomingUgc } from "@/lib/chartex/stamp";
 import { factCheckCharacterShows } from "@/lib/factcheck/shows";
+import { refreshCatalog } from "@/lib/catalog/refresh";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -49,6 +50,13 @@ export async function GET(request: Request) {
       const result = await stampUpcomingUgc({
         characterLimit: limit,
         momentLimit: Number(searchParams.get("moments") ?? "20"),
+      });
+      return NextResponse.json({ results: [result] });
+    }
+    if (source === "refresh") {
+      const result = await refreshCatalog({
+        refreshLimit: Number(searchParams.get("refreshLimit") ?? "180"),
+        enrichLimit: Number(searchParams.get("enrichLimit") ?? "35"),
       });
       return NextResponse.json({ results: [result] });
     }

@@ -141,6 +141,28 @@ query ($id: Int) {
 }
 `;
 
+const CHARACTER_SEARCH_QUERY = `
+query ($search: String) {
+  Page(page: 1, perPage: 8) {
+    characters(search: $search, sort: FAVOURITES_DESC) {
+      id
+      name { full first last native }
+      image { large medium }
+      description
+      dateOfBirth { month day year }
+      favourites
+      siteUrl
+      media(sort: POPULARITY_DESC, type: ANIME, perPage: 12) {
+        edges {
+          characterRole
+          node { ${MEDIA_FIELDS} }
+        }
+      }
+    }
+  }
+}
+`;
+
 async function anilistFetch<T>(
   query: string,
   variables: Record<string, unknown>,
@@ -234,6 +256,15 @@ export async function fetchCharacterById(
     { id: anilistId },
   );
   return data.Character;
+}
+
+export async function searchCharactersByName(
+  search: string,
+): Promise<AniListCharacter[]> {
+  const data = await anilistFetch<{
+    Page: { characters: AniListCharacter[] };
+  }>(CHARACTER_SEARCH_QUERY, { search });
+  return data.Page.characters ?? [];
 }
 
 /** Flatten media edges (preferred) or legacy nodes into role-aware rows. */

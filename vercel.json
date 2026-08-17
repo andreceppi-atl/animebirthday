@@ -1,8 +1,16 @@
 {
   "crons": [
     {
-      "path": "/api/ingest?source=anilist&pages=8",
+      "path": "/api/ingest?source=anilist&pages=12",
       "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/ingest?source=refresh&refreshLimit=180&enrichLimit=40",
+      "schedule": "30 6 * * *"
+    },
+    {
+      "path": "/api/ingest?source=chartex&limit=50&moments=25",
+      "schedule": "0 12 * * *"
     },
     {
       "path": "/api/ingest?source=wiki",
@@ -13,8 +21,8 @@
       "schedule": "30 7 * * 0"
     },
     {
-      "path": "/api/ingest?source=chartex&limit=30&moments=15",
-      "schedule": "0 9 * * 1"
+      "path": "/api/ingest?source=saturate&days=60&pages=40",
+      "schedule": "0 8 * * 0"
     },
     {
       "path": "/api/ingest?source=factcheck&repair=1&limit=250",

@@ -52,12 +52,14 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Schedule | Source | Purpose |
 |----------|--------|---------|
-| Daily 06:00 | `anilist` | Refresh favourites / birthdays |
+| Daily 06:00 | `anilist` | Top characters: favs / photos / birthdays |
+| Daily 06:30 | `refresh` | Merge wiki stubs, refresh existing favs/images, enrich stubs |
+| Daily 12:00 | `chartex` | Stamp ChartEx UGC on upcoming birthdays + moments |
 | Sunday 07:00 | `wiki` | Coverage fill (Jikan → wiki → AniList deep → seed) |
 | Sunday 07:30 | `moments` | JP media moments scrape |
-| Monday 09:00 | `chartex` | Stamp UGC volumes on upcoming entries |
+| Sunday 08:00 | `saturate` | Deep saturate next-60-day birthdays |
 | Tuesday 10:00 | `factcheck` | Repair wrong character→show links; attach crossover/cameo shows |
-| 1st of month 08:00 | `monthly` | Saturate next-60-day birthdays + moments |
+| 1st of month 08:00 | `monthly` | Full monthly saturate + moments |
 
 Set `CRON_SECRET` in Vercel; cron requests send `Authorization: Bearer <CRON_SECRET>` (or `x-cron-secret`).
 
@@ -66,6 +68,8 @@ Manual refresh examples:
 ```bash
 curl -H "Authorization: Bearer $CRON_SECRET" \
   "http://localhost:3000/api/ingest?source=anilist&pages=1"
+curl -H "Authorization: Bearer $CRON_SECRET" \
+  "http://localhost:3000/api/ingest?source=refresh&refreshLimit=50&enrichLimit=20"
 curl -H "Authorization: Bearer $CRON_SECRET" \
   "http://localhost:3000/api/ingest?source=chartex&limit=20&moments=10"
 ```

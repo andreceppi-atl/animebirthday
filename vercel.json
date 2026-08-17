@@ -13,6 +13,10 @@
       "schedule": "0 12 * * *"
     },
     {
+      "path": "/api/ingest?source=checkup&refreshLimit=80&enrichLimit=30&limit=30&moments=15",
+      "schedule": "0 13 * * *"
+    },
+    {
       "path": "/api/ingest?source=wiki",
       "schedule": "0 7 * * 0"
     },

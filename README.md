@@ -55,6 +55,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | Daily 06:00 | `anilist` | Top characters: favs / photos / birthdays |
 | Daily 06:30 | `refresh` | Merge wiki stubs, refresh existing favs/images, enrich stubs |
 | Daily 12:00 | `chartex` | Stamp ChartEx UGC on upcoming birthdays + moments |
+| Daily 13:00 | `checkup` | Health scan + light repair (dupes, favs drift, stub/UGC gaps) |
 | Sunday 07:00 | `wiki` | Coverage fill (Jikan → wiki → AniList deep → seed) |
 | Sunday 07:30 | `moments` | JP media moments scrape |
 | Sunday 08:00 | `saturate` | Deep saturate next-60-day birthdays |
@@ -71,6 +72,8 @@ curl -H "Authorization: Bearer $CRON_SECRET" \
 curl -H "Authorization: Bearer $CRON_SECRET" \
   "http://localhost:3000/api/ingest?source=refresh&refreshLimit=50&enrichLimit=20"
 curl -H "Authorization: Bearer $CRON_SECRET" \
+  "http://localhost:3000/api/ingest?source=checkup"
+curl -H "Authorization: Bearer $CRON_SECRET" \
   "http://localhost:3000/api/ingest?source=chartex&limit=20&moments=10"
 ```
 
@@ -80,7 +83,9 @@ curl -H "Authorization: Bearer $CRON_SECRET" \
 - `npm run seed:wiki` — AniList + wiki/MAL/Jikan coverage fill
 - `npm run moments` — significant moments scrape → store
 - `npm run stamp:ugc` — ChartEx batch stamp for UGC sort
-- `npm run factcheck:shows` — audit character→show links vs AniList roles (`--repair` fixes BACKGROUND cameos + fills crossover `alsoShowIds`; add `--force` for soft season/franchise disagreements)
+- `npm run factcheck:shows` — audit character→show links vs AniList roles (`--repair` fixes BACKGROUND cameos)
+- `npm run refresh:catalog` — merge wiki stubs + refresh AniList fields + enrich
+- `npm run checkup` — recurring health scan (same as daily Vercel `checkup` cron)
 - `npm run seed:tiktok` — oEmbed seed edit URLs from `data/tiktok-seeds.json`
 - `npm run saturate` — deep AniList crawl for near-term birthdays
 - `npm run db:push` — push Drizzle schema to Neon when `DATABASE_URL` is set

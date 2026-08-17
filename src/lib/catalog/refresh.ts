@@ -83,29 +83,6 @@ export function mergeDuplicateWikiStubs(store: StoreData): number {
     if (!match) continue;
     mergeStubIntoKeeper(store, match, stub);
     merged++;
-    // #region agent log
-    fetch("http://127.0.0.1:7341/ingest/dc4cd831-aa81-49f1-bb19-7b91d027aad0", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "ad8825",
-      },
-      body: JSON.stringify({
-        sessionId: "ad8825",
-        runId: "refresh-fix",
-        hypothesisId: "A",
-        location: "refresh.ts:mergeDuplicateWikiStubs",
-        message: "merged wiki stub",
-        data: {
-          stubSlug: stub.slug,
-          keeperSlug: match.slug,
-          name: match.nameFull,
-          favs: match.favourites,
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
   }
   return merged;
 }
@@ -322,30 +299,6 @@ export async function refreshCatalog(options?: {
       fieldsUpdated + stubsEnriched + mergedStubsTotal;
     run.finishedAt = new Date().toISOString();
     const syncedToPostgres = await persistWorkingStore(store);
-
-    // #region agent log
-    fetch("http://127.0.0.1:7341/ingest/dc4cd831-aa81-49f1-bb19-7b91d027aad0", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "ad8825",
-      },
-      body: JSON.stringify({
-        sessionId: "ad8825",
-        runId: "refresh-fix",
-        hypothesisId: "E",
-        location: "refresh.ts:refreshCatalog",
-        message: "refresh complete",
-        data: {
-          mergedStubs: mergedStubsTotal,
-          fieldsUpdated,
-          stubsEnriched,
-          syncedToPostgres,
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
 
     return {
       source: "refresh",

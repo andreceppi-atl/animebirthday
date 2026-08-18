@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatBirthday } from "@/lib/utils";
+import { formatBirthday, formatMomentKind } from "@/lib/utils";
 import type { FeedKind, MomentKind } from "@/lib/types";
 
 export type UpcomingItem = {
@@ -74,7 +74,9 @@ export function UpcomingList({ items }: { items: UpcomingItem[] }) {
                 />
               ) : (
                 <div className="flex h-full items-center justify-center px-1 text-center text-[10px] uppercase tracking-wide text-[var(--muted)]">
-                  {item.feedKind === "moment" ? item.momentKind : "N/A"}
+                  {item.feedKind === "moment"
+                    ? formatMomentKind(item.momentKind)
+                    : "N/A"}
                 </div>
               )}
             </div>
@@ -89,7 +91,7 @@ export function UpcomingList({ items }: { items: UpcomingItem[] }) {
                 >
                   {item.feedKind === "birthday"
                     ? "Birthday"
-                    : item.momentKind ?? "Moment"}
+                    : formatMomentKind(item.momentKind)}
                 </span>
                 <h3 className="font-[family-name:var(--font-display)] text-xl tracking-tight text-[var(--ink)] sm:text-2xl">
                   {item.nameFull}

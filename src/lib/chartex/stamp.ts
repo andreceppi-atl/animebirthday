@@ -85,7 +85,11 @@ export async function stampUpcomingUgc(options?: {
 
     const store = await loadWorkingStore();
     const moments = [...(store.moments ?? [])]
-      .filter((m) => m.kind !== "release" || m.significance >= 90)
+      .filter(
+        (m) =>
+          (m.kind !== "release_anniversary" && m.kind !== "release") ||
+          m.significance >= 90,
+      )
       .sort((a, b) => b.significance - a.significance)
       .slice(0, momentLimit);
 

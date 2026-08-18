@@ -21,7 +21,7 @@ export default async function CalendarPage({ searchParams }: Props) {
       </p>
       <p className="mb-10 max-w-lg text-sm text-[var(--muted)]">
         Birthdays take the cell when present; otherwise significant moments
-        (combat, releases, kaiju, deaths). Counts include both.
+        (combat, release anniversaries, kaiju, deaths). Counts include both.
       </p>
       <BirthdayCalendar year={data.year} month={data.month} byDay={data.byDay} />
     </div>

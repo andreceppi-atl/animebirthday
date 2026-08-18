@@ -17,6 +17,7 @@ import {
   pgUpdateCharacterUgc,
   pgUpdateMomentUgc,
 } from "@/lib/db/postgres";
+import { daysUntilBirthday, nextBirthdayDate, normalizeMomentKind } from "@/lib/utils";
 import type {
   CharacterWithShow,
   CharacterRecord,
@@ -25,7 +26,6 @@ import type {
   MomentRecord,
   ShowRecord,
 } from "@/lib/types";
-import { daysUntilBirthday, nextBirthdayDate } from "@/lib/utils";
 import { fetchTikTokOEmbed, isValidTikTokUrl } from "@/lib/tiktok/oembed";
 
 export type SortMode = "date" | "popularity" | "relevance" | "ugc";
@@ -104,7 +104,10 @@ async function loadMoments(): Promise<MomentRecord[]> {
     return pgGetAllMoments();
   }
   const store = await readStore();
-  return store.moments ?? [];
+  return (store.moments ?? []).map((m) => ({
+    ...m,
+    kind: normalizeMomentKind(m.kind),
+  }));
 }
 
 export function relevanceScore(input: {
@@ -196,7 +199,7 @@ function momentToFeedItem(m: MomentRecord): UpcomingItem {
       favourites: popularityProxy,
       significance: m.significance,
     }),
-    momentKind: m.kind,
+    momentKind: normalizeMomentKind(m.kind),
     franchise: m.franchise,
     summary: m.summary,
     year: m.year,
@@ -489,7 +492,9 @@ export async function getMomentBySlug(
     return pgGetMomentBySlug(slug);
   }
   const store = await readStore();
-  return store.moments.find((m) => m.slug === slug) ?? null;
+  const m = store.moments.find((x) => x.slug === slug);
+  if (!m) return null;
+  return { ...m, kind: normalizeMomentKind(m.kind) };
 }
 
 export async function addCharacterTikTokVideo(

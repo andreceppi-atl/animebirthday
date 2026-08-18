@@ -1,7 +1,7 @@
 [
   {
     "title": "Naruto vs Pain",
-    "summary": "Naruto's climactic battle with Pain in Konoha — a defining shonen combat peak.",
+    "summary": "Naruto's climactic battle with Pain in Konoha \u2014 a defining shonen combat peak.",
     "kind": "combat",
     "franchise": "Naruto",
     "image": null,
@@ -39,7 +39,7 @@
   },
   {
     "title": "Levi vs Beast Titan",
-    "summary": "Levi's brutal charge against Zeke — Attack on Titan combat iconography.",
+    "summary": "Levi's brutal charge against Zeke \u2014 Attack on Titan combat iconography.",
     "kind": "combat",
     "franchise": "Attack on Titan",
     "image": null,
@@ -57,7 +57,7 @@
   },
   {
     "title": "Gojo vs Sukuna (Shinjuku)",
-    "summary": "The modern Jujutsu Kaisen apex duel — massive UGC magnet.",
+    "summary": "The modern Jujutsu Kaisen apex duel \u2014 massive UGC magnet.",
     "kind": "combat",
     "franchise": "Jujutsu Kaisen",
     "image": null,
@@ -76,7 +76,7 @@
   },
   {
     "title": "Eren's Rumbling begins",
-    "summary": "The Rumbling sequence — franchise-defining catastrophic moment.",
+    "summary": "The Rumbling sequence \u2014 franchise-defining catastrophic moment.",
     "kind": "cultural",
     "franchise": "Attack on Titan",
     "image": null,
@@ -94,7 +94,7 @@
   },
   {
     "title": "Ace's death",
-    "summary": "Portgas D. Ace's death at Marineford — landmark shonen tragedy.",
+    "summary": "Portgas D. Ace's death at Marineford \u2014 landmark shonen tragedy.",
     "kind": "death",
     "franchise": "One Piece",
     "image": null,
@@ -112,7 +112,7 @@
   },
   {
     "title": "Jiraiya's death",
-    "summary": "Jiraiya falls to Pain — major Naruto emotional beat.",
+    "summary": "Jiraiya falls to Pain \u2014 major Naruto emotional beat.",
     "kind": "death",
     "franchise": "Naruto",
     "image": null,
@@ -130,7 +130,7 @@
   },
   {
     "title": "Maes Hughes' death",
-    "summary": "Hughes' murder in Fullmetal Alchemist — infamous gut-punch scene.",
+    "summary": "Hughes' murder in Fullmetal Alchemist \u2014 infamous gut-punch scene.",
     "kind": "death",
     "franchise": "Fullmetal Alchemist",
     "image": null,
@@ -167,7 +167,7 @@
   },
   {
     "title": "Neon Genesis Evangelion TV finale",
-    "summary": "Original Evangelion series ending — polarizing cultural landmark.",
+    "summary": "Original Evangelion series ending \u2014 polarizing cultural landmark.",
     "kind": "anniversary",
     "franchise": "Neon Genesis Evangelion",
     "image": null,
@@ -184,8 +184,8 @@
   },
   {
     "title": "Akira theatrical release (Japan)",
-    "summary": "Akira hits Japanese theaters — cyberpunk anime landmark.",
-    "kind": "release",
+    "summary": "Akira hits Japanese theaters \u2014 cyberpunk anime landmark.",
+    "kind": "release_anniversary",
     "franchise": "Akira",
     "image": null,
     "month": 7,
@@ -197,7 +197,8 @@
     "tags": [
       "akira",
       "film",
-      "release"
+      "release",
+      "release-anniversary"
     ]
   },
   {
@@ -220,7 +221,7 @@
   },
   {
     "title": "First Godzilla film release",
-    "summary": "Ishiro Honda's Godzilla (1954) — kaiju cinema origin point.",
+    "summary": "Ishiro Honda's Godzilla (1954) \u2014 kaiju cinema origin point.",
     "kind": "kaiju",
     "franchise": "Godzilla",
     "image": null,
@@ -256,7 +257,7 @@
   },
   {
     "title": "All Might vs All For One",
-    "summary": "Symbol of Peace's last stand — My Hero Academia combat peak.",
+    "summary": "Symbol of Peace's last stand \u2014 My Hero Academia combat peak.",
     "kind": "combat",
     "franchise": "My Hero Academia",
     "image": null,
@@ -292,8 +293,8 @@
   },
   {
     "title": "Cowboy Bebop series premiere",
-    "summary": "See you, space cowboy — premiere anniversary.",
-    "kind": "release",
+    "summary": "See you, space cowboy \u2014 premiere anniversary.",
+    "kind": "release_anniversary",
     "franchise": "Cowboy Bebop",
     "image": null,
     "month": 4,
@@ -304,13 +305,14 @@
     "source": "seed",
     "tags": [
       "cowboybebop",
-      "premiere"
+      "premiere",
+      "release-anniversary"
     ]
   },
   {
     "title": "Your Name theatrical release (Japan)",
     "summary": "Kimi no Na wa becomes a global anime film phenomenon.",
-    "kind": "release",
+    "kind": "release_anniversary",
     "franchise": "Your Name",
     "image": null,
     "month": 8,
@@ -322,13 +324,14 @@
     "tags": [
       "yourname",
       "shinkai",
-      "film"
+      "film",
+      "release-anniversary"
     ]
   },
   {
     "title": "Madoka Magica: Rebellion release",
-    "summary": "Rebellion film anniversary — major magical-girl genre disruption.",
-    "kind": "release",
+    "summary": "Rebellion film anniversary \u2014 major magical-girl genre disruption.",
+    "kind": "release_anniversary",
     "franchise": "Puella Magi Madoka Magica",
     "image": null,
     "month": 10,
@@ -339,12 +342,13 @@
     "source": "seed",
     "tags": [
       "madoka",
-      "film"
+      "film",
+      "release-anniversary"
     ]
   },
   {
     "title": "Saitama vs Boros",
-    "summary": "One Punch Man Season 1 finale clash — viral combat spectacle.",
+    "summary": "One Punch Man Season 1 finale clash \u2014 viral combat spectacle.",
     "kind": "combat",
     "franchise": "One Punch Man",
     "image": null,
@@ -362,7 +366,7 @@
   },
   {
     "title": "Tanjiro vs Rui",
-    "summary": "Demon Slayer Entertainment District warmup — Rui fight cemented the show's UGC wave.",
+    "summary": "Demon Slayer Entertainment District warmup \u2014 Rui fight cemented the show's UGC wave.",
     "kind": "combat",
     "franchise": "Demon Slayer",
     "image": null,
@@ -381,7 +385,7 @@
   },
   {
     "title": "Edward vs Father (Promised Day)",
-    "summary": "Fullmetal Alchemist Brotherhood final confrontation — alchemy vs godhood.",
+    "summary": "Fullmetal Alchemist Brotherhood final confrontation \u2014 alchemy vs godhood.",
     "kind": "combat",
     "franchise": "Fullmetal Alchemist",
     "image": null,
@@ -399,7 +403,7 @@
   },
   {
     "title": "Ichigo vs Aizen (Fake Karakura)",
-    "summary": "Bleach climactic bankai showdown — long-form shonen combat icon.",
+    "summary": "Bleach climactic bankai showdown \u2014 long-form shonen combat icon.",
     "kind": "combat",
     "franchise": "Bleach",
     "image": null,
@@ -418,7 +422,7 @@
   },
   {
     "title": "Killua vs Youpi",
-    "summary": "Hunter x Hunter Chimera Ant arc — Killua's Godspeed debut.",
+    "summary": "Hunter x Hunter Chimera Ant arc \u2014 Killua's Godspeed debut.",
     "kind": "combat",
     "franchise": "Hunter x Hunter",
     "image": null,
@@ -436,7 +440,7 @@
   },
   {
     "title": "Meruem's death",
-    "summary": "Chimera Ant King falls after the palace invasion — HxH tragedy peak.",
+    "summary": "Chimera Ant King falls after the palace invasion \u2014 HxH tragedy peak.",
     "kind": "death",
     "franchise": "Hunter x Hunter",
     "image": null,
@@ -454,7 +458,7 @@
   },
   {
     "title": "Asuka's mind rape sequence",
-    "summary": "End of Evangelion atrocity — infamous cultural trauma moment.",
+    "summary": "End of Evangelion atrocity \u2014 infamous cultural trauma moment.",
     "kind": "cultural",
     "franchise": "Neon Genesis Evangelion",
     "image": null,
@@ -490,7 +494,7 @@
   },
   {
     "title": "Gamera vs Gyaos (1965)",
-    "summary": "Classic kaiju rivalry origin — Gamera's defining opponent.",
+    "summary": "Classic kaiju rivalry origin \u2014 Gamera's defining opponent.",
     "kind": "kaiju",
     "franchise": "Gamera",
     "image": null,
@@ -508,7 +512,7 @@
   },
   {
     "title": "Ultraman first episode airdate",
-    "summary": "Original Ultraman premiere — tokusatsu/kaiju TV landmark.",
+    "summary": "Original Ultraman premiere \u2014 tokusatsu/kaiju TV landmark.",
     "kind": "kaiju",
     "franchise": "Ultraman",
     "image": null,
@@ -526,7 +530,7 @@
   },
   {
     "title": "Denji vs Gun Devil",
-    "summary": "Chainsaw Man Part 1 climax — modern seinen combat spectacle.",
+    "summary": "Chainsaw Man Part 1 climax \u2014 modern seinen combat spectacle.",
     "kind": "combat",
     "franchise": "Chainsaw Man",
     "image": null,
@@ -544,7 +548,7 @@
   },
   {
     "title": "Power's death",
-    "summary": "Chainsaw Man emotional gut-punch — massive edit culture driver.",
+    "summary": "Chainsaw Man emotional gut-punch \u2014 massive edit culture driver.",
     "kind": "death",
     "franchise": "Chainsaw Man",
     "image": null,

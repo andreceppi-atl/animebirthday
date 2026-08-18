@@ -61,3 +61,36 @@ export function formatBirthday(month: number, day: number): string {
   const d = new Date(2000, month - 1, day);
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
+
+/** Legacy `release` kind is the same as release anniversary. */
+export function normalizeMomentKind(
+  kind: string | null | undefined,
+): import("@/lib/types").MomentKind {
+  if (kind === "release") return "release_anniversary";
+  if (
+    kind === "combat" ||
+    kind === "death" ||
+    kind === "release_anniversary" ||
+    kind === "anniversary" ||
+    kind === "cultural" ||
+    kind === "kaiju" ||
+    kind === "other"
+  ) {
+    return kind;
+  }
+  return "other";
+}
+
+export function formatMomentKind(kind: string | null | undefined): string {
+  const labels: Record<import("@/lib/types").MomentKind, string> = {
+    combat: "Combat",
+    death: "Death",
+    release: "Release anniversary",
+    release_anniversary: "Release anniversary",
+    anniversary: "Anniversary",
+    cultural: "Cultural",
+    kaiju: "Kaiju",
+    other: "Other",
+  };
+  return labels[normalizeMomentKind(kind)];
+}

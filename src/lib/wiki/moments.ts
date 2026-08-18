@@ -162,7 +162,11 @@ function scrapeReleaseTable(
       significance: opts.significance,
       wikiUrl: opts.pageUrl,
       source: "wiki",
-      tags: opts.tags ?? [opts.franchise.toLowerCase(), "release"],
+      tags: opts.tags ?? [
+        opts.franchise.toLowerCase(),
+        "release",
+        "release-anniversary",
+      ],
     });
   });
 
@@ -215,10 +219,10 @@ export async function scrapeGhibliFilms(): Promise<ScrapedMoment[]> {
   if (!html) return [];
   return scrapeReleaseTable(html, {
     franchise: "Studio Ghibli",
-    kind: "release",
+    kind: "release_anniversary",
     significance: 75,
     pageUrl: `https://en.wikipedia.org/wiki/${page}`,
-    tags: ["ghibli", "film", "release"],
+    tags: ["ghibli", "film", "release", "release-anniversary"],
   });
 }
 
@@ -228,10 +232,10 @@ export async function scrapeAnimeFilms(): Promise<ScrapedMoment[]> {
   if (!html) return [];
   return scrapeReleaseTable(html, {
     franchise: "Anime Film",
-    kind: "release",
+    kind: "release_anniversary",
     significance: 65,
     pageUrl: `https://en.wikipedia.org/wiki/${page}`,
-    tags: ["anime", "film", "release"],
+    tags: ["anime", "film", "release", "release-anniversary"],
   }).map((m) => ({
     ...m,
     // Keep original film title cleaner
@@ -313,7 +317,7 @@ export async function scrapeAniListPremieres(options?: {
       out.push({
         title: `${name} premiere`,
         summary: `Anime premiere anniversary`,
-        kind: "release",
+        kind: "release_anniversary",
         franchise: name,
         image: m.coverImage.large,
         month: m.startDate.month,
@@ -322,7 +326,12 @@ export async function scrapeAniListPremieres(options?: {
         significance: sig,
         wikiUrl: m.siteUrl,
         source: "anilist",
-        tags: ["premiere", "anilist", ...(m.genres ?? []).slice(0, 3).map((g) => g.toLowerCase())],
+        tags: [
+          "premiere",
+          "anilist",
+          "release-anniversary",
+          ...(m.genres ?? []).slice(0, 3).map((g) => g.toLowerCase()),
+        ],
       });
     }
     if (!pageData.pageInfo.hasNextPage) break;
@@ -441,7 +450,14 @@ export async function scrapeSignificantMoments(): Promise<ScrapedMoment[]> {
   );
   if (forSeed.length >= seed.length) {
     await writeMomentsSeed(
-      dedupe([...seed, ...forSeed.filter((m) => m.source === "seed" || m.kind !== "release")]),
+      dedupe([
+        ...seed,
+        ...forSeed.filter(
+          (m) =>
+            m.source === "seed" ||
+            (m.kind !== "release" && m.kind !== "release_anniversary"),
+        ),
+      ]),
     );
   }
   return merged;

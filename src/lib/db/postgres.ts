@@ -19,6 +19,7 @@ import type {
   TiktokVideoRecord,
 } from "@/lib/types";
 import { generateHashtags } from "@/lib/tiktok/hashtags";
+import { normalizeMomentKind } from "@/lib/utils";
 
 export { hasDatabaseUrl };
 
@@ -28,7 +29,7 @@ function mapMoment(row: typeof moments.$inferSelect): MomentRecord {
     slug: row.slug,
     title: row.title,
     summary: row.summary,
-    kind: row.kind as MomentRecord["kind"],
+    kind: normalizeMomentKind(row.kind),
     franchise: row.franchise,
     image: row.image,
     month: row.month,
@@ -497,7 +498,7 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
           slug: m.slug,
           title: m.title,
           summary: m.summary,
-          kind: m.kind,
+          kind: normalizeMomentKind(m.kind),
           franchise: m.franchise,
           image: m.image,
           month: m.month,
@@ -517,7 +518,7 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
           set: {
             title: m.title,
             summary: m.summary,
-            kind: m.kind,
+            kind: normalizeMomentKind(m.kind),
             franchise: m.franchise,
             image: m.image,
             month: m.month,

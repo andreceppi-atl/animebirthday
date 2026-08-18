@@ -77,6 +77,7 @@ export type MomentKind =
   | "combat"
   | "death"
   | "release"
+  | "release_anniversary"
   | "anniversary"
   | "cultural"
   | "kaiju"

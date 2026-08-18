@@ -7,7 +7,8 @@ import {
   getUpcomingCharacters,
   type UpcomingItem,
 } from "@/lib/queries";
-import { formatBirthday } from "@/lib/utils";
+import type { MomentKind } from "@/lib/types";
+import { formatBirthday, formatMomentKind } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +19,7 @@ type Props = {
     demo?: string;
     days?: string;
     type?: string;
+    momentKind?: string;
   }>;
 };
 
@@ -29,7 +31,9 @@ function itemHref(item: UpcomingItem) {
 
 function itemKindLabel(item: UpcomingItem) {
   if (item.feedKind === "moment") {
-    return item.momentKind ? `Moment · ${item.momentKind}` : "Moment";
+    return item.momentKind
+      ? `Moment · ${formatMomentKind(item.momentKind)}`
+      : "Moment";
   }
   return "Birthday";
 }
@@ -40,6 +44,7 @@ export default async function HomePage({ searchParams }: Props) {
   const sort =
     (params.sort as "date" | "popularity" | "relevance" | "ugc") || "relevance";
   const type = (params.type as "birthday" | "moment" | "all") || "birthday";
+  const momentKind = (params.momentKind as MomentKind | undefined) || undefined;
 
   const [upcoming, monthPriority, count] = await Promise.all([
     getUpcomingCharacters({
@@ -49,6 +54,7 @@ export default async function HomePage({ searchParams }: Props) {
       sort,
       demo: params.demo,
       type,
+      momentKind,
     }),
     getTopPriorityThisMonth(),
     getCharacterCount(),
@@ -83,7 +89,7 @@ export default async function HomePage({ searchParams }: Props) {
           </h1>
           <p className="max-w-md text-base text-[var(--muted)] sm:text-lg">
             Next 2 months of birthdays (default) plus significant JP media
-            moments — fights, deaths, premieres, kaiju dates.
+            moments — fights, deaths, release anniversaries, kaiju dates.
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Link

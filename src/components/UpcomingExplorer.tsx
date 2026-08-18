@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { UpcomingList, type UpcomingItem } from "@/components/UpcomingList";
+import type { MomentKind } from "@/lib/types";
+import { formatMomentKind } from "@/lib/utils";
 
 type SortMode = "date" | "popularity" | "relevance" | "ugc";
 type TypeFilter = "birthday" | "moment" | "all";
@@ -19,6 +21,16 @@ const TYPES: { id: TypeFilter; label: string }[] = [
   { id: "birthday", label: "Birthdays" },
   { id: "moment", label: "Moments" },
   { id: "all", label: "All" },
+];
+
+const MOMENT_KINDS: { id: MomentKind | ""; label: string }[] = [
+  { id: "", label: "All kinds" },
+  { id: "combat", label: "Combat" },
+  { id: "death", label: "Death" },
+  { id: "release_anniversary", label: "Release anniversary" },
+  { id: "kaiju", label: "Kaiju" },
+  { id: "anniversary", label: "Anniversary" },
+  { id: "cultural", label: "Cultural" },
 ];
 
 const DEMOS = ["", "Shounen", "Shoujo", "Seinen", "Josei"];
@@ -41,6 +53,9 @@ export function UpcomingExplorer({
   const [type, setType] = useState<TypeFilter>(
     (searchParams.get("type") as TypeFilter) || "birthday",
   );
+  const [momentKind, setMomentKind] = useState<MomentKind | "">(
+    (searchParams.get("momentKind") as MomentKind) || "",
+  );
   const [demo, setDemo] = useState(searchParams.get("demo") ?? "");
   const [days, setDays] = useState(
     Number(searchParams.get("days") ?? initialDays),
@@ -50,6 +65,7 @@ export function UpcomingExplorer({
     q?: string;
     sort?: SortMode;
     type?: TypeFilter;
+    momentKind?: MomentKind | "";
     demo?: string;
     days?: number;
   }) {
@@ -57,11 +73,13 @@ export function UpcomingExplorer({
     const qq = next.q ?? q;
     const ss = next.sort ?? sort;
     const tt = next.type ?? type;
+    const mk = next.momentKind ?? momentKind;
     const dd = next.demo ?? demo;
     const dy = next.days ?? days;
     if (qq) params.set("q", qq);
     if (ss && ss !== "relevance") params.set("sort", ss);
     if (tt && tt !== "birthday") params.set("type", tt);
+    if (mk) params.set("momentKind", mk);
     if (dd) params.set("demo", dd);
     if (dy !== 60) params.set("days", String(dy));
     const qs = params.toString();
@@ -72,12 +90,14 @@ export function UpcomingExplorer({
     q?: string;
     sort?: SortMode;
     type?: TypeFilter;
+    momentKind?: MomentKind | "";
     demo?: string;
     days?: number;
   }) {
     const qq = opts?.q ?? q;
     const ss = opts?.sort ?? sort;
     const tt = opts?.type ?? type;
+    const mk = opts?.momentKind ?? momentKind;
     const dd = opts?.demo ?? demo;
     const dy = opts?.days ?? days;
     startTransition(async () => {
@@ -89,6 +109,7 @@ export function UpcomingExplorer({
       });
       if (qq) params.set("q", qq);
       if (dd) params.set("demo", dd);
+      if (mk) params.set("momentKind", mk);
       const res = await fetch(`/api/upcoming?${params}`);
       const data = await res.json();
       setItems(data.upcoming ?? []);
@@ -108,7 +129,7 @@ export function UpcomingExplorer({
           </h2>
           <p className="mt-1 text-sm text-[var(--muted)]">
             Birthdays first for UGC prediction — flip to Moments for fights,
-            releases, deaths, kaiju dates.
+            release anniversaries, deaths, kaiju dates.
           </p>
         </div>
         <span className="text-xs text-[var(--muted)]">
@@ -144,8 +165,10 @@ export function UpcomingExplorer({
               type="button"
               onClick={() => {
                 setType(t.id);
-                syncUrl({ type: t.id });
-                fetchList({ type: t.id });
+                const nextKind = t.id === "birthday" ? "" : momentKind;
+                if (t.id === "birthday") setMomentKind("");
+                syncUrl({ type: t.id, momentKind: nextKind });
+                fetchList({ type: t.id, momentKind: nextKind });
               }}
               className={`px-3 py-1.5 text-xs uppercase tracking-wider transition ${
                 type === t.id
@@ -198,6 +221,30 @@ export function UpcomingExplorer({
               ))}
             </>
           )}
+          {(type === "moment" || type === "all") && (
+            <>
+              <span className="mx-1 hidden text-[var(--line)] sm:inline">|</span>
+              {MOMENT_KINDS.map((k) => (
+                <button
+                  key={k.id || "all-kinds"}
+                  type="button"
+                  onClick={() => {
+                    setMomentKind(k.id);
+                    syncUrl({ momentKind: k.id });
+                    fetchList({ momentKind: k.id });
+                  }}
+                  className={`px-3 py-1.5 text-xs uppercase tracking-wider transition ${
+                    momentKind === k.id
+                      ? "border border-[var(--accent)] text-[var(--accent)]"
+                      : "border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)]"
+                  }`}
+                  title={k.id ? formatMomentKind(k.id) : undefined}
+                >
+                  {k.label}
+                </button>
+              ))}
+            </>
+          )}
           <select
             value={days}
             onChange={(e) => {
@@ -219,7 +266,7 @@ export function UpcomingExplorer({
 
       <p className="mt-6 text-xs text-[var(--muted)]">
         Birthdays stay the default UGC calendar. Moments cover combat peaks,
-        deaths, premieres, and kaiju/cultural anniversaries.{" "}
+        deaths, release anniversaries, and kaiju/cultural dates.{" "}
         <Link href="/calendar" className="text-[var(--accent)] hover:underline">
           Open calendar
         </Link>

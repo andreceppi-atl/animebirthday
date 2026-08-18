@@ -14,6 +14,7 @@ import {
   loadStoreFromPostgres,
   syncStoreToPostgres,
 } from "@/lib/db/postgres";
+import { normalizeMomentKind } from "@/lib/utils";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const STORE_PATH = path.join(DATA_DIR, "store.json");
@@ -285,10 +286,12 @@ export async function upsertMoment(
   input: Omit<MomentRecord, "id" | "createdAt" | "updatedAt"> & { id?: number },
 ): Promise<MomentRecord> {
   const now = new Date().toISOString();
+  const kind = normalizeMomentKind(input.kind);
   const existing = store.moments.find((m) => m.slug === input.slug);
   if (existing) {
     Object.assign(existing, {
       ...input,
+      kind,
       id: existing.id,
       ugcVolume: input.ugcVolume ?? existing.ugcVolume,
       ugcUpdatedAt: input.ugcUpdatedAt ?? existing.ugcUpdatedAt,
@@ -302,7 +305,7 @@ export async function upsertMoment(
     slug: input.slug,
     title: input.title,
     summary: input.summary,
-    kind: input.kind,
+    kind,
     franchise: input.franchise,
     image: input.image,
     month: input.month,

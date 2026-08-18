@@ -5,6 +5,7 @@ import {
   getUpcomingCharacters,
 } from "@/lib/queries";
 import type { SortMode, TypeFilter } from "@/lib/queries";
+import type { MomentKind } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -16,10 +17,21 @@ export async function GET(request: Request) {
   const sort = (searchParams.get("sort") as SortMode | null) ?? "relevance";
   const type = (searchParams.get("type") as TypeFilter | null) ?? "birthday";
   const demo = searchParams.get("demo") ?? undefined;
+  const momentKind =
+    (searchParams.get("momentKind") as MomentKind | null) ?? undefined;
   const minFavourites = Number(searchParams.get("minFavourites") ?? "0");
 
   const [upcoming, biggest, monthPriority] = await Promise.all([
-    getUpcomingCharacters({ days, limit, q, sort, type, demo, minFavourites }),
+    getUpcomingCharacters({
+      days,
+      limit,
+      q,
+      sort,
+      type,
+      demo,
+      momentKind,
+      minFavourites,
+    }),
     getBiggestThisWeek(5),
     getTopPriorityThisMonth(),
   ]);
@@ -28,6 +40,6 @@ export async function GET(request: Request) {
     upcoming,
     biggest,
     monthPriority,
-    meta: { days, sort, q, demo, type },
+    meta: { days, sort, q, demo, type, momentKind },
   });
 }

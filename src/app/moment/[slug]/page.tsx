@@ -5,6 +5,7 @@ import { getMomentBySlug } from "@/lib/queries";
 import {
   daysUntilBirthday,
   formatBirthday,
+  formatMomentKind,
   nextBirthdayDate,
 } from "@/lib/utils";
 
@@ -33,7 +34,7 @@ export default async function MomentPage({ params }: Props) {
       <section className="relative mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
         <div className="animate-fade-up space-y-5">
           <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent-soft)]">
-            {moment.kind}
+            {formatMomentKind(moment.kind)}
             {daysUntil === 0
               ? " · today"
               : ` · in ${daysUntil} day${daysUntil === 1 ? "" : "s"}`}
@@ -83,7 +84,7 @@ export default async function MomentPage({ params }: Props) {
           ) : (
             <div className="flex h-full flex-col items-center justify-center gap-2 p-6 text-center text-[var(--muted)]">
               <span className="text-xs uppercase tracking-[0.2em]">
-                {moment.kind}
+                {formatMomentKind(moment.kind)}
               </span>
               <span className="font-[family-name:var(--font-display)] text-2xl text-[var(--ink)]">
                 {moment.franchise || "JP media"}

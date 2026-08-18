@@ -18,6 +18,9 @@ import {
 const DATA_DIR = path.join(process.cwd(), "data");
 const STORE_PATH = path.join(DATA_DIR, "store.json");
 
+/** Stores that were healed with JSON moments and should force a Neon rewrite. */
+const hydratedMomentsStores = new WeakSet<object>();
+
 function emptyStore(): StoreData {
   return {
     shows: [],
@@ -78,6 +81,7 @@ export async function loadWorkingStore(): Promise<StoreData> {
             fromPg.moments = json.moments;
             fromPg.nextIds.moments =
               Math.max(0, ...json.moments.map((m) => m.id)) + 1;
+            hydratedMomentsStores.add(fromPg);
           }
         }
         return fromPg;
@@ -96,6 +100,7 @@ export async function writeStore(data: StoreData): Promise<void> {
 
 /** Persist working store: always attempt JSON write; sync full catalog to Neon when configured. */
 export async function persistWorkingStore(store: StoreData): Promise<boolean> {
+  const hydrated = hydratedMomentsStores.has(store);
   try {
     await writeStore(store);
   } catch (err) {
@@ -104,6 +109,12 @@ export async function persistWorkingStore(store: StoreData): Promise<boolean> {
   }
   if (!hasDatabaseUrl()) return false;
   await syncStoreToPostgres(store);
+  if (hydrated) {
+    hydratedMomentsStores.delete(store);
+    console.warn(
+      `persistWorkingStore: re-synced ${store.moments.length} hydrated moments to Neon`,
+    );
+  }
   return true;
 }
 

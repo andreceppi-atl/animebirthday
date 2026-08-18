@@ -31,6 +31,8 @@ export type CheckupReport = {
     withUgc: number;
     momentUgc: number;
     nameDupes: number;
+    nameDobDupes: number;
+    anilistIdDupes: number;
     pgCharacters: number | null;
     pgMoments: number | null;
     enjinFavs: number | null;
@@ -58,6 +60,40 @@ function countNameDupes(
   return [...counts.values()].filter((n) => n > 1).length;
 }
 
+function countNameDobDupes(
+  characters: Array<{ nameFull: string; birthMonth: number; birthDay: number }>,
+): number {
+  const counts = new Map<string, number>();
+  for (const c of characters) {
+    const k = `${c.nameFull.toLowerCase()}|${c.birthMonth}|${c.birthDay}`;
+    counts.set(k, (counts.get(k) || 0) + 1);
+  }
+  return [...counts.values()].filter((n) => n > 1).length;
+}
+
+function countAnilistIdDupes(
+  characters: Array<{ anilistId: number | null }>,
+): number {
+  const counts = new Map<number, number>();
+  for (const c of characters) {
+    if (c.anilistId == null) continue;
+    counts.set(c.anilistId, (counts.get(c.anilistId) || 0) + 1);
+  }
+  return [...counts.values()].filter((n) => n > 1).length;
+}
+
+/** Close any ingest runs left stuck in "running" from timed-out crons. */
+function finalizeStuckRuns(store: Awaited<ReturnType<typeof loadWorkingStore>>) {
+  const now = new Date().toISOString();
+  for (const run of store.ingestRuns) {
+    if (run.status === "running") {
+      run.status = "error";
+      run.error = run.error || "Marked incomplete by checkup (likely timeout)";
+      run.finishedAt = run.finishedAt || now;
+    }
+  }
+}
+
 /**
  * Recurring health scan: measure coverage, merge stubs, refresh a slice of
  * AniList fields, enrich wiki gaps, and top up UGC when thin.
@@ -77,6 +113,7 @@ export async function runCatalogCheckup(options?: {
   const forceUgc = options?.forceUgc ?? false;
 
   const store = await loadWorkingStore();
+  finalizeStuckRuns(store);
   const run = addIngestRun(store, {
     source: "checkup",
     status: "running",
@@ -169,14 +206,33 @@ export async function runCatalogCheckup(options?: {
     const wikiStubs = store.characters.filter((c) => !c.anilistId).length;
     const withImage = store.characters.filter((c) => c.image).length;
     const nameDupes = countNameDupes(store.characters);
+    const nameDobDupes = countNameDobDupes(store.characters);
+    const anilistIdDupes = countAnilistIdDupes(store.characters);
 
     run.status = "success";
     run.charactersUpserted =
-      (mergedStubs + mergedAfter) +
-      fieldsUpdated +
-      stubsEnriched +
-      ugcCharacters;
+      mergedStubs + mergedAfter + fieldsUpdated + stubsEnriched + ugcCharacters;
     run.finishedAt = new Date().toISOString();
+
+    const actions = {
+      mergedStubs: mergedStubs + mergedAfter,
+      fieldsUpdated,
+      stubsEnriched,
+      ugcCharacters,
+      ugcMoments,
+    };
+
+    const syncedToPostgres = await persistWorkingStore(store);
+
+    // Re-read Neon after persist so healed moments are reflected
+    if (hasDatabaseUrl()) {
+      try {
+        pgCharacters = await pgCharacterCount();
+        pgMoments = (await pgGetAllMoments()).length;
+      } catch {
+        /* non-fatal */
+      }
+    }
 
     const metrics = {
       characters: store.characters.length,
@@ -186,6 +242,8 @@ export async function runCatalogCheckup(options?: {
       withUgc: store.characters.filter((c) => c.ugcVolume != null).length,
       momentUgc: store.moments.filter((m) => m.ugcVolume != null).length,
       nameDupes,
+      nameDobDupes,
+      anilistIdDupes,
       pgCharacters,
       pgMoments,
       enjinFavs: enjin?.favourites ?? null,
@@ -201,19 +259,11 @@ export async function runCatalogCheckup(options?: {
 
     const healthy =
       metrics.nameDupes === 0 &&
+      metrics.nameDobDupes === 0 &&
+      metrics.anilistIdDupes === 0 &&
       metrics.moments > 0 &&
       (metrics.pgMoments == null || metrics.pgMoments > 0) &&
       (metrics.enjinDelta == null || Math.abs(metrics.enjinDelta) < 50);
-
-    const actions = {
-      mergedStubs: mergedStubs + mergedAfter,
-      fieldsUpdated,
-      stubsEnriched,
-      ugcCharacters,
-      ugcMoments,
-    };
-
-    const syncedToPostgres = await persistWorkingStore(store);
 
     const report: CheckupReport = {
       source: "checkup",
@@ -267,6 +317,8 @@ export async function runCatalogCheckup(options?: {
         withUgc: 0,
         momentUgc: 0,
         nameDupes: 0,
+        nameDobDupes: 0,
+        anilistIdDupes: 0,
         pgCharacters: null,
         pgMoments: null,
         enjinFavs: null,

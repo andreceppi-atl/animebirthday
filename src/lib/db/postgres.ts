@@ -1,4 +1,4 @@
-import { and, asc, eq, sql } from "drizzle-orm";
+import { and, asc, eq, notInArray, sql } from "drizzle-orm";
 import { getDb, hasDatabaseUrl } from "@/lib/db";
 import {
   characterHashtags,
@@ -398,12 +398,14 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
       );
     }
   }
+  // Critical: if we still have nothing to write, do NOT delete the moments table.
+  // A timed-out full replace after delete(moments) previously wiped Neon to 0.
+  const replaceMoments = momentsToWrite.length > 0;
 
-  // Clear dependent tables first
+  // Clear character-dependent tables first (moments are handled separately — upsert-first)
   await db.delete(tiktokVideos);
   await db.delete(characterHashtags);
   await db.delete(characters);
-  await db.delete(moments);
   await db.delete(shows);
 
   const showIdMap = new Map<number, number>();
@@ -485,26 +487,60 @@ export async function syncStoreToPostgres(store: StoreData): Promise<void> {
     });
   }
 
-  for (const m of momentsToWrite) {
-    await db.insert(moments).values({
-      slug: m.slug,
-      title: m.title,
-      summary: m.summary,
-      kind: m.kind,
-      franchise: m.franchise,
-      image: m.image,
-      month: m.month,
-      day: m.day,
-      year: m.year,
-      significance: m.significance,
-      wikiUrl: m.wikiUrl,
-      source: m.source,
-      tags: m.tags,
-      ugcVolume: m.ugcVolume,
-      ugcUpdatedAt: m.ugcUpdatedAt ? new Date(m.ugcUpdatedAt) : null,
-      createdAt: now,
-      updatedAt: now,
-    });
+  // Upsert moments first, then drop orphans — never delete-all before write
+  // (timeout mid-sync previously wiped Neon moments to 0).
+  if (replaceMoments) {
+    for (const m of momentsToWrite) {
+      await db
+        .insert(moments)
+        .values({
+          slug: m.slug,
+          title: m.title,
+          summary: m.summary,
+          kind: m.kind,
+          franchise: m.franchise,
+          image: m.image,
+          month: m.month,
+          day: m.day,
+          year: m.year,
+          significance: m.significance,
+          wikiUrl: m.wikiUrl,
+          source: m.source,
+          tags: m.tags,
+          ugcVolume: m.ugcVolume,
+          ugcUpdatedAt: m.ugcUpdatedAt ? new Date(m.ugcUpdatedAt) : null,
+          createdAt: now,
+          updatedAt: now,
+        })
+        .onConflictDoUpdate({
+          target: moments.slug,
+          set: {
+            title: m.title,
+            summary: m.summary,
+            kind: m.kind,
+            franchise: m.franchise,
+            image: m.image,
+            month: m.month,
+            day: m.day,
+            year: m.year,
+            significance: m.significance,
+            wikiUrl: m.wikiUrl,
+            source: m.source,
+            tags: m.tags,
+            ugcVolume: m.ugcVolume,
+            ugcUpdatedAt: m.ugcUpdatedAt ? new Date(m.ugcUpdatedAt) : null,
+            updatedAt: now,
+          },
+        });
+    }
+    const keepSlugs = momentsToWrite.map((m) => m.slug);
+    if (keepSlugs.length) {
+      await db.delete(moments).where(notInArray(moments.slug, keepSlugs));
+    }
+  } else {
+    console.warn(
+      "syncStoreToPostgres: skipped moments table replace (no moments to write)",
+    );
   }
 
   // Replace ingest history with the latest window — avoid unbounded duplicates on every sync

@@ -11,6 +11,7 @@ import { stampUpcomingUgc } from "@/lib/chartex/stamp";
 import { factCheckCharacterShows } from "@/lib/factcheck/shows";
 import { refreshCatalog } from "@/lib/catalog/refresh";
 import { runCatalogCheckup } from "@/lib/catalog/checkup";
+import { getOpsDebugReport } from "@/lib/ops/status";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -77,7 +78,21 @@ export async function GET(request: Request) {
         ugcMomentLimit: Number(searchParams.get("moments") ?? "15"),
         forceUgc: searchParams.get("forceUgc") === "1",
       });
-      return NextResponse.json({ results: [result] });
+      const ops = await getOpsDebugReport();
+      return NextResponse.json({
+        results: [result],
+        ops: {
+          overallOk: ops.overallOk,
+          generatedAt: ops.generatedAt,
+          windows: ops.windows.map((w) => ({
+            id: w.id,
+            title: w.title,
+            ok: w.ok,
+            flags: w.flags,
+            metrics: w.metrics,
+          })),
+        },
+      });
     }
     if (source === "factcheck" || source === "factcheck-shows") {
       const result = await factCheckCharacterShows({

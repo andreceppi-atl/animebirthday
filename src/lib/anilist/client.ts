@@ -209,13 +209,17 @@ export async function fetchTopCharactersWithBirthdays(options?: {
   maxPages?: number;
   perPage?: number;
   delayMs?: number;
+  /** 1-based start page (for rotating deep crawls). Default 1. */
+  startPage?: number;
 }): Promise<AniListCharacter[]> {
   const maxPages = options?.maxPages ?? 20;
   const perPage = options?.perPage ?? 50;
   const delayMs = options?.delayMs ?? 700;
+  const startPage = Math.max(1, options?.startPage ?? 1);
   const results: AniListCharacter[] = [];
 
-  for (let page = 1; page <= maxPages; page++) {
+  for (let i = 0; i < maxPages; i++) {
+    const page = startPage + i;
     const data = await anilistFetch<AniListCharacterPage>(CHARACTER_QUERY, {
       page,
       perPage,
@@ -232,6 +236,71 @@ export async function fetchTopCharactersWithBirthdays(options?: {
   }
 
   return results;
+}
+
+export type MediaCharacterEdge = {
+  role: CharacterRole;
+  character: AniListCharacter;
+};
+
+const MEDIA_CHARACTERS_QUERY = `
+query ($id: Int, $page: Int) {
+  Media(id: $id, type: ANIME) {
+    id
+    characters(sort: [ROLE, FAVOURITES_DESC], page: $page, perPage: 25) {
+      pageInfo { hasNextPage }
+      edges {
+        role
+        node {
+          id
+          name { full first last native }
+          image { large medium }
+          description
+          dateOfBirth { month day year }
+          favourites
+          siteUrl
+          media(sort: POPULARITY_DESC, type: ANIME, perPage: 6) {
+            edges {
+              characterRole
+              node { ${MEDIA_FIELDS} }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
+/** MAIN/SUPPORTING (and high-fav) cast for one anime — used to catch franchise DOB gaps. */
+export async function fetchMediaCharacterEdges(
+  mediaId: number,
+  options?: { pages?: number; delayMs?: number },
+): Promise<MediaCharacterEdge[]> {
+  const pages = options?.pages ?? 1;
+  const delayMs = options?.delayMs ?? 500;
+  const out: MediaCharacterEdge[] = [];
+
+  for (let page = 1; page <= pages; page++) {
+    const data = await anilistFetch<{
+      Media: {
+        characters: {
+          pageInfo: { hasNextPage: boolean };
+          edges: Array<{ role: CharacterRole; node: AniListCharacter }>;
+        };
+      } | null;
+    }>(MEDIA_CHARACTERS_QUERY, { id: mediaId, page });
+
+    const edges = data.Media?.characters?.edges ?? [];
+    for (const e of edges) {
+      if (!e?.node) continue;
+      out.push({ role: e.role, character: e.node });
+    }
+    if (!data.Media?.characters?.pageInfo?.hasNextPage) break;
+    await sleep(delayMs);
+  }
+
+  return out;
 }
 
 export async function fetchTodaysBirthdayCharacters(): Promise<AniListCharacter[]> {

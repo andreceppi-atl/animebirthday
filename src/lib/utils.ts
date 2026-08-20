@@ -29,20 +29,34 @@ export function monthDayKey(month: number, day: number): string {
   return `${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
 
-/** Next occurrence of month/day from a reference date (year-agnostic birthdays). */
+/** Days in month (1–12); handles leap years for February. */
+export function daysInMonth(year: number, month: number): number {
+  return new Date(year, month, 0).getDate();
+}
+
+/**
+ * Next occurrence of month/day from a reference date (year-agnostic birthdays).
+ * Feb 29 celebrates on Feb 28 in non-leap years (avoids JS Date rollover to Mar 1).
+ */
 export function nextBirthdayDate(
   birthMonth: number,
   birthDay: number,
   from: Date = new Date(),
 ): Date {
-  const year = from.getFullYear();
-  const candidate = new Date(year, birthMonth - 1, birthDay);
-  candidate.setHours(0, 0, 0, 0);
   const start = new Date(from);
   start.setHours(0, 0, 0, 0);
-  if (candidate < start) {
-    return new Date(year + 1, birthMonth - 1, birthDay);
-  }
+  const year = start.getFullYear();
+
+  const build = (y: number) => {
+    const dim = new Date(y, birthMonth, 0).getDate();
+    const day = Math.min(Math.max(1, birthDay), dim);
+    const d = new Date(y, birthMonth - 1, day);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  };
+
+  let candidate = build(year);
+  if (candidate < start) candidate = build(year + 1);
   return candidate;
 }
 

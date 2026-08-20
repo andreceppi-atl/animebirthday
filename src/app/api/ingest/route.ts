@@ -4,6 +4,7 @@ import {
   ingestFromAniList,
   ingestFromWiki,
   ingestMoments,
+  ingestShowRosters,
   saturateBirthdayWindow,
 } from "@/lib/ingest";
 import { stampUpcomingUgc } from "@/lib/chartex/stamp";
@@ -37,6 +38,13 @@ export async function GET(request: Request) {
   try {
     if (source === "anilist") {
       const result = await ingestFromAniList({ maxPages });
+      return NextResponse.json({ results: [result] });
+    }
+    if (source === "roster") {
+      const result = await ingestShowRosters({
+        showLimit: Number(searchParams.get("shows") ?? "8"),
+        maxNewFetches: Number(searchParams.get("maxNew") ?? "20"),
+      });
       return NextResponse.json({ results: [result] });
     }
     if (source === "wiki") {
@@ -85,8 +93,12 @@ export async function GET(request: Request) {
         windowDays,
         maxPages: Number(searchParams.get("pages") ?? "40"),
       });
+      const roster = await ingestShowRosters({
+        showLimit: Number(searchParams.get("shows") ?? "10"),
+        maxNewFetches: Number(searchParams.get("maxNew") ?? "25"),
+      });
       const moments = await ingestMoments();
-      return NextResponse.json({ results: [birthday, moments] });
+      return NextResponse.json({ results: [birthday, roster, moments] });
     }
     const results = await runFullIngest({
       maxPages,

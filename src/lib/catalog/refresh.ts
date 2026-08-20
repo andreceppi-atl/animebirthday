@@ -15,6 +15,8 @@ import {
 import { generateHashtags } from "@/lib/tiktok/hashtags";
 import { daysUntilBirthday, slugify } from "@/lib/utils";
 import type { CharacterRecord, StoreData } from "@/lib/types";
+import { promises as fs } from "fs";
+import path from "path";
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
@@ -155,11 +157,15 @@ export async function refreshAniListFields(
     .map((c) => ({
       c,
       days: daysUntilBirthday(c.birthMonth, c.birthDay),
+      // Prefer never-refreshed / oldest updatedAt so the whole catalog rotates
+      staleRank: Date.parse(c.updatedAt || c.createdAt || "") || 0,
     }))
     .sort((a, b) => {
       const aSoon = a.days >= 0 && a.days <= upcomingDays ? 0 : 1;
       const bSoon = b.days >= 0 && b.days <= upcomingDays ? 0 : 1;
       if (aSoon !== bSoon) return aSoon - bSoon;
+      // Within band: oldest update first, then popularity
+      if (a.staleRank !== b.staleRank) return a.staleRank - b.staleRank;
       return b.c.favourites - a.c.favourites;
     });
 
@@ -252,6 +258,105 @@ export async function enrichWikiStubs(
   return enriched;
 }
 
+type PrioritySeedEntry = { anilistId: number; name?: string; note?: string };
+
+/**
+ * Pull curated high-value characters that often miss the popularity crawl
+ * (e.g. JoJo cast with full AniList DOBs but lower global rank).
+ * Skips anyone without month+day — we never invent birthdays.
+ */
+export async function ensurePriorityCharacters(
+  store: StoreData,
+  options?: { delayMs?: number },
+): Promise<number> {
+  const delayMs = options?.delayMs ?? 650;
+  const seedPath = path.join(process.cwd(), "data", "priority-characters.json");
+  let list: PrioritySeedEntry[] = [];
+  try {
+    list = JSON.parse(await fs.readFile(seedPath, "utf8")) as PrioritySeedEntry[];
+  } catch {
+    return 0;
+  }
+
+  const usedSlugs = new Set(store.characters.map((c) => c.slug));
+  let touched = 0;
+
+  for (const item of list) {
+    if (!item.anilistId) continue;
+    try {
+      const remote = await fetchCharacterById(item.anilistId);
+      if (!remote?.dateOfBirth?.month || !remote.dateOfBirth?.day) {
+        console.warn(
+          `priority: skip #${item.anilistId} (${item.name ?? "?"}) — no month/day on AniList`,
+        );
+        await sleep(delayMs);
+        continue;
+      }
+
+      const existing = store.characters.find((c) => c.anilistId === item.anilistId);
+      if (existing) {
+        await applyAniListFields(store, existing, remote, { relinkShows: true });
+        touched++;
+        await sleep(delayMs);
+        continue;
+      }
+
+      const linked = await linkShowsForAniListCharacter(store, remote);
+      const base = slugify(remote.name.full) || `character-${remote.id}`;
+      let slug = base;
+      if (usedSlugs.has(slug)) slug = `${base}-${remote.id}`;
+      usedSlugs.add(slug);
+
+      const showTitle =
+        linked.primary?.title.english || linked.primary?.title.romaji || null;
+
+      const character = await upsertCharacter(store, {
+        anilistId: remote.id,
+        slug,
+        nameFull: remote.name.full,
+        nameFirst: remote.name.first,
+        nameLast: remote.name.last,
+        nameNative: remote.name.native,
+        image: remote.image.large ?? remote.image.medium,
+        birthMonth: remote.dateOfBirth.month,
+        birthDay: remote.dateOfBirth.day,
+        favourites: remote.favourites ?? 0,
+        showId: linked.showId,
+        alsoShowIds: linked.alsoShowIds,
+        wikiUrl: remote.siteUrl,
+        description: remote.description,
+        source: "anilist",
+        ugcVolume: null,
+        ugcUpdatedAt: null,
+      });
+
+      if (showTitle) {
+        replaceHashtags(
+          store,
+          character.id,
+          generateHashtags({
+            nameFull: remote.name.full,
+            nameFirst: remote.name.first,
+            showTitle,
+          }),
+        );
+      }
+      touched++;
+      console.log(
+        `priority: added ${remote.name.full} (${remote.dateOfBirth.month}-${remote.dateOfBirth.day})`,
+      );
+    } catch (err) {
+      console.warn(
+        `priority: failed #${item.anilistId}:`,
+        err instanceof Error ? err.message : err,
+      );
+    }
+    await sleep(delayMs);
+  }
+
+  return touched;
+}
+
 export type RefreshCatalogResult = {
   source: "refresh";
   status: "success" | "error";
@@ -262,6 +367,7 @@ export type RefreshCatalogResult = {
   mergedStubs?: number;
   fieldsUpdated?: number;
   stubsEnriched?: number;
+  priorityTouched?: number;
 };
 
 /**
@@ -292,11 +398,12 @@ export async function refreshCatalog(options?: {
     const stubsEnriched = await enrichWikiStubs(store, {
       limit: options?.enrichLimit ?? 35,
     });
+    const priorityTouched = await ensurePriorityCharacters(store);
     const mergedStubsTotal = mergedStubs + mergedAfter;
 
     run.status = "success";
     run.charactersUpserted =
-      fieldsUpdated + stubsEnriched + mergedStubsTotal;
+      fieldsUpdated + stubsEnriched + mergedStubsTotal + priorityTouched;
     run.finishedAt = new Date().toISOString();
     const syncedToPostgres = await persistWorkingStore(store);
 
@@ -309,6 +416,7 @@ export async function refreshCatalog(options?: {
       mergedStubs: mergedStubsTotal,
       fieldsUpdated,
       stubsEnriched,
+      priorityTouched,
     };
   } catch (err) {
     run.status = "error";

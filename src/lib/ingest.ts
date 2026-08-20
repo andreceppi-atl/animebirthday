@@ -20,6 +20,11 @@ import { daysUntilBirthday, extractDemos, slugify } from "@/lib/utils";
 import { scrapeWikiBirthdays } from "@/lib/wiki/scrape";
 import { scrapeSignificantMoments } from "@/lib/wiki/moments";
 import { mergeDuplicateWikiStubs } from "@/lib/catalog/refresh";
+import {
+  crawlRotatingAniListBirthdays,
+  crawlShowRosters,
+  upsertAniListCharacterIntoStore,
+} from "@/lib/catalog/crawl";
 import type { StoreData } from "@/lib/types";
 
 export type IngestResult = {
@@ -58,7 +63,10 @@ function uniqueSlug(base: string, used: Set<string>, anilistId?: number): string
 
 export async function ingestFromAniList(options?: {
   maxPages?: number;
-}): Promise<IngestResult> {
+  /** When true (default), rotate start page by UTC day so deep ranks get covered. */
+  rotate?: boolean;
+  cyclePages?: number;
+}): Promise<IngestResult & { startPage?: number; created?: number }> {
   const store = await loadWorkingStore();
   const run = addIngestRun(store, {
     source: "anilist",
@@ -71,63 +79,62 @@ export async function ingestFromAniList(options?: {
   });
 
   try {
-    const characters = await fetchTopCharactersWithBirthdays({
-      maxPages: options?.maxPages ?? 15,
-    });
+    const rotate = options?.rotate !== false;
+    const pageCount = options?.maxPages ?? 10;
+    const deep = rotate
+      ? await crawlRotatingAniListBirthdays(store, {
+          pageCount,
+          cyclePages: options?.cyclePages ?? 50,
+        })
+      : null;
 
-    const usedSlugs = new Set(store.characters.map((c) => c.slug));
     let charactersUpserted = 0;
     let showsUpserted = 0;
+    let created = 0;
+    let startPage = 1;
 
-    for (const c of characters) {
-      const linked = await linkShowsForAniListCharacter(store, c);
-      const showId = linked.showId;
-      const alsoShowIds = linked.alsoShowIds;
-      if (linked.primary) showsUpserted++;
-      showsUpserted += linked.crossovers.length;
-
-      const baseSlug = slugify(c.name.full);
-      // Reserve slug if new
-      const existing = store.characters.find((x) => x.anilistId === c.id);
-      const slug = existing?.slug ?? uniqueSlug(baseSlug, usedSlugs, c.id);
-
-      const showTitle =
-        linked.primary?.title.english || linked.primary?.title.romaji || null;
-
-      const character = await upsertCharacter(store, {
-        anilistId: c.id,
-        slug,
-        nameFull: c.name.full,
-        nameFirst: c.name.first,
-        nameLast: c.name.last,
-        nameNative: c.name.native,
-        image: c.image.large ?? c.image.medium,
-        birthMonth: c.dateOfBirth.month!,
-        birthDay: c.dateOfBirth.day!,
-        favourites: c.favourites ?? 0,
-        showId,
-        alsoShowIds,
-        wikiUrl: c.siteUrl,
-        description: c.description,
-        source: "anilist",
-        ugcVolume: existing?.ugcVolume ?? null,
-        ugcUpdatedAt: existing?.ugcUpdatedAt ?? null,
+    if (deep) {
+      charactersUpserted = deep.charactersUpserted;
+      showsUpserted = deep.showsUpserted;
+      created = deep.created;
+      startPage = deep.startPage;
+    } else {
+      const characters = await fetchTopCharactersWithBirthdays({
+        maxPages: pageCount,
       });
-
-      replaceHashtags(
-        store,
-        character.id,
-        generateHashtags({
-          nameFull: c.name.full,
-          nameFirst: c.name.first,
-          showTitle,
-        }),
-      );
-
-      charactersUpserted++;
+      const usedSlugs = new Set(store.characters.map((c) => c.slug));
+      for (const c of characters) {
+        const result = await upsertAniListCharacterIntoStore(
+          store,
+          c,
+          usedSlugs,
+        );
+        charactersUpserted++;
+        showsUpserted += result.showsTouched;
+        if (result.created) created++;
+      }
     }
 
-    // Collapse wiki stubs that duplicate AniList records (e.g. enjin vs enjin-266438)
+    // Always fold top-page favourites too so #1–N never go stale between rotations
+    if (rotate && startPage > 1) {
+      const head = await fetchTopCharactersWithBirthdays({
+        startPage: 1,
+        maxPages: 2,
+        delayMs: 600,
+      });
+      const usedSlugs = new Set(store.characters.map((c) => c.slug));
+      for (const c of head) {
+        const result = await upsertAniListCharacterIntoStore(
+          store,
+          c,
+          usedSlugs,
+        );
+        charactersUpserted++;
+        showsUpserted += result.showsTouched;
+        if (result.created) created++;
+      }
+    }
+
     mergeDuplicateWikiStubs(store);
 
     run.status = "success";
@@ -142,6 +149,8 @@ export async function ingestFromAniList(options?: {
       showsUpserted,
       status: "success",
       syncedToPostgres,
+      startPage,
+      created,
     };
   } catch (err) {
     run.status = "error";
@@ -154,6 +163,54 @@ export async function ingestFromAniList(options?: {
     }
     return {
       source: "anilist",
+      charactersUpserted: 0,
+      showsUpserted: 0,
+      status: "error",
+      error: run.error,
+    };
+  }
+}
+
+export async function ingestShowRosters(options?: {
+  showLimit?: number;
+  maxNewFetches?: number;
+}): Promise<IngestResult & { created?: number; showTitles?: string[] }> {
+  const store = await loadWorkingStore();
+  const run = addIngestRun(store, {
+    source: "roster",
+    status: "running",
+    charactersUpserted: 0,
+    showsUpserted: 0,
+    error: null,
+    startedAt: new Date().toISOString(),
+    finishedAt: null,
+  });
+
+  try {
+    const result = await crawlShowRosters(store, {
+      showLimit: options?.showLimit ?? 6,
+      maxNewFetches: options?.maxNewFetches ?? 18,
+    });
+    run.status = "success";
+    run.charactersUpserted = result.charactersUpserted;
+    run.finishedAt = new Date().toISOString();
+    const syncedToPostgres = await persistStore(store);
+    return {
+      source: "roster",
+      charactersUpserted: result.charactersUpserted,
+      showsUpserted: 0,
+      status: "success",
+      syncedToPostgres,
+      created: result.created,
+      showTitles: result.showTitles,
+    };
+  } catch (err) {
+    run.status = "error";
+    run.error = err instanceof Error ? err.message : String(err);
+    run.finishedAt = new Date().toISOString();
+    await persistWorkingStore(store);
+    return {
+      source: "roster",
       charactersUpserted: 0,
       showsUpserted: 0,
       status: "error",

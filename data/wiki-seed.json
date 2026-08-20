@@ -15,7 +15,7 @@
   },
   {
     "name": "Yuzuriha",
-    "series": "Hell’s Paradise",
+    "series": "Hell\u2019s Paradise",
     "birthMonth": 10,
     "birthDay": 11,
     "wikiUrl": "https://anilist.co/character/137270"
@@ -351,7 +351,7 @@
   },
   {
     "name": "Najimi Osana",
-    "series": "Komi Can’t Communicate",
+    "series": "Komi Can\u2019t Communicate",
     "birthMonth": 4,
     "birthDay": 1,
     "wikiUrl": "https://anilist.co/character/126825"
@@ -1279,5 +1279,54 @@
     "birthMonth": 8,
     "birthDay": 23,
     "wikiUrl": "https://anilist.co/character/137778"
+  },
+  {
+    "name": "Caesar Zeppeli",
+    "series": "JoJo's Bizarre Adventure (TV)",
+    "birthMonth": 5,
+    "birthDay": 13,
+    "wikiUrl": "https://anilist.co/character/21959"
+  },
+  {
+    "name": "Robert E. O. Speedwagon",
+    "series": "JoJo's Bizarre Adventure (TV)",
+    "birthMonth": 10,
+    "birthDay": 16,
+    "wikiUrl": "https://anilist.co/character/21938"
+  },
+  {
+    "name": "Weather Report",
+    "series": "JoJo's Bizarre Adventure: STONE OCEAN",
+    "birthMonth": 6,
+    "birthDay": 5,
+    "wikiUrl": "https://anilist.co/character/17675"
+  },
+  {
+    "name": "Pannacotta Fugo",
+    "series": "JoJo's Bizarre Adventure: Golden Wind",
+    "birthMonth": 4,
+    "birthDay": 10,
+    "wikiUrl": "https://anilist.co/character/13083"
+  },
+  {
+    "name": "Trish Una",
+    "series": "JoJo's Bizarre Adventure: Golden Wind",
+    "birthMonth": 6,
+    "birthDay": 8,
+    "wikiUrl": "https://anilist.co/character/27153"
+  },
+  {
+    "name": "Emporio Alnino",
+    "series": "JoJo's Bizarre Adventure: STONE OCEAN",
+    "birthMonth": 2,
+    "birthDay": 17,
+    "wikiUrl": "https://anilist.co/character/28956"
+  },
+  {
+    "name": "Will A. Zeppeli",
+    "series": "JoJo's Bizarre Adventure (TV)",
+    "birthMonth": 1,
+    "birthDay": 19,
+    "wikiUrl": "https://anilist.co/character/18062"
   }
 ]

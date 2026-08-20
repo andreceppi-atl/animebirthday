@@ -1,19 +1,23 @@
 {
   "crons": [
     {
-      "path": "/api/ingest?source=anilist&pages=12",
+      "path": "/api/ingest?source=anilist&pages=10",
       "schedule": "0 6 * * *"
     },
     {
-      "path": "/api/ingest?source=refresh&refreshLimit=180&enrichLimit=40",
-      "schedule": "30 6 * * *"
+      "path": "/api/ingest?source=roster&shows=8&maxNew=20",
+      "schedule": "20 6 * * *"
+    },
+    {
+      "path": "/api/ingest?source=refresh&refreshLimit=200&enrichLimit=40",
+      "schedule": "40 6 * * *"
     },
     {
       "path": "/api/ingest?source=chartex&limit=50&moments=25",
       "schedule": "0 12 * * *"
     },
     {
-      "path": "/api/ingest?source=checkup&refreshLimit=80&enrichLimit=30&limit=30&moments=15",
+      "path": "/api/ingest?source=checkup&refreshLimit=100&enrichLimit=30&limit=30&moments=15",
       "schedule": "0 13 * * *"
     },
     {
@@ -25,15 +29,19 @@
       "schedule": "30 7 * * 0"
     },
     {
-      "path": "/api/ingest?source=saturate&days=60&pages=40",
+      "path": "/api/ingest?source=saturate&days=90&pages=40",
       "schedule": "0 8 * * 0"
+    },
+    {
+      "path": "/api/ingest?source=roster&shows=12&maxNew=30",
+      "schedule": "30 8 * * 0"
     },
     {
       "path": "/api/ingest?source=factcheck&repair=1&limit=250",
       "schedule": "0 10 * * 2"
     },
     {
-      "path": "/api/ingest?source=monthly&days=60&pages=40",
+      "path": "/api/ingest?source=monthly&days=90&pages=50",
       "schedule": "0 8 1 * *"
     }
   ]

@@ -1,10 +1,11 @@
-import { appendFileSync } from "fs";
 import { fetchCharacterById } from "@/lib/anilist/client";
 import {
   enrichWikiStubs,
+  ensurePriorityCharacters,
   mergeDuplicateWikiStubs,
   refreshAniListFields,
 } from "@/lib/catalog/refresh";
+import { crawlShowRosters } from "@/lib/catalog/crawl";
 import {
   addIngestRun,
   loadWorkingStore,
@@ -44,6 +45,8 @@ export type CheckupReport = {
     mergedStubs: number;
     fieldsUpdated: number;
     stubsEnriched: number;
+    priorityTouched: number;
+    rosterTouched: number;
     ugcCharacters: number;
     ugcMoments: number;
   };
@@ -135,6 +138,15 @@ export async function runCatalogCheckup(options?: {
       limit: enrichLimit,
       delayMs: 650,
     });
+    const priorityTouched = await ensurePriorityCharacters(store, {
+      delayMs: 650,
+    });
+    const roster = await crawlShowRosters(store, {
+      showLimit: 5,
+      maxNewFetches: 12,
+      delayMs: 550,
+    });
+    const rosterTouched = roster.charactersUpserted;
 
     // Persist AniList/wiki repairs before UGC (stamp reads from Postgres/store)
     await persistWorkingStore(store);
@@ -211,13 +223,21 @@ export async function runCatalogCheckup(options?: {
 
     run.status = "success";
     run.charactersUpserted =
-      mergedStubs + mergedAfter + fieldsUpdated + stubsEnriched + ugcCharacters;
+      mergedStubs +
+      mergedAfter +
+      fieldsUpdated +
+      stubsEnriched +
+      priorityTouched +
+      rosterTouched +
+      ugcCharacters;
     run.finishedAt = new Date().toISOString();
 
     const actions = {
       mergedStubs: mergedStubs + mergedAfter,
       fieldsUpdated,
       stubsEnriched,
+      priorityTouched,
+      rosterTouched,
       ugcCharacters,
       ugcMoments,
     };
@@ -257,13 +277,26 @@ export async function runCatalogCheckup(options?: {
         .map((r) => `${r.source}:${r.status}`),
     };
 
+    const recentOk = store.ingestRuns
+      .slice(-12)
+      .filter((r) => r.status === "success")
+      .map((r) => r.source);
+    const hasRecentAniList = recentOk.some((s) =>
+      ["anilist", "refresh", "checkup", "roster", "saturate"].includes(s),
+    );
+
     const healthy =
       metrics.nameDupes === 0 &&
       metrics.nameDobDupes === 0 &&
       metrics.anilistIdDupes === 0 &&
-      metrics.moments > 0 &&
-      (metrics.pgMoments == null || metrics.pgMoments > 0) &&
-      (metrics.enjinDelta == null || Math.abs(metrics.enjinDelta) < 50);
+      metrics.moments >= 100 &&
+      metrics.characters >= 400 &&
+      metrics.wikiStubs < 40 &&
+      (metrics.pgMoments == null || metrics.pgMoments >= 100) &&
+      (metrics.pgCharacters == null ||
+        Math.abs(metrics.pgCharacters - metrics.characters) < 25) &&
+      (metrics.enjinDelta == null || Math.abs(metrics.enjinDelta) < 50) &&
+      hasRecentAniList;
 
     const report: CheckupReport = {
       source: "checkup",
@@ -276,25 +309,6 @@ export async function runCatalogCheckup(options?: {
       metrics,
       actions,
     };
-
-    // #region agent log
-    try {
-      appendFileSync(
-        "/Users/lilwall-e/animebirthday/.cursor/debug-ad8825.log",
-        JSON.stringify({
-          sessionId: "ad8825",
-          runId: "checkup",
-          hypothesisId: "cron",
-          location: "catalog/checkup.ts",
-          message: "checkup complete",
-          data: { healthy, metrics, actions, syncedToPostgres },
-          timestamp: Date.now(),
-        }) + "\n",
-      );
-    } catch {
-      /* ignore outside local */
-    }
-    // #endregion
 
     return report;
   } catch (err) {
@@ -330,6 +344,8 @@ export async function runCatalogCheckup(options?: {
         mergedStubs: 0,
         fieldsUpdated: 0,
         stubsEnriched: 0,
+        priorityTouched: 0,
+        rosterTouched: 0,
         ugcCharacters: 0,
         ugcMoments: 0,
       },

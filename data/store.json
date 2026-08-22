@@ -760,11 +760,11 @@
       "demos": [
         "Shounen"
       ],
-      "popularity": 866994,
-      "favourites": 34705,
+      "popularity": 867554,
+      "favourites": 34731,
       "siteUrl": "https://anilist.co/anime/21459",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:14.820Z"
     },
     {
       "id": 9529,
@@ -823,11 +823,11 @@
       "demos": [
         "Shounen"
       ],
-      "popularity": 474179,
-      "favourites": 19544,
+      "popularity": 474492,
+      "favourites": 19570,
       "siteUrl": "https://anilist.co/anime/14719",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:38.012Z"
     },
     {
       "id": 9532,
@@ -1884,11 +1884,11 @@
       "demos": [
         "Shounen"
       ],
-      "popularity": 297660,
-      "favourites": 20380,
+      "popularity": 297762,
+      "favourites": 20404,
       "siteUrl": "https://anilist.co/anime/102883",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:36.556Z"
     },
     {
       "id": 9582,
@@ -1949,11 +1949,11 @@
       "demos": [
         "Shounen"
       ],
-      "popularity": 650982,
-      "favourites": 13482,
+      "popularity": 651329,
+      "favourites": 13488,
       "siteUrl": "https://anilist.co/anime/21856",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:14.269Z"
     },
     {
       "id": 9585,
@@ -2034,11 +2034,11 @@
       "demos": [
         "Shounen"
       ],
-      "popularity": 321702,
-      "favourites": 13093,
+      "popularity": 322019,
+      "favourites": 13112,
       "siteUrl": "https://anilist.co/anime/137822",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:21.071Z"
     },
     {
       "id": 9589,
@@ -4373,11 +4373,11 @@
         "Supernatural"
       ],
       "demos": [],
-      "popularity": 21022,
-      "favourites": 282,
+      "popularity": 21218,
+      "favourites": 285,
       "siteUrl": "https://anilist.co/anime/210482",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:09.513Z"
     },
     {
       "id": 9720,
@@ -5645,11 +5645,11 @@
       "demos": [
         "Shounen"
       ],
-      "popularity": 190809,
-      "favourites": 5884,
+      "popularity": 190965,
+      "favourites": 5891,
       "siteUrl": "https://anilist.co/anime/131942",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:37.303Z"
     },
     {
       "id": 9781,
@@ -7030,6 +7030,28 @@
       "siteUrl": "https://anilist.co/anime/128712",
       "createdAt": "2026-08-20T15:30:28.312Z",
       "updatedAt": "2026-08-20T15:30:28.312Z"
+    },
+    {
+      "id": 9848,
+      "anilistId": 20799,
+      "titleRomaji": "JoJo no Kimyou na Bouken: Stardust Crusaders - Egypt-hen",
+      "titleEnglish": "JoJo's Bizarre Adventure: Stardust Crusaders - Battle in Egypt",
+      "titleNative": "ジョジョの奇妙な冒険 スターダストクルセイダース エジプト編",
+      "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20799-S1eyqBDlx51E.jpg",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Supernatural"
+      ],
+      "demos": [
+        "Shounen"
+      ],
+      "popularity": 289104,
+      "favourites": 12769,
+      "siteUrl": "https://anilist.co/anime/20799",
+      "createdAt": "2026-08-22T13:07:08.797Z",
+      "updatedAt": "2026-08-22T13:07:08.797Z"
     }
   ],
   "characters": [
@@ -7132,7 +7154,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b157115-kdhRYQdVhH95.png",
       "birthMonth": 10,
       "birthDay": 23,
-      "favourites": 10664,
+      "favourites": 10662,
       "showId": 9513,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/157115",
@@ -7141,7 +7163,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:50.105Z"
     },
     {
       "id": 19418,
@@ -7308,7 +7330,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127633-FcCwWK5sQRhK.png",
       "birthMonth": 10,
       "birthDay": 23,
-      "favourites": 5774,
+      "favourites": 5778,
       "showId": 9525,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/127633",
@@ -7317,7 +7339,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:39.574Z"
     },
     {
       "id": 19426,
@@ -7616,7 +7638,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89242-u1des6AfOzVQ.png",
       "birthMonth": 7,
       "birthDay": 1,
-      "favourites": 3048,
+      "favourites": 3050,
       "showId": 9584,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89242",
@@ -7625,7 +7647,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19440,
@@ -7704,7 +7726,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88573-F8yMTK9GhnTA.png",
       "birthMonth": 4,
       "birthDay": 1,
-      "favourites": 15497,
+      "favourites": 15531,
       "showId": 9519,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/88573",
@@ -7713,7 +7735,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:24.529Z"
     },
     {
       "id": 19444,
@@ -7779,7 +7801,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:45.399Z"
     },
     {
       "id": 19447,
@@ -8463,7 +8485,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:46.009Z"
     },
     {
       "id": 19478,
@@ -8520,7 +8542,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89897-5vU7N3ayiKRr.png",
       "birthMonth": 8,
       "birthDay": 1,
-      "favourites": 4543,
+      "favourites": 4542,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89897",
@@ -8529,7 +8551,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19481,
@@ -8608,7 +8630,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b125619-iQxQoGHJvjRJ.png",
       "birthMonth": 8,
       "birthDay": 7,
-      "favourites": 6779,
+      "favourites": 6783,
       "showId": 9774,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/125619",
@@ -8617,7 +8639,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19485,
@@ -8674,7 +8696,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b21173-0RB5dOJdGt9y.png",
       "birthMonth": 11,
       "birthDay": 11,
-      "favourites": 4387,
+      "favourites": 4389,
       "showId": 9591,
       "alsoShowIds": [
         9756,
@@ -8686,7 +8708,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:47.298Z"
     },
     {
       "id": 19488,
@@ -8721,7 +8743,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b130713-TgLx8rgtGpXV.png",
       "birthMonth": 9,
       "birthDay": 16,
-      "favourites": 4184,
+      "favourites": 4182,
       "showId": 9580,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/130713",
@@ -8730,7 +8752,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:19.433Z"
     },
     {
       "id": 19490,
@@ -8743,7 +8765,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b121101-Q8HzKP15At2d.png",
       "birthMonth": 9,
       "birthDay": 9,
-      "favourites": 9632,
+      "favourites": 9634,
       "showId": 9526,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/121101",
@@ -8752,7 +8774,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:53.326Z"
     },
     {
       "id": 19491,
@@ -8897,7 +8919,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/n120462-oSWdz2MhkbDE.png",
       "birthMonth": 10,
       "birthDay": 29,
-      "favourites": 6206,
+      "favourites": 6207,
       "showId": 9580,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/120462",
@@ -8906,7 +8928,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:38.323Z"
     },
     {
       "id": 19498,
@@ -8919,7 +8941,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b162969-WGnGyVQrFi0X.png",
       "birthMonth": 5,
       "birthDay": 6,
-      "favourites": 6190,
+      "favourites": 6194,
       "showId": 9794,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/162969",
@@ -8928,7 +8950,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:19.969Z"
     },
     {
       "id": 19499,
@@ -8985,7 +9007,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126378-RFSljq5koy5U.png",
       "birthMonth": 1,
       "birthDay": 18,
-      "favourites": 6180,
+      "favourites": 6182,
       "showId": 9774,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/126378",
@@ -8994,7 +9016,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19502,
@@ -9051,7 +9073,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b136071-99Kexnnn2PiV.png",
       "birthMonth": 10,
       "birthDay": 31,
-      "favourites": 8217,
+      "favourites": 8220,
       "showId": 9527,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/136071",
@@ -9060,7 +9082,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:55.964Z"
     },
     {
       "id": 19505,
@@ -9271,7 +9293,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89201-K0X5HNq88Oub.png",
       "birthMonth": 10,
       "birthDay": 21,
-      "favourites": 7838,
+      "favourites": 7840,
       "showId": 9530,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89201",
@@ -9280,7 +9302,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:56.605Z"
     },
     {
       "id": 19515,
@@ -9403,7 +9425,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b124586-9lGoHg1zZkFr.png",
       "birthMonth": 10,
       "birthDay": 1,
-      "favourites": 5106,
+      "favourites": 5105,
       "showId": 9618,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/124586",
@@ -9412,7 +9434,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:43.462Z"
     },
     {
       "id": 19521,
@@ -9601,7 +9623,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b4606-61r9h3WUrkA9.png",
       "birthMonth": 10,
       "birthDay": 30,
-      "favourites": 4788,
+      "favourites": 4791,
       "showId": 9631,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/4606",
@@ -9610,7 +9632,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:45.363Z"
     },
     {
       "id": 19530,
@@ -9733,7 +9755,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b36765-BnLbXg0Tzzh9.png",
       "birthMonth": 10,
       "birthDay": 7,
-      "favourites": 9589,
+      "favourites": 9596,
       "showId": 9556,
       "alsoShowIds": [
         9763
@@ -9744,7 +9766,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:53.976Z"
     },
     {
       "id": 19536,
@@ -9869,7 +9891,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89249-Ygc30RlYoFta.png",
       "birthMonth": 6,
       "birthDay": 29,
-      "favourites": 5389,
+      "favourites": 5391,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89249",
@@ -9878,7 +9900,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19542,
@@ -9891,7 +9913,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b137975-6TH7PiLWJaqy.png",
       "birthMonth": 9,
       "birthDay": 23,
-      "favourites": 7475,
+      "favourites": 7481,
       "showId": 9513,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/137975",
@@ -9900,7 +9922,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:29.877Z"
     },
     {
       "id": 19543,
@@ -9979,7 +10001,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b67327-zQb1dlC7joPb.jpg",
       "birthMonth": 10,
       "birthDay": 10,
-      "favourites": 12007,
+      "favourites": 12010,
       "showId": 9539,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/67327",
@@ -9988,7 +10010,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:47.575Z"
     },
     {
       "id": 19547,
@@ -10089,7 +10111,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b506-qeg0TqitdCMS.png",
       "birthMonth": 12,
       "birthDay": 28,
-      "favourites": 3564,
+      "favourites": 3568,
       "showId": 9529,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/506",
@@ -10098,7 +10120,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:26.275Z"
     },
     {
       "id": 19552,
@@ -10199,7 +10221,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b67329-k7mDdqQ6rJ4w.png",
       "birthMonth": 9,
       "birthDay": 27,
-      "favourites": 8973,
+      "favourites": 8982,
       "showId": 9539,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/67329",
@@ -10208,7 +10230,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:54.633Z"
     },
     {
       "id": 19557,
@@ -10265,7 +10287,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2007-QaesJlIZDifj.jpg",
       "birthMonth": 9,
       "birthDay": 22,
-      "favourites": 8942,
+      "favourites": 8948,
       "showId": 9522,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/2007",
@@ -10274,7 +10296,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:55.301Z"
     },
     {
       "id": 19560,
@@ -10309,7 +10331,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89222-TL8MQM3wJgEB.png",
       "birthMonth": 8,
       "birthDay": 22,
-      "favourites": 2258,
+      "favourites": 2256,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89222",
@@ -10318,7 +10340,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19562,
@@ -10399,7 +10421,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b498-lwawtSpLyATL.png",
       "birthMonth": 2,
       "birthDay": 3,
-      "favourites": 13349,
+      "favourites": 13351,
       "showId": 9752,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/498",
@@ -10408,7 +10430,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:26.275Z"
     },
     {
       "id": 19566,
@@ -10729,7 +10751,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126158-Wix9rh7unTDQ.png",
       "birthMonth": 8,
       "birthDay": 8,
-      "favourites": 1981,
+      "favourites": 1979,
       "showId": 9774,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/126158",
@@ -10738,7 +10760,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:12.066Z"
     },
     {
       "id": 19581,
@@ -10863,7 +10885,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b158734-k8FAVIyXKdW1.jpg",
       "birthMonth": 11,
       "birthDay": 11,
-      "favourites": 3540,
+      "favourites": 3545,
       "showId": 9812,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/158734",
@@ -10872,7 +10894,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:27.101Z"
     },
     {
       "id": 19587,
@@ -11105,7 +11127,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89241-Q8KzAfX4Qe2y.png",
       "birthMonth": 9,
       "birthDay": 23,
-      "favourites": 3957,
+      "favourites": 3960,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89241",
@@ -11114,7 +11136,7 @@
       "ugcVolume": 69,
       "ugcUpdatedAt": "2026-08-20T12:01:55.025Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:21.390Z"
     },
     {
       "id": 19598,
@@ -11303,7 +11325,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127613-LBtFkMJfUWpg.png",
       "birthMonth": 11,
       "birthDay": 5,
-      "favourites": 3724,
+      "favourites": 3725,
       "showId": 9525,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/127613",
@@ -11312,7 +11334,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:25.155Z"
     },
     {
       "id": 19607,
@@ -11567,7 +11589,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b266438-3Veykti1lXgg.png",
       "birthMonth": 8,
       "birthDay": 22,
-      "favourites": 2420,
+      "favourites": 2425,
       "showId": 9727,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/266438",
@@ -11576,7 +11598,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:26.955Z"
     },
     {
       "id": 19619,
@@ -11853,7 +11875,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b500-NQrLbnBr1sDv.png",
       "birthMonth": 3,
       "birthDay": 2,
-      "favourites": 18250,
+      "favourites": 18253,
       "showId": 9529,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/500",
@@ -11862,7 +11884,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:26.275Z"
     },
     {
       "id": 19632,
@@ -11875,7 +11897,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b16023-gfwOgU1743ff.png",
       "birthMonth": 10,
       "birthDay": 3,
-      "favourites": 1474,
+      "favourites": 1481,
       "showId": 9529,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/16023",
@@ -11884,7 +11906,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:26.275Z"
     },
     {
       "id": 19633,
@@ -12931,7 +12953,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89223-5762vburxnlz.png",
       "birthMonth": 2,
       "birthDay": 12,
-      "favourites": 4802,
+      "favourites": 4798,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89223",
@@ -12940,7 +12962,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19681,
@@ -13329,7 +13351,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b169401-jeepvEsqW4Ns.png",
       "birthMonth": 6,
       "birthDay": 27,
-      "favourites": 1846,
+      "favourites": 1843,
       "showId": 9588,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/169401",
@@ -13338,7 +13360,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:19.969Z"
     },
     {
       "id": 19699,
@@ -13505,7 +13527,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b124110-Gfr3IYI6FwqE.jpg",
       "birthMonth": 3,
       "birthDay": 24,
-      "favourites": 2263,
+      "favourites": 2268,
       "showId": 9519,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/124110",
@@ -13514,7 +13536,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:24.529Z"
     },
     {
       "id": 19707,
@@ -13659,7 +13681,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89220-KNBwaVFAR8FD.png",
       "birthMonth": 1,
       "birthDay": 11,
-      "favourites": 19571,
+      "favourites": 19573,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89220",
@@ -13668,7 +13690,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19714,
@@ -13857,7 +13879,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b20147-paS2fNaB3yOv.png",
       "birthMonth": 9,
       "birthDay": 20,
-      "favourites": 3138,
+      "favourites": 3139,
       "showId": 9719,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/20147",
@@ -13866,7 +13888,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:09.514Z"
     },
     {
       "id": 19723,
@@ -13989,7 +14011,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2456-rTjIXMLPHTu2.jpg",
       "birthMonth": 9,
       "birthDay": 8,
-      "favourites": 5232,
+      "favourites": 5236,
       "showId": 9614,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/2456",
@@ -13998,7 +14020,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:41.524Z"
     },
     {
       "id": 19729,
@@ -14077,7 +14099,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b123212-ewZgUQr9vvEM.png",
       "birthMonth": 10,
       "birthDay": 20,
-      "favourites": 16386,
+      "favourites": 16390,
       "showId": 9535,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/123212",
@@ -14086,7 +14108,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:44.023Z"
     },
     {
       "id": 19733,
@@ -14130,7 +14152,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:42.808Z"
     },
     {
       "id": 19735,
@@ -14277,7 +14299,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89224-K6KEuQAuYKzq.jpg",
       "birthMonth": 6,
       "birthDay": 10,
-      "favourites": 7334,
+      "favourites": 7340,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89224",
@@ -14286,7 +14308,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19742,
@@ -14343,7 +14365,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89225-XBgvUhI9naVI.png",
       "birthMonth": 11,
       "birthDay": 8,
-      "favourites": 9914,
+      "favourites": 9916,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89225",
@@ -14352,7 +14374,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:52.034Z"
     },
     {
       "id": 19745,
@@ -14389,7 +14411,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b154224-7dJ09BKEnG3v.png",
       "birthMonth": 11,
       "birthDay": 13,
-      "favourites": 9811,
+      "favourites": 9812,
       "showId": 9561,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/154224",
@@ -14398,7 +14420,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:52.680Z"
     },
     {
       "id": 19747,
@@ -14609,7 +14631,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b90184-o1ZFF6osCZX7.png",
       "birthMonth": 1,
       "birthDay": 16,
-      "favourites": 1806,
+      "favourites": 1809,
       "showId": 9519,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/90184",
@@ -14618,7 +14640,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:24.529Z"
     },
     {
       "id": 19757,
@@ -14876,7 +14898,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89243-R2WJlNuj3aEs.jpg",
       "birthMonth": 10,
       "birthDay": 16,
-      "favourites": 7608,
+      "favourites": 7606,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89243",
@@ -14885,7 +14907,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:28.576Z"
     },
     {
       "id": 19769,
@@ -15008,7 +15030,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88892-bdOha3lNcaN6.png",
       "birthMonth": 4,
       "birthDay": 20,
-      "favourites": 18561,
+      "favourites": 18557,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/88892",
@@ -15017,7 +15039,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19775,
@@ -15052,7 +15074,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2423-RO5MyoXSA9OL.png",
       "birthMonth": 11,
       "birthDay": 11,
-      "favourites": 6811,
+      "favourites": 6814,
       "showId": 9522,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/2423",
@@ -15061,7 +15083,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:32.496Z"
     },
     {
       "id": 19777,
@@ -15362,7 +15384,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88575-Ayu8UPDA8NS6.png",
       "birthMonth": 2,
       "birthDay": 2,
-      "favourites": 17105,
+      "favourites": 17125,
       "showId": 9519,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/88575",
@@ -15371,7 +15393,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:24.529Z"
     },
     {
       "id": 19791,
@@ -15406,7 +15428,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b672-cP5VPriN67xJ.png",
       "birthMonth": 10,
       "birthDay": 10,
-      "favourites": 16570,
+      "favourites": 16572,
       "showId": 9534,
       "alsoShowIds": [
         9505
@@ -15417,7 +15439,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:43.342Z"
     },
     {
       "id": 19793,
@@ -15518,7 +15540,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88748-zPL68ZFgFRH8.png",
       "birthMonth": 9,
       "birthDay": 23,
-      "favourites": 3786,
+      "favourites": 3787,
       "showId": 9715,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/88748",
@@ -15527,7 +15549,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:23.869Z"
     },
     {
       "id": 19798,
@@ -15740,7 +15762,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b46494-g7xYYuBtYPnO.png",
       "birthMonth": 11,
       "birthDay": 3,
-      "favourites": 16040,
+      "favourites": 16047,
       "showId": 9512,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/46494",
@@ -15749,7 +15771,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:44.712Z"
     },
     {
       "id": 19808,
@@ -15960,7 +15982,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89835-xnAJMex6Uq0U.png",
       "birthMonth": 9,
       "birthDay": 28,
-      "favourites": 3878,
+      "favourites": 3882,
       "showId": 9603,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89835",
@@ -15969,7 +15991,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:22.004Z"
     },
     {
       "id": 19818,
@@ -16290,7 +16312,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b75216-KDU8333eIcqf.jpg",
       "birthMonth": 11,
       "birthDay": 6,
-      "favourites": 7603,
+      "favourites": 7604,
       "showId": 9577,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/75216",
@@ -16299,7 +16321,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:29.223Z"
     },
     {
       "id": 19833,
@@ -16400,7 +16422,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b218267-dl2RO0rxGOAU.png",
       "birthMonth": 10,
       "birthDay": 24,
-      "favourites": 3400,
+      "favourites": 3406,
       "showId": 9807,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/218267",
@@ -16409,7 +16431,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:29.628Z"
     },
     {
       "id": 19838,
@@ -16488,7 +16510,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b10010-fNspzan5MzNk.png",
       "birthMonth": 11,
       "birthDay": 11,
-      "favourites": 7157,
+      "favourites": 7158,
       "showId": 9529,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/10010",
@@ -16497,7 +16519,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:30.554Z"
     },
     {
       "id": 19842,
@@ -16510,7 +16532,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b260329-1Z5n1QgViEBI.png",
       "birthMonth": 9,
       "birthDay": 23,
-      "favourites": 7137,
+      "favourites": 7136,
       "showId": 9579,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/260329",
@@ -16519,7 +16541,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:31.171Z"
     },
     {
       "id": 19843,
@@ -16752,7 +16774,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b169395-7xUFV2mINMZu.png",
       "birthMonth": 9,
       "birthDay": 9,
-      "favourites": 2385,
+      "favourites": 2379,
       "showId": 9588,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/169395",
@@ -16761,7 +16783,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:19.969Z"
     },
     {
       "id": 19854,
@@ -16840,7 +16862,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89334-OPj1hCzvrt7X.png",
       "birthMonth": 10,
       "birthDay": 10,
-      "favourites": 25020,
+      "favourites": 25040,
       "showId": 9521,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89334",
@@ -16849,7 +16871,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:40.622Z"
     },
     {
       "id": 19858,
@@ -17214,7 +17236,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88937-2GSqkX9TIzYy.png",
       "birthMonth": 9,
       "birthDay": 20,
-      "favourites": 7722,
+      "favourites": 7727,
       "showId": 9717,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/88937",
@@ -17223,7 +17245,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:57.233Z"
     },
     {
       "id": 19875,
@@ -17258,7 +17280,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2754-B4gGSlNYgsyh.jpg",
       "birthMonth": 10,
       "birthDay": 23,
-      "favourites": 4339,
+      "favourites": 4342,
       "showId": 9515,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/2754",
@@ -17267,7 +17289,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:18.086Z"
     },
     {
       "id": 19877,
@@ -17324,7 +17346,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88576-NWkotUiJ3mK3.png",
       "birthMonth": 2,
       "birthDay": 2,
-      "favourites": 4261,
+      "favourites": 4266,
       "showId": 9519,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/88576",
@@ -17333,7 +17355,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:24.529Z"
     },
     {
       "id": 19880,
@@ -17346,7 +17368,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b19568-pF5UBfB6U8G2.png",
       "birthMonth": 7,
       "birthDay": 2,
-      "favourites": 4240,
+      "favourites": 4241,
       "showId": 9591,
       "alsoShowIds": [
         9756,
@@ -17358,7 +17380,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:22.570Z"
     },
     {
       "id": 19881,
@@ -17525,7 +17547,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b674-w8wCh0A5Qa8R.png",
       "birthMonth": 11,
       "birthDay": 3,
-      "favourites": 6399,
+      "favourites": 6402,
       "showId": 9534,
       "alsoShowIds": [
         9505
@@ -17536,7 +17558,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:35.733Z"
     },
     {
       "id": 19889,
@@ -17703,7 +17725,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b71269-pi9vjyxKPFAu.jpg",
       "birthMonth": 11,
       "birthDay": 17,
-      "favourites": 7700,
+      "favourites": 7706,
       "showId": 9539,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/71269",
@@ -17712,7 +17734,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:57.871Z"
     },
     {
       "id": 19897,
@@ -17747,7 +17769,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b19565-7gMiEAm7NGNK.png",
       "birthMonth": 11,
       "birthDay": 27,
-      "favourites": 6478,
+      "favourites": 6479,
       "showId": 9591,
       "alsoShowIds": [
         9756,
@@ -17759,7 +17781,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:22.570Z"
     },
     {
       "id": 19899,
@@ -17838,7 +17860,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b125736-LIaof9PjXvH3.png",
       "birthMonth": 10,
       "birthDay": 17,
-      "favourites": 5986,
+      "favourites": 5991,
       "showId": 9602,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/125736",
@@ -17847,7 +17869,7 @@
       "ugcVolume": 202852,
       "ugcUpdatedAt": "2026-08-20T12:01:36.487Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:38.949Z"
     },
     {
       "id": 19902,
@@ -17882,7 +17904,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b4963-7ZMcCtXW5hkY.png",
       "birthMonth": 11,
       "birthDay": 16,
-      "favourites": 6449,
+      "favourites": 6453,
       "showId": 9593,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/4963",
@@ -17891,7 +17913,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:34.456Z"
     },
     {
       "id": 19904,
@@ -17948,7 +17970,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b19566-XKsMgf370b4m.png",
       "birthMonth": 1,
       "birthDay": 15,
-      "favourites": 6386,
+      "favourites": 6390,
       "showId": 9591,
       "alsoShowIds": [
         9756,
@@ -17960,7 +17982,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:22.570Z"
     },
     {
       "id": 19907,
@@ -17995,7 +18017,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b264529-BvEusZnJLD2Y.png",
       "birthMonth": 9,
       "birthDay": 18,
-      "favourites": 6310,
+      "favourites": 6320,
       "showId": 9551,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/264529",
@@ -18004,7 +18026,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:36.373Z"
     },
     {
       "id": 19909,
@@ -18063,7 +18085,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b90112-KVRcvbKBKLxY.png",
       "birthMonth": 10,
       "birthDay": 3,
-      "favourites": 6257,
+      "favourites": 6259,
       "showId": 9597,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/90112",
@@ -18072,7 +18094,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:37.010Z"
     },
     {
       "id": 19912,
@@ -18285,7 +18307,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89221-gSF2a4gPbG4m.png",
       "birthMonth": 12,
       "birthDay": 27,
-      "favourites": 6182,
+      "favourites": 6183,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89221",
@@ -18294,7 +18316,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:11.514Z"
     },
     {
       "id": 19922,
@@ -18417,7 +18439,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89898-yAYDmPQPSOTV.png",
       "birthMonth": 10,
       "birthDay": 30,
-      "favourites": 4011,
+      "favourites": 4012,
       "showId": 9528,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/89898",
@@ -18426,7 +18448,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:20.729Z"
     },
     {
       "id": 19928,
@@ -18571,7 +18593,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b217334-buImnwO26SgS.jpg",
       "birthMonth": 11,
       "birthDay": 7,
-      "favourites": 3594,
+      "favourites": 3600,
       "showId": 9810,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/217334",
@@ -18580,7 +18602,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:26.475Z"
     },
     {
       "id": 19935,
@@ -18769,7 +18791,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b503-SmS87yq6l2tD.png",
       "birthMonth": 11,
       "birthDay": 20,
-      "favourites": 3264,
+      "favourites": 3267,
       "showId": 9529,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/503",
@@ -18778,7 +18800,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:26.275Z"
     },
     {
       "id": 19944,
@@ -19033,7 +19055,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b909-slhoFBon7oiH.jpg",
       "birthMonth": 11,
       "birthDay": 19,
-      "favourites": 6214,
+      "favourites": 6217,
       "showId": 9547,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/909",
@@ -19042,7 +19064,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:37.689Z"
     },
     {
       "id": 19956,
@@ -19055,7 +19077,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b129330-ZUtYw4n7N0uH.png",
       "birthMonth": 1,
       "birthDay": 24,
-      "favourites": 6147,
+      "favourites": 6150,
       "showId": 9598,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/129330",
@@ -19064,7 +19086,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:24.529Z"
     },
     {
       "id": 19957,
@@ -19077,7 +19099,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b140856-wVzKSyvU7R5B.png",
       "birthMonth": 4,
       "birthDay": 1,
-      "favourites": 6128,
+      "favourites": 6126,
       "showId": 9588,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/140856",
@@ -19086,7 +19108,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:18.868Z"
     },
     {
       "id": 19958,
@@ -19653,7 +19675,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b71-1W4panC53vfs.png",
       "birthMonth": 10,
       "birthDay": 31,
-      "favourites": 28959,
+      "favourites": 28972,
       "showId": 9516,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/71",
@@ -19662,7 +19684,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:38.605Z"
     },
     {
       "id": 19983,
@@ -19675,7 +19697,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b62-S7oAeA9WInjV.png",
       "birthMonth": 11,
       "birthDay": 11,
-      "favourites": 28819,
+      "favourites": 28827,
       "showId": 9515,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/62",
@@ -19684,7 +19706,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:39.289Z"
     },
     {
       "id": 19984,
@@ -19772,7 +19794,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:44.098Z"
     },
     {
       "id": 19988,
@@ -19941,7 +19963,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b7156-DUwViOmpWw2B.jpg",
       "birthMonth": 8,
       "birthDay": 31,
-      "favourites": 3685,
+      "favourites": 3686,
       "showId": 9745,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/7156",
@@ -19950,7 +19972,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:25.850Z"
     },
     {
       "id": 19996,
@@ -19972,7 +19994,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:27.727Z"
     },
     {
       "id": 19997,
@@ -19994,7 +20016,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:28.342Z"
     },
     {
       "id": 19998,
@@ -20007,7 +20029,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b35255-Ra9Aq5Kn9lYq.png",
       "birthMonth": 9,
       "birthDay": 27,
-      "favourites": 3418,
+      "favourites": 3421,
       "showId": 9523,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/35255",
@@ -20016,7 +20038,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:28.985Z"
     },
     {
       "id": 19999,
@@ -20029,7 +20051,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b7-JdR4betokDjR.jpg",
       "birthMonth": 9,
       "birthDay": 3,
-      "favourites": 3388,
+      "favourites": 3392,
       "showId": 9547,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/7",
@@ -20038,7 +20060,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:30.264Z"
     },
     {
       "id": 20000,
@@ -20117,7 +20139,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b21959-Cm9Rlh0EFAQw.png",
       "birthMonth": 5,
       "birthDay": 13,
-      "favourites": 2961,
+      "favourites": 2964,
       "showId": 9531,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/21959",
@@ -20126,7 +20148,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:33.679Z"
     },
     {
       "id": 20004,
@@ -20139,7 +20161,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/n21938-7iTMOJ4i6ET8.png",
       "birthMonth": 10,
       "birthDay": 16,
-      "favourites": 2621,
+      "favourites": 2623,
       "showId": 9531,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/21938",
@@ -20148,7 +20170,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:34.395Z"
     },
     {
       "id": 20005,
@@ -20161,7 +20183,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b17675-rrayRQnq2awa.png",
       "birthMonth": 6,
       "birthDay": 5,
-      "favourites": 2431,
+      "favourites": 2432,
       "showId": 9780,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/17675",
@@ -20170,7 +20192,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:35.115Z"
     },
     {
       "id": 20006,
@@ -20192,7 +20214,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:35.836Z"
     },
     {
       "id": 20007,
@@ -20205,7 +20227,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b27153-D3ru0eppKXRu.png",
       "birthMonth": 6,
       "birthDay": 8,
-      "favourites": 939,
+      "favourites": 941,
       "showId": 9581,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/27153",
@@ -20214,7 +20236,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:36.556Z"
     },
     {
       "id": 20008,
@@ -20227,7 +20249,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b28956-dDkXqrq9DZXp.png",
       "birthMonth": 2,
       "birthDay": 17,
-      "favourites": 723,
+      "favourites": 725,
       "showId": 9780,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/28956",
@@ -20236,7 +20258,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:37.303Z"
     },
     {
       "id": 20009,
@@ -20249,7 +20271,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/18062-FjIMwcBJra9L.jpg",
       "birthMonth": 1,
       "birthDay": 19,
-      "favourites": 703,
+      "favourites": 704,
       "showId": 9531,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/18062",
@@ -20258,7 +20280,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:38.012Z"
     },
     {
       "id": 19345,
@@ -20425,7 +20447,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b129131-FZrQ7lSlxmEr.png",
       "birthMonth": 9,
       "birthDay": 3,
-      "favourites": 15281,
+      "favourites": 15285,
       "showId": 9527,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/129131",
@@ -20434,7 +20456,7 @@
       "ugcVolume": 221,
       "ugcUpdatedAt": "2026-08-20T12:01:04.771Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:46.043Z"
     },
     {
       "id": 19352,
@@ -20777,7 +20799,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b17-phjcWCkRuIhu.png",
       "birthMonth": 10,
       "birthDay": 10,
-      "favourites": 19891,
+      "favourites": 19904,
       "showId": 9522,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/17",
@@ -20786,7 +20808,7 @@
       "ugcVolume": 9830,
       "ugcUpdatedAt": "2026-08-20T12:01:00.756Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:41.946Z"
     },
     {
       "id": 19368,
@@ -20799,7 +20821,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88572-IzTwXEHSobRs.jpg",
       "birthMonth": 9,
       "birthDay": 23,
-      "favourites": 28613,
+      "favourites": 28624,
       "showId": 9519,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/88572",
@@ -20808,7 +20830,7 @@
       "ugcVolume": 3149653,
       "ugcUpdatedAt": "2026-08-20T12:00:58.043Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:39.953Z"
     },
     {
       "id": 19369,
@@ -20821,7 +20843,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b6356-RImEfUfHpC58.png",
       "birthMonth": 9,
       "birthDay": 27,
-      "favourites": 17691,
+      "favourites": 17694,
       "showId": 9531,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/6356",
@@ -20830,7 +20852,7 @@
       "ugcVolume": 1260,
       "ugcUpdatedAt": "2026-08-20T12:01:01.411Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:42.626Z"
     },
     {
       "id": 19370,
@@ -20843,7 +20865,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b13045-TIpIF82cMkG9.png",
       "birthMonth": 9,
       "birthDay": 27,
-      "favourites": 6981,
+      "favourites": 6985,
       "showId": 9581,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/13045",
@@ -20852,7 +20874,7 @@
       "ugcVolume": 511,
       "ugcUpdatedAt": "2026-08-20T12:01:25.571Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:31.822Z"
     },
     {
       "id": 19371,
@@ -20865,7 +20887,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b85-mkVBh2yjxjmx.png",
       "birthMonth": 9,
       "birthDay": 15,
-      "favourites": 22607,
+      "favourites": 22617,
       "showId": 9522,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/85",
@@ -20874,7 +20896,7 @@
       "ugcVolume": 7990,
       "ugcUpdatedAt": "2026-08-20T12:01:00.104Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:41.289Z"
     },
     {
       "id": 19372,
@@ -20909,7 +20931,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b13767-U604OJN9dxCn.jpg",
       "birthMonth": 10,
       "birthDay": 6,
-      "favourites": 10383,
+      "favourites": 10382,
       "showId": 9515,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/13767",
@@ -20918,7 +20940,7 @@
       "ugcVolume": 2921,
       "ugcUpdatedAt": "2026-08-20T12:01:11.334Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:50.767Z"
     },
     {
       "id": 19382,
@@ -20940,7 +20962,7 @@
       "ugcVolume": 70,
       "ugcUpdatedAt": "2026-08-20T12:01:05.424Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:46.934Z"
     },
     {
       "id": 19374,
@@ -20962,7 +20984,7 @@
       "ugcVolume": 27294,
       "ugcUpdatedAt": "2026-08-20T12:01:51.688Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:46.669Z"
     },
     {
       "id": 19375,
@@ -21028,7 +21050,7 @@
       "ugcVolume": 366375,
       "ugcUpdatedAt": "2026-08-20T12:01:14.282Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:51.394Z"
     },
     {
       "id": 19378,
@@ -21041,7 +21063,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b121725-LQciVJOjnMVh.png",
       "birthMonth": 8,
       "birthDay": 22,
-      "favourites": 6436,
+      "favourites": 6437,
       "showId": 9554,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/121725",
@@ -21050,7 +21072,7 @@
       "ugcVolume": 5434114,
       "ugcUpdatedAt": "2026-08-20T12:01:30.899Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:35.071Z"
     },
     {
       "id": 19379,
@@ -21063,7 +21085,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b3180-ITMGBLWNBOgV.png",
       "birthMonth": 9,
       "birthDay": 19,
-      "favourites": 5607,
+      "favourites": 5611,
       "showId": 9522,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/3180",
@@ -21072,7 +21094,7 @@
       "ugcVolume": 8273568,
       "ugcUpdatedAt": "2026-08-20T12:01:43.777Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:40.885Z"
     },
     {
       "id": 19380,
@@ -21085,7 +21107,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b123284-w6kIFYnTclMd.png",
       "birthMonth": 10,
       "birthDay": 4,
-      "favourites": 3743,
+      "favourites": 3742,
       "showId": 9555,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/123284",
@@ -21094,7 +21116,7 @@
       "ugcVolume": 611398,
       "ugcUpdatedAt": "2026-08-20T12:02:01.841Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:24.483Z"
     },
     {
       "id": 19385,
@@ -21107,7 +21129,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b37832-lzVj5IkUciLd.jpg",
       "birthMonth": 10,
       "birthDay": 3,
-      "favourites": 5222,
+      "favourites": 5228,
       "showId": 9616,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/37832",
@@ -21116,7 +21138,7 @@
       "ugcVolume": 33,
       "ugcUpdatedAt": "2026-08-20T12:01:46.397Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:42.181Z"
     },
     {
       "id": 19386,
@@ -21129,7 +21151,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b19567-ztMNJBxTNqmZ.png",
       "birthMonth": 8,
       "birthDay": 21,
-      "favourites": 3879,
+      "favourites": 3880,
       "showId": 9591,
       "alsoShowIds": [
         9756,
@@ -21141,7 +21163,7 @@
       "ugcVolume": 10289,
       "ugcUpdatedAt": "2026-08-20T12:01:55.679Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:07:22.570Z"
     },
     {
       "id": 19387,
@@ -21154,7 +21176,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b124440-Lpdo6y8cljV6.png",
       "birthMonth": 9,
       "birthDay": 17,
-      "favourites": 11279,
+      "favourites": 11277,
       "showId": 9555,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/124440",
@@ -21163,7 +21185,7 @@
       "ugcVolume": 229,
       "ugcUpdatedAt": "2026-08-20T12:01:07.402Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:48.192Z"
     },
     {
       "id": 19388,
@@ -21176,7 +21198,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b168774-zoB9InjmXYq2.png",
       "birthMonth": 9,
       "birthDay": 23,
-      "favourites": 6780,
+      "favourites": 6786,
       "showId": 9585,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/168774",
@@ -21185,7 +21207,7 @@
       "ugcVolume": 14,
       "ugcUpdatedAt": "2026-08-20T12:01:26.278Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:33.134Z"
     },
     {
       "id": 19389,
@@ -21198,7 +21220,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b16342-kVOF6V5Q94go.png",
       "birthMonth": 9,
       "birthDay": 2,
-      "favourites": 4889,
+      "favourites": 4887,
       "showId": 9515,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/16342",
@@ -21207,7 +21229,7 @@
       "ugcVolume": 3339,
       "ugcUpdatedAt": "2026-08-20T12:01:51.029Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:44.733Z"
     },
     {
       "id": 19390,
@@ -21220,7 +21242,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127596-VJjQQk2uWrgM.png",
       "birthMonth": 9,
       "birthDay": 5,
-      "favourites": 4298,
+      "favourites": 4296,
       "showId": 9713,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/127596",
@@ -21229,7 +21251,7 @@
       "ugcVolume": 1,
       "ugcUpdatedAt": "2026-08-20T12:01:52.360Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:18.707Z"
     },
     {
       "id": 19391,
@@ -21242,7 +21264,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b36828-j5ib0adAzGMx.png",
       "birthMonth": 9,
       "birthDay": 30,
-      "favourites": 10917,
+      "favourites": 10924,
       "showId": 9556,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/36828",
@@ -21251,7 +21273,7 @@
       "ugcVolume": 42825,
       "ugcUpdatedAt": "2026-08-20T12:01:09.366Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:49.479Z"
     },
     {
       "id": 19392,
@@ -21264,7 +21286,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b121052-bQZT3nIvaryX.png",
       "birthMonth": 9,
       "birthDay": 24,
-      "favourites": 6609,
+      "favourites": 6618,
       "showId": 9590,
       "alsoShowIds": [
         9747
@@ -21275,7 +21297,7 @@
       "ugcVolume": 1426,
       "ugcUpdatedAt": "2026-08-20T12:01:26.925Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:33.815Z"
     },
     {
       "id": 19393,
@@ -21288,7 +21310,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b1261-HYRv3HpsSL92.jpg",
       "birthMonth": 9,
       "birthDay": 13,
-      "favourites": 5665,
+      "favourites": 5672,
       "showId": 9544,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/1261",
@@ -21297,7 +21319,7 @@
       "ugcVolume": 3,
       "ugcUpdatedAt": "2026-08-20T12:01:37.156Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:05:40.258Z"
     },
     {
       "id": 19394,
@@ -21310,7 +21332,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b251-8DTaCNkSvBQ8.png",
       "birthMonth": 10,
       "birthDay": 8,
-      "favourites": 4069,
+      "favourites": 4073,
       "showId": 9714,
       "alsoShowIds": [
         9758
@@ -21321,7 +21343,7 @@
       "ugcVolume": 1584,
       "ugcUpdatedAt": "2026-08-20T12:01:54.332Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:20.077Z"
     },
     {
       "id": 19395,
@@ -21343,7 +21365,7 @@
       "ugcVolume": 1,
       "ugcUpdatedAt": "2026-08-20T12:01:57.669Z",
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:22.632Z"
     },
     {
       "id": 19396,
@@ -21400,7 +21422,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b71267-q44J2MXMinXD.jpg",
       "birthMonth": 10,
       "birthDay": 16,
-      "favourites": 11192,
+      "favourites": 11199,
       "showId": 9539,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/71267",
@@ -21409,7 +21431,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:04:48.827Z"
     },
     {
       "id": 19399,
@@ -21556,7 +21578,7 @@
       "image": "https://s4.anilist.co/file/anilistcdn/character/large/b155702-S8irhsg4QTPf.png",
       "birthMonth": 10,
       "birthDay": 25,
-      "favourites": 3794,
+      "favourites": 3798,
       "showId": 9806,
       "alsoShowIds": [],
       "wikiUrl": "https://anilist.co/character/155702",
@@ -21565,7 +21587,7 @@
       "ugcVolume": null,
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:30:28.312Z",
-      "updatedAt": "2026-08-20T15:30:28.312Z"
+      "updatedAt": "2026-08-22T13:06:23.256Z"
     },
     {
       "id": 19406,
@@ -21852,6 +21874,292 @@
       "ugcUpdatedAt": null,
       "createdAt": "2026-08-20T15:36:30.223Z",
       "updatedAt": "2026-08-20T15:36:30.223Z"
+    },
+    {
+      "id": 20016,
+      "anilistId": 72737,
+      "slug": "terence-darby",
+      "nameFull": "Terence D'Arby",
+      "nameFirst": "Terence",
+      "nameLast": "D'Arby",
+      "nameNative": "テレンス・T.・ダービー",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/n72737-JqlDCNpdGnYu.png",
+      "birthMonth": 1,
+      "birthDay": 5,
+      "favourites": 66,
+      "showId": 9848,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/72737",
+      "description": "__Nationality:__ American\n__Occupation:__ Butler\n__Stand:__ Atum\n\nD'Arby is one of the Egypt 9 Glory Gods and resides in DIO's mansion in Cairo acting as his butler. He isolates and challenges Jotaro, Joseph and Kakyoin when the Joestar Group enters the mansion and forces them into waging their souls against him in various video game challenges. He is also Daniel J. D'arby's younger brother.\n\nAs a butler, Terence is a mannerly individual. However, his demeanor is a facade for his twisted and arrogant personality. Due to his occupation, Terence is rather polite and affable, keeping his calm even in the face of provocations and comes to greet and confront the Joestar Group when they enter DIO's Mansion. Terence is a very intelligent man and is especially proficient at video games: He defeated the likes of Tatsuhiko, a child genius with an IQ of 190, albeit without the use of his Stand's ability to read minds.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:08.797Z",
+      "updatedAt": "2026-08-22T13:07:08.797Z"
+    },
+    {
+      "id": 20017,
+      "anilistId": 89247,
+      "slug": "mina-ashido",
+      "nameFull": "Mina Ashido",
+      "nameFirst": "Mina",
+      "nameLast": "Ashido",
+      "nameNative": "芦戸三奈",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89247-hu5MCqfoN82E.png",
+      "birthMonth": 7,
+      "birthDay": 30,
+      "favourites": 2834,
+      "showId": 9528,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/89247",
+      "description": "__Height:__ 159 cm (5'3\")\n__Quirk:__ Acid\n\nStudent in Class 1-A at U.A. High School.\n\nMina is a cheerful and easygoing girl who usually displays a smile. Highly social and excitable, she loves to hang out with her friends and is shown to become very upset when denied an opportunity to be at a gathering. She possesses a strong fashion sense and likes to go shopping. Due to her athleticism and energy, Mina enjoys and is very skilled at dancing. Mina is extremely courageous and is viewed as an ideal personality for hero work.\n\nMina's Quirk Acid allows her to produce a corrosive liquid from her body. She can control the solubility and viscosity of this corrosive liquid. There is a limit to how long she can produce the corrosive liquid until her skin gradually loses its natural resistance to it. Overusing her Quirk or pushing it too far can also be fatal, as it dehydrates her body very fast. Mina can use her acid offensively, but has shown utility with it as well, such as melting handholds for herself to climb with. She is also known to secrete a non-corrosive version of the acid from her feet in order to slide around.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:11.515Z",
+      "updatedAt": "2026-08-22T13:07:11.515Z"
+    },
+    {
+      "id": 20018,
+      "anilistId": 89248,
+      "slug": "mei-hatsume",
+      "nameFull": "Mei Hatsume",
+      "nameFirst": "Mei",
+      "nameLast": "Hatsume",
+      "nameNative": "発目明",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89248-8QeMSMjjJ5RO.png",
+      "birthMonth": 4,
+      "birthDay": 18,
+      "favourites": 1515,
+      "showId": 9584,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/89248",
+      "description": "__Height:__ 157 cm (5'2\")\n__Quirk:__ Zoom\n\nMei is a smart, off-setting, and assertive girl, often making those around her uncomfortable. She loves creating gadgets, which she refers to as her \"super cute babies\". Mei has a habit of \"going straight to the point\" and is very shameless and opportunistic when it comes to advertising her inventions. While talking to people, she has a habit of getting awkwardly close to them, which usually causes them to back away from her but she still moves up to them.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:12.066Z",
+      "updatedAt": "2026-08-22T13:07:12.066Z"
+    },
+    {
+      "id": 20019,
+      "anilistId": 125450,
+      "slug": "neito-monoma",
+      "nameFull": "Neito Monoma",
+      "nameFirst": "Neito",
+      "nameLast": "Monoma",
+      "nameNative": "物間寧人",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b125450-3zpOZwFtlYPp.png",
+      "birthMonth": 5,
+      "birthDay": 13,
+      "favourites": 1254,
+      "showId": 9584,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/125450",
+      "description": "__Height:__ 170cm\n__Quirk:__ Copy\n\nStudent in Class 1-B at U.A. High School.\n\nNeito has a rather complex personality since it differs depending on who he is addressing; he is particularly mocking, loud, and sarcastic with Class 1-A, but outside of these interactions, he is a calm, kind, and intelligent person. He envies Class 1-A with a passion over how they became the center of attention among U.A.'s first years because of the U.S.J. Incident. Truthfully, he only wants his class to stand out as they do, and he vents this feeling by throwing countless taunts towards his rivals, gloating over Class 1-B's successes and disparaging 1-A for their failures. \n\nNeito's Quirk is Copy, which allows him to duplicate and use another person's Quirk after coming into physical contact with the user. He can hold four Quirks simultaneously and maintain copied powers for ten minutes. After the time limit runs out, he loses the copied Quirk until he once again touches the original user.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:12.617Z",
+      "updatedAt": "2026-08-22T13:07:12.617Z"
+    },
+    {
+      "id": 20020,
+      "anilistId": 89895,
+      "slug": "hanta-sero",
+      "nameFull": "Hanta Sero",
+      "nameFirst": "Hanta",
+      "nameLast": "Sero",
+      "nameNative": "瀬呂範太",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89895-DpFrgTelc9Qx.png",
+      "birthMonth": 7,
+      "birthDay": 28,
+      "favourites": 1235,
+      "showId": 9528,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/89895",
+      "description": "__Height:__ 177 cm (5' 9¾\")\n__Quirk:__ Tape\n \nStudent in Class 1-A at U.A. High School.\n\nHanta is amicable and has proven to be one of the more sociable members of Class 1-A. He can sometimes be loud and showy, often trying to impress his peers with his Quirk. He is often the only person to call his classmates out when they act crazy. He is pretty humorous and usually makes jokes with his classmates. However, when push comes to shove, Hanta is a brave hero-in-training who wishes to prosper on his own while helping others do the same.\n\nHanta's Quirk is that he has tape dispenser-like organs in his elbows, from which he can shoot long cellophane tape-like strips; he can also retract them. They appear to be somewhat sturdier than regular tape. Overuse of his Quirk will cause his skin to dry out. He can use his tape to wrap people, swing long distances, and create traps, among other applications.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:13.167Z",
+      "updatedAt": "2026-08-22T13:07:13.167Z"
+    },
+    {
+      "id": 20021,
+      "anilistId": 127427,
+      "slug": "nemuri-kayama",
+      "nameFull": "Nemuri Kayama",
+      "nameFirst": "Nemuri",
+      "nameLast": "Kayama",
+      "nameNative": "香山睡",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127427-urv42J2E7TZ2.png",
+      "birthMonth": 3,
+      "birthDay": 9,
+      "favourites": 1138,
+      "showId": 9528,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/127427",
+      "description": "__Height:__ 175 cm (5'9\")\n__Quirk:__ Somnambulist\n\nPro Hero. She also works as a Modern Hero Art History teacher at U.A. High School.\n\nNemuri is a very playful and flirtatious person with an unpredictably serious and temperamental side to her. She gets angry whenever someone interrupts her or insults her. She is especially sensitive about her age. Despite her flirtatious personality, Nemuri was intelligent, perceptive, and articulate. While she comes off as a hero who enjoys her fame derived from her beauty and sex appeal, Nemuri has demonstrated true heroism and bravery, willing to fight on the front lines and put her life at risk for others.\n\nNemuri's Quirk \"Somnambulist\" allows her to put nearby people to sleep by exuding a sleep-inducing aroma from her body. Her Quirk works better on males than females.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:13.718Z",
+      "updatedAt": "2026-08-22T13:07:13.718Z"
+    },
+    {
+      "id": 20022,
+      "anilistId": 126067,
+      "slug": "chizome-akaguro",
+      "nameFull": "Chizome Akaguro",
+      "nameFirst": "Chizome",
+      "nameLast": "Akaguro",
+      "nameNative": "赤黒血染",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126067-ZL6sRFyaqX9c.png",
+      "birthMonth": 6,
+      "birthDay": 14,
+      "favourites": 1135,
+      "showId": 9584,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/126067",
+      "description": "__Height:__ 182 cm (6'0)\n__Quirk:__ Bloodcurdle\n\nVillain and former vigilante that was notorious for having killed many Pro Heroes. He attacks and kills heroes who he believes do not fit his definition of a \"true hero.\"\n\nChizome is a cruel, unforgiving, and merciless man with a sense of duty to cleanse society of false heroes. He believes that those who become Heroes for fame or money are unworthy of being called the name and only [All Might](https://anilist.co/character/89224/Yagi-Toshinori) is a true hero. Due to his strong ideology, he took it upon himself to become the Hero Killer: Stain to stain his own hands with blood to purge fake heroes and change the current society. \n\nDespite his extremist views and beliefs, Stain did have genuine ideals about heroism, which he stood by firmly. He did not hesitate to save people he deemed worthy of being called Heroes, did not like killing without reason, and would even give advice to his enemies. Stain acknowledged that what he did was morally wrong but believed that for society to be put on the right path, someone must be what he was, suggesting that he saw himself as a martyr.\n\nStain's Quirk \"Bloodcurdle\" allows him to paralyze his target upon tasting a sample of their blood. The amount of time a victim remains paralyzed depends on their blood type; in ascending order from shortest to longest duration, they are: O, A, AB, and B. The maximum amount of time that anyone can be paralyzed is eight minutes.\n\n_In My Hero Academia: Vigilantes:_ ~!Chizome works as the vigilante \"Stendhal,\" hunting villains to make up for the heroes' mistakes. He declares his respect for [Knuckleduster](https://anilist.co/character/129631/Oguro-Iwao), as he believes the two of them share similar beliefs about society, but Knuckleduster completely disagrees. He takes Stendhal down with one punch, completely smashing his nose in, declaring that people like him, especially those who wear a mask like that, lack true determinism. Inspired by these comments, Stendhal cuts off his broken nose and abandons his mask, declaring that he will dye the world with \"stains that cannot be wiped away.\" !~",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:14.269Z",
+      "updatedAt": "2026-08-22T13:07:14.269Z"
+    },
+    {
+      "id": 20023,
+      "anilistId": 121529,
+      "slug": "yuu-takeyama",
+      "nameFull": "Yuu Takeyama",
+      "nameFirst": "Yuu",
+      "nameLast": "Takeyama",
+      "nameNative": "岳山優",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b121529-Uu4aQdOP4G98.png",
+      "birthMonth": 8,
+      "birthDay": 11,
+      "favourites": 1106,
+      "showId": 9528,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/121529",
+      "description": "__Height:__ 162 cm (5'4\") (Normal form); 2062cm (67'8\") (Transformed)\n__Quirk:__ Gigantification\n__Occupation:__ Pro Hero\n\nPro Hero. Her Quirk allows her to grow to a gigantic size. She cannot variate between her base-height and the gigantified height achieved via her Quirk, making her only able to be either her normal height of 162cm (5 feet 4 inches) or her enlarged height of 2,062cm (67 feet 8 inches) tall.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:14.820Z",
+      "updatedAt": "2026-08-22T13:07:14.820Z"
+    },
+    {
+      "id": 20024,
+      "anilistId": 167444,
+      "slug": "hyouma-chigiri",
+      "nameFull": "Hyouma Chigiri",
+      "nameFirst": "Hyouma",
+      "nameLast": "Chigiri",
+      "nameNative": "千切豹馬",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b167444-JTHkkJAX4E3q.png",
+      "birthMonth": 12,
+      "birthDay": 23,
+      "favourites": 2719,
+      "showId": 9588,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/167444",
+      "description": "__Height:__ 177cm (5'10\")\n\nHyoma Chigiri is a contender for the Blue Lock Project and member of Team Z. \n\nAs a young child, he was thought of as a prodigy due to his incredible speed. However, he is now psychologically scarred by a life-changing injury during his first year of high school.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:18.868Z",
+      "updatedAt": "2026-08-22T13:07:18.868Z"
+    },
+    {
+      "id": 20025,
+      "anilistId": 162214,
+      "slug": "rensuke-kunigami",
+      "nameFull": "Rensuke Kunigami",
+      "nameFirst": "Rensuke",
+      "nameLast": "Kunigami",
+      "nameNative": "國神錬介",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b162214-9x9Q3A9rxpx8.png",
+      "birthMonth": 3,
+      "birthDay": 11,
+      "favourites": 1523,
+      "showId": 9588,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/162214",
+      "description": "__Height:__ 188 cm\n__Team:__ Team Z\n\nRensuke Kunigami is very serious about his football career and training; he's always the first in the training room in the morning and the last to leave at night. Kunigami tends to get into arguments with [Raichi](https://anilist.co/character/169402/Raichi-Jingo), but is also the one who restrains him the most when he picks a fight with someone.\n\n~!During the second selection Kunigami is eliminated from Blue Lock project, but afterwards gets a second chance through the Wild Card training!~\n\n~!After Blue Lock vs. Japan U20 match, Kunigami gets back into Blue Lock project. His appearance changed a bit and his attitude too.!~",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:19.419Z",
+      "updatedAt": "2026-08-22T13:07:19.419Z"
+    },
+    {
+      "id": 20026,
+      "anilistId": 186875,
+      "slug": "ryuusei-shidou",
+      "nameFull": "Ryuusei Shidou",
+      "nameFirst": "Ryuusei",
+      "nameLast": "Shidou",
+      "nameNative": "士道龍聖",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b186875-JGHisZO21JxJ.png",
+      "birthMonth": 7,
+      "birthDay": 7,
+      "favourites": 1196,
+      "showId": 9588,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/186875",
+      "description": "__Birthplace:__ Tokyo\n__Height:__ 185 cm (6'1\")\n\nRyuusei Shidou is a contender in the Blue Lock Project. ~!He was ranked #2 during the Third Selection and was initially chosen as the wildcard for the Blue Lock Eleven in their match against Japan’s U-20 team, but was instead selected by [Itoshi Sae](https://anilist.co/character/169397/Itoshi-Sae) to play for the U-20 side. He later stood out as one of the top players in the project. During the Neo Egoist League, he played as a center forward for France’s Paris X Gen. Following the conclusion of the 5th round, he was ranked 3rd overall and qualified as one of the 23 players for the new Japan U-20 team.!~",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:19.969Z",
+      "updatedAt": "2026-08-22T13:07:19.969Z"
+    },
+    {
+      "id": 20027,
+      "anilistId": 169397,
+      "slug": "sae-itoshi",
+      "nameFull": "Sae Itoshi",
+      "nameFirst": "Sae",
+      "nameLast": "Itoshi",
+      "nameNative": "糸師冴",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b169397-wC55onsv5u8t.jpg",
+      "birthMonth": 10,
+      "birthDay": 10,
+      "favourites": 1196,
+      "showId": 9588,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/169397",
+      "description": "__Height:__ 180 cm (5'11\")\n\nSae Itoshi is regarded as the best player in Japan and is [Rin Itoshi](https://anilist.co/character/169395/Rin-Itoshi)'s older brother. He is a member of Re AL youth team and is regarded as one of the best youth players in the world. ~!He is a member of the New Generation World XI.!~",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:20.520Z",
+      "updatedAt": "2026-08-22T13:07:20.520Z"
+    },
+    {
+      "id": 20028,
+      "anilistId": 140857,
+      "slug": "jinpachi-ego",
+      "nameFull": "Jinpachi Ego",
+      "nameFirst": "Jinpachi",
+      "nameLast": "Ego",
+      "nameNative": "絵心甚八",
+      "image": "https://s4.anilist.co/file/anilistcdn/character/large/b140857-DOTyKBCufon9.png",
+      "birthMonth": 3,
+      "birthDay": 31,
+      "favourites": 805,
+      "showId": 9588,
+      "alsoShowIds": [],
+      "wikiUrl": "https://anilist.co/character/140857",
+      "description": "__Height:__ 189 cm (6'2\")\n\nGeneral Director/Manager of the Blue Lock Project, handpicked to lead the project by [Anri Teieri](https://anilist.co/character/169405). Ego is introduced as a man who radiates ambition and confidence. His egotistical nature is undeniable, especially given his belief that only his methods can lead to Japan's victory in the World Cup.\n\nEgo used to play football in his earlier career, with Noel Noa being his rival and former teammate.",
+      "source": "anilist",
+      "ugcVolume": null,
+      "ugcUpdatedAt": null,
+      "createdAt": "2026-08-22T13:07:21.071Z",
+      "updatedAt": "2026-08-22T13:07:21.071Z"
     }
   ],
   "hashtags": [
@@ -38824,330 +39132,6 @@
       "kind": "edit"
     },
     {
-      "id": 115661,
-      "characterId": 20003,
-      "tag": "caesarzeppeli",
-      "kind": "name"
-    },
-    {
-      "id": 115662,
-      "characterId": 20003,
-      "tag": "caesarzeppelibirthday",
-      "kind": "birthday"
-    },
-    {
-      "id": 115663,
-      "characterId": 20003,
-      "tag": "caesarzeppeliedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115664,
-      "characterId": 20003,
-      "tag": "caesarzeppelibirthdayedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115665,
-      "characterId": 20003,
-      "tag": "caesar",
-      "kind": "name"
-    },
-    {
-      "id": 115666,
-      "characterId": 20003,
-      "tag": "caesaredit",
-      "kind": "edit"
-    },
-    {
-      "id": 115667,
-      "characterId": 20003,
-      "tag": "jojosbizarreadventuretv",
-      "kind": "show"
-    },
-    {
-      "id": 115668,
-      "characterId": 20003,
-      "tag": "jojosbizarreadventuretvedit",
-      "kind": "show_edit"
-    },
-    {
-      "id": 115669,
-      "characterId": 20004,
-      "tag": "roberteospeedwagon",
-      "kind": "name"
-    },
-    {
-      "id": 115670,
-      "characterId": 20004,
-      "tag": "roberteospeedwagonbirthday",
-      "kind": "birthday"
-    },
-    {
-      "id": 115671,
-      "characterId": 20004,
-      "tag": "roberteospeedwagonedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115672,
-      "characterId": 20004,
-      "tag": "roberteospeedwagonbirthdayedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115673,
-      "characterId": 20004,
-      "tag": "roberteo",
-      "kind": "name"
-    },
-    {
-      "id": 115674,
-      "characterId": 20004,
-      "tag": "roberteoedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115675,
-      "characterId": 20004,
-      "tag": "jojosbizarreadventuretv",
-      "kind": "show"
-    },
-    {
-      "id": 115676,
-      "characterId": 20004,
-      "tag": "jojosbizarreadventuretvedit",
-      "kind": "show_edit"
-    },
-    {
-      "id": 115677,
-      "characterId": 20005,
-      "tag": "weatherreport",
-      "kind": "name"
-    },
-    {
-      "id": 115678,
-      "characterId": 20005,
-      "tag": "weatherreportbirthday",
-      "kind": "birthday"
-    },
-    {
-      "id": 115679,
-      "characterId": 20005,
-      "tag": "weatherreportedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115680,
-      "characterId": 20005,
-      "tag": "weatherreportbirthdayedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115681,
-      "characterId": 20005,
-      "tag": "jojosbizarreadventurestoneocean",
-      "kind": "show"
-    },
-    {
-      "id": 115682,
-      "characterId": 20005,
-      "tag": "jojosbizarreadventurestoneoceanedit",
-      "kind": "show_edit"
-    },
-    {
-      "id": 115683,
-      "characterId": 20006,
-      "tag": "pannacottafugo",
-      "kind": "name"
-    },
-    {
-      "id": 115684,
-      "characterId": 20006,
-      "tag": "pannacottafugobirthday",
-      "kind": "birthday"
-    },
-    {
-      "id": 115685,
-      "characterId": 20006,
-      "tag": "pannacottafugoedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115686,
-      "characterId": 20006,
-      "tag": "pannacottafugobirthdayedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115687,
-      "characterId": 20006,
-      "tag": "pannacotta",
-      "kind": "name"
-    },
-    {
-      "id": 115688,
-      "characterId": 20006,
-      "tag": "pannacottaedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115689,
-      "characterId": 20006,
-      "tag": "jojosbizarreadventuregoldenwind",
-      "kind": "show"
-    },
-    {
-      "id": 115690,
-      "characterId": 20006,
-      "tag": "jojosbizarreadventuregoldenwindedit",
-      "kind": "show_edit"
-    },
-    {
-      "id": 115691,
-      "characterId": 20007,
-      "tag": "trishuna",
-      "kind": "name"
-    },
-    {
-      "id": 115692,
-      "characterId": 20007,
-      "tag": "trishunabirthday",
-      "kind": "birthday"
-    },
-    {
-      "id": 115693,
-      "characterId": 20007,
-      "tag": "trishunaedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115694,
-      "characterId": 20007,
-      "tag": "trishunabirthdayedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115695,
-      "characterId": 20007,
-      "tag": "trish",
-      "kind": "name"
-    },
-    {
-      "id": 115696,
-      "characterId": 20007,
-      "tag": "trishedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115697,
-      "characterId": 20007,
-      "tag": "jojosbizarreadventuregoldenwind",
-      "kind": "show"
-    },
-    {
-      "id": 115698,
-      "characterId": 20007,
-      "tag": "jojosbizarreadventuregoldenwindedit",
-      "kind": "show_edit"
-    },
-    {
-      "id": 115699,
-      "characterId": 20008,
-      "tag": "emporioalnino",
-      "kind": "name"
-    },
-    {
-      "id": 115700,
-      "characterId": 20008,
-      "tag": "emporioalninobirthday",
-      "kind": "birthday"
-    },
-    {
-      "id": 115701,
-      "characterId": 20008,
-      "tag": "emporioalninoedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115702,
-      "characterId": 20008,
-      "tag": "emporioalninobirthdayedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115703,
-      "characterId": 20008,
-      "tag": "emporio",
-      "kind": "name"
-    },
-    {
-      "id": 115704,
-      "characterId": 20008,
-      "tag": "emporioedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115705,
-      "characterId": 20008,
-      "tag": "jojosbizarreadventurestoneocean",
-      "kind": "show"
-    },
-    {
-      "id": 115706,
-      "characterId": 20008,
-      "tag": "jojosbizarreadventurestoneoceanedit",
-      "kind": "show_edit"
-    },
-    {
-      "id": 115707,
-      "characterId": 20009,
-      "tag": "willazeppeli",
-      "kind": "name"
-    },
-    {
-      "id": 115708,
-      "characterId": 20009,
-      "tag": "willazeppelibirthday",
-      "kind": "birthday"
-    },
-    {
-      "id": 115709,
-      "characterId": 20009,
-      "tag": "willazeppeliedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115710,
-      "characterId": 20009,
-      "tag": "willazeppelibirthdayedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115711,
-      "characterId": 20009,
-      "tag": "willa",
-      "kind": "name"
-    },
-    {
-      "id": 115712,
-      "characterId": 20009,
-      "tag": "willaedit",
-      "kind": "edit"
-    },
-    {
-      "id": 115713,
-      "characterId": 20009,
-      "tag": "jojosbizarreadventuretv",
-      "kind": "show"
-    },
-    {
-      "id": 115714,
-      "characterId": 20009,
-      "tag": "jojosbizarreadventuretvedit",
-      "kind": "show_edit"
-    },
-    {
       "id": 115715,
       "characterId": 20010,
       "tag": "masachikakuze",
@@ -39433,6 +39417,1002 @@
       "id": 115762,
       "characterId": 20015,
       "tag": "alyasometimeshidesherfeelingsinrussianedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115763,
+      "characterId": 20003,
+      "tag": "caesarzeppeli",
+      "kind": "name"
+    },
+    {
+      "id": 115764,
+      "characterId": 20003,
+      "tag": "caesarzeppelibirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115765,
+      "characterId": 20003,
+      "tag": "caesarzeppeliedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115766,
+      "characterId": 20003,
+      "tag": "caesarzeppelibirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115767,
+      "characterId": 20003,
+      "tag": "caesar",
+      "kind": "name"
+    },
+    {
+      "id": 115768,
+      "characterId": 20003,
+      "tag": "caesaredit",
+      "kind": "edit"
+    },
+    {
+      "id": 115769,
+      "characterId": 20003,
+      "tag": "jojosbizarreadventuretv",
+      "kind": "show"
+    },
+    {
+      "id": 115770,
+      "characterId": 20003,
+      "tag": "jojosbizarreadventuretvedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115771,
+      "characterId": 20004,
+      "tag": "roberteospeedwagon",
+      "kind": "name"
+    },
+    {
+      "id": 115772,
+      "characterId": 20004,
+      "tag": "roberteospeedwagonbirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115773,
+      "characterId": 20004,
+      "tag": "roberteospeedwagonedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115774,
+      "characterId": 20004,
+      "tag": "roberteospeedwagonbirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115775,
+      "characterId": 20004,
+      "tag": "roberteo",
+      "kind": "name"
+    },
+    {
+      "id": 115776,
+      "characterId": 20004,
+      "tag": "roberteoedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115777,
+      "characterId": 20004,
+      "tag": "jojosbizarreadventuretv",
+      "kind": "show"
+    },
+    {
+      "id": 115778,
+      "characterId": 20004,
+      "tag": "jojosbizarreadventuretvedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115779,
+      "characterId": 20005,
+      "tag": "weatherreport",
+      "kind": "name"
+    },
+    {
+      "id": 115780,
+      "characterId": 20005,
+      "tag": "weatherreportbirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115781,
+      "characterId": 20005,
+      "tag": "weatherreportedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115782,
+      "characterId": 20005,
+      "tag": "weatherreportbirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115783,
+      "characterId": 20005,
+      "tag": "jojosbizarreadventurestoneocean",
+      "kind": "show"
+    },
+    {
+      "id": 115784,
+      "characterId": 20005,
+      "tag": "jojosbizarreadventurestoneoceanedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115785,
+      "characterId": 20006,
+      "tag": "pannacottafugo",
+      "kind": "name"
+    },
+    {
+      "id": 115786,
+      "characterId": 20006,
+      "tag": "pannacottafugobirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115787,
+      "characterId": 20006,
+      "tag": "pannacottafugoedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115788,
+      "characterId": 20006,
+      "tag": "pannacottafugobirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115789,
+      "characterId": 20006,
+      "tag": "pannacotta",
+      "kind": "name"
+    },
+    {
+      "id": 115790,
+      "characterId": 20006,
+      "tag": "pannacottaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115791,
+      "characterId": 20006,
+      "tag": "jojosbizarreadventuregoldenwind",
+      "kind": "show"
+    },
+    {
+      "id": 115792,
+      "characterId": 20006,
+      "tag": "jojosbizarreadventuregoldenwindedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115793,
+      "characterId": 20007,
+      "tag": "trishuna",
+      "kind": "name"
+    },
+    {
+      "id": 115794,
+      "characterId": 20007,
+      "tag": "trishunabirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115795,
+      "characterId": 20007,
+      "tag": "trishunaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115796,
+      "characterId": 20007,
+      "tag": "trishunabirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115797,
+      "characterId": 20007,
+      "tag": "trish",
+      "kind": "name"
+    },
+    {
+      "id": 115798,
+      "characterId": 20007,
+      "tag": "trishedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115799,
+      "characterId": 20007,
+      "tag": "jojosbizarreadventuregoldenwind",
+      "kind": "show"
+    },
+    {
+      "id": 115800,
+      "characterId": 20007,
+      "tag": "jojosbizarreadventuregoldenwindedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115801,
+      "characterId": 20008,
+      "tag": "emporioalnino",
+      "kind": "name"
+    },
+    {
+      "id": 115802,
+      "characterId": 20008,
+      "tag": "emporioalninobirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115803,
+      "characterId": 20008,
+      "tag": "emporioalninoedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115804,
+      "characterId": 20008,
+      "tag": "emporioalninobirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115805,
+      "characterId": 20008,
+      "tag": "emporio",
+      "kind": "name"
+    },
+    {
+      "id": 115806,
+      "characterId": 20008,
+      "tag": "emporioedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115807,
+      "characterId": 20008,
+      "tag": "jojosbizarreadventurestoneocean",
+      "kind": "show"
+    },
+    {
+      "id": 115808,
+      "characterId": 20008,
+      "tag": "jojosbizarreadventurestoneoceanedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115809,
+      "characterId": 20009,
+      "tag": "willazeppeli",
+      "kind": "name"
+    },
+    {
+      "id": 115810,
+      "characterId": 20009,
+      "tag": "willazeppelibirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115811,
+      "characterId": 20009,
+      "tag": "willazeppeliedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115812,
+      "characterId": 20009,
+      "tag": "willazeppelibirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115813,
+      "characterId": 20009,
+      "tag": "willa",
+      "kind": "name"
+    },
+    {
+      "id": 115814,
+      "characterId": 20009,
+      "tag": "willaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115815,
+      "characterId": 20009,
+      "tag": "jojosbizarreadventuretv",
+      "kind": "show"
+    },
+    {
+      "id": 115816,
+      "characterId": 20009,
+      "tag": "jojosbizarreadventuretvedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115817,
+      "characterId": 20016,
+      "tag": "terencedarby",
+      "kind": "name"
+    },
+    {
+      "id": 115818,
+      "characterId": 20016,
+      "tag": "terencedarbybirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115819,
+      "characterId": 20016,
+      "tag": "terencedarbyedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115820,
+      "characterId": 20016,
+      "tag": "terencedarbybirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115821,
+      "characterId": 20016,
+      "tag": "terence",
+      "kind": "name"
+    },
+    {
+      "id": 115822,
+      "characterId": 20016,
+      "tag": "terenceedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115823,
+      "characterId": 20016,
+      "tag": "jojosbizarreadventurestardustcrusadersbattleinegypt",
+      "kind": "show"
+    },
+    {
+      "id": 115824,
+      "characterId": 20016,
+      "tag": "jojosbizarreadventurestardustcrusadersbattleinegyptedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115825,
+      "characterId": 19722,
+      "tag": "funnyvalentine",
+      "kind": "name"
+    },
+    {
+      "id": 115826,
+      "characterId": 19722,
+      "tag": "funnyvalentinebirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115827,
+      "characterId": 19722,
+      "tag": "funnyvalentineedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115828,
+      "characterId": 19722,
+      "tag": "funnyvalentinebirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115829,
+      "characterId": 19722,
+      "tag": "funny",
+      "kind": "name"
+    },
+    {
+      "id": 115830,
+      "characterId": 19722,
+      "tag": "funnyedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115831,
+      "characterId": 19722,
+      "tag": "steelballrunjojosbizarreadventure2nd3rdstage",
+      "kind": "show"
+    },
+    {
+      "id": 115832,
+      "characterId": 19722,
+      "tag": "steelballrunjojosbizarreadventure2nd3rdstageedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115833,
+      "characterId": 20017,
+      "tag": "minaashido",
+      "kind": "name"
+    },
+    {
+      "id": 115834,
+      "characterId": 20017,
+      "tag": "minaashidobirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115835,
+      "characterId": 20017,
+      "tag": "minaashidoedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115836,
+      "characterId": 20017,
+      "tag": "minaashidobirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115837,
+      "characterId": 20017,
+      "tag": "mina",
+      "kind": "name"
+    },
+    {
+      "id": 115838,
+      "characterId": 20017,
+      "tag": "minaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115839,
+      "characterId": 20017,
+      "tag": "myheroacademia",
+      "kind": "show"
+    },
+    {
+      "id": 115840,
+      "characterId": 20017,
+      "tag": "myheroacademiaedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115841,
+      "characterId": 20018,
+      "tag": "meihatsume",
+      "kind": "name"
+    },
+    {
+      "id": 115842,
+      "characterId": 20018,
+      "tag": "meihatsumebirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115843,
+      "characterId": 20018,
+      "tag": "meihatsumeedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115844,
+      "characterId": 20018,
+      "tag": "meihatsumebirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115845,
+      "characterId": 20018,
+      "tag": "mei",
+      "kind": "name"
+    },
+    {
+      "id": 115846,
+      "characterId": 20018,
+      "tag": "meiedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115847,
+      "characterId": 20018,
+      "tag": "myheroacademiaseason2",
+      "kind": "show"
+    },
+    {
+      "id": 115848,
+      "characterId": 20018,
+      "tag": "myheroacademiaseason2edit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115849,
+      "characterId": 20019,
+      "tag": "neitomonoma",
+      "kind": "name"
+    },
+    {
+      "id": 115850,
+      "characterId": 20019,
+      "tag": "neitomonomabirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115851,
+      "characterId": 20019,
+      "tag": "neitomonomaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115852,
+      "characterId": 20019,
+      "tag": "neitomonomabirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115853,
+      "characterId": 20019,
+      "tag": "neito",
+      "kind": "name"
+    },
+    {
+      "id": 115854,
+      "characterId": 20019,
+      "tag": "neitoedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115855,
+      "characterId": 20019,
+      "tag": "myheroacademiaseason2",
+      "kind": "show"
+    },
+    {
+      "id": 115856,
+      "characterId": 20019,
+      "tag": "myheroacademiaseason2edit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115857,
+      "characterId": 20020,
+      "tag": "hantasero",
+      "kind": "name"
+    },
+    {
+      "id": 115858,
+      "characterId": 20020,
+      "tag": "hantaserobirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115859,
+      "characterId": 20020,
+      "tag": "hantaseroedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115860,
+      "characterId": 20020,
+      "tag": "hantaserobirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115861,
+      "characterId": 20020,
+      "tag": "hanta",
+      "kind": "name"
+    },
+    {
+      "id": 115862,
+      "characterId": 20020,
+      "tag": "hantaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115863,
+      "characterId": 20020,
+      "tag": "myheroacademia",
+      "kind": "show"
+    },
+    {
+      "id": 115864,
+      "characterId": 20020,
+      "tag": "myheroacademiaedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115865,
+      "characterId": 20021,
+      "tag": "nemurikayama",
+      "kind": "name"
+    },
+    {
+      "id": 115866,
+      "characterId": 20021,
+      "tag": "nemurikayamabirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115867,
+      "characterId": 20021,
+      "tag": "nemurikayamaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115868,
+      "characterId": 20021,
+      "tag": "nemurikayamabirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115869,
+      "characterId": 20021,
+      "tag": "nemuri",
+      "kind": "name"
+    },
+    {
+      "id": 115870,
+      "characterId": 20021,
+      "tag": "nemuriedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115871,
+      "characterId": 20021,
+      "tag": "myheroacademia",
+      "kind": "show"
+    },
+    {
+      "id": 115872,
+      "characterId": 20021,
+      "tag": "myheroacademiaedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115873,
+      "characterId": 20022,
+      "tag": "chizomeakaguro",
+      "kind": "name"
+    },
+    {
+      "id": 115874,
+      "characterId": 20022,
+      "tag": "chizomeakagurobirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115875,
+      "characterId": 20022,
+      "tag": "chizomeakaguroedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115876,
+      "characterId": 20022,
+      "tag": "chizomeakagurobirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115877,
+      "characterId": 20022,
+      "tag": "chizome",
+      "kind": "name"
+    },
+    {
+      "id": 115878,
+      "characterId": 20022,
+      "tag": "chizomeedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115879,
+      "characterId": 20022,
+      "tag": "myheroacademiaseason2",
+      "kind": "show"
+    },
+    {
+      "id": 115880,
+      "characterId": 20022,
+      "tag": "myheroacademiaseason2edit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115881,
+      "characterId": 20023,
+      "tag": "yuutakeyama",
+      "kind": "name"
+    },
+    {
+      "id": 115882,
+      "characterId": 20023,
+      "tag": "yuutakeyamabirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115883,
+      "characterId": 20023,
+      "tag": "yuutakeyamaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115884,
+      "characterId": 20023,
+      "tag": "yuutakeyamabirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115885,
+      "characterId": 20023,
+      "tag": "yuu",
+      "kind": "name"
+    },
+    {
+      "id": 115886,
+      "characterId": 20023,
+      "tag": "yuuedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115887,
+      "characterId": 20023,
+      "tag": "myheroacademia",
+      "kind": "show"
+    },
+    {
+      "id": 115888,
+      "characterId": 20023,
+      "tag": "myheroacademiaedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115889,
+      "characterId": 20024,
+      "tag": "hyoumachigiri",
+      "kind": "name"
+    },
+    {
+      "id": 115890,
+      "characterId": 20024,
+      "tag": "hyoumachigiribirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115891,
+      "characterId": 20024,
+      "tag": "hyoumachigiriedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115892,
+      "characterId": 20024,
+      "tag": "hyoumachigiribirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115893,
+      "characterId": 20024,
+      "tag": "hyouma",
+      "kind": "name"
+    },
+    {
+      "id": 115894,
+      "characterId": 20024,
+      "tag": "hyoumaedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115895,
+      "characterId": 20024,
+      "tag": "bluelock",
+      "kind": "show"
+    },
+    {
+      "id": 115896,
+      "characterId": 20024,
+      "tag": "bluelockedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115897,
+      "characterId": 20025,
+      "tag": "rensukekunigami",
+      "kind": "name"
+    },
+    {
+      "id": 115898,
+      "characterId": 20025,
+      "tag": "rensukekunigamibirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115899,
+      "characterId": 20025,
+      "tag": "rensukekunigamiedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115900,
+      "characterId": 20025,
+      "tag": "rensukekunigamibirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115901,
+      "characterId": 20025,
+      "tag": "rensuke",
+      "kind": "name"
+    },
+    {
+      "id": 115902,
+      "characterId": 20025,
+      "tag": "rensukeedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115903,
+      "characterId": 20025,
+      "tag": "bluelock",
+      "kind": "show"
+    },
+    {
+      "id": 115904,
+      "characterId": 20025,
+      "tag": "bluelockedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115905,
+      "characterId": 20026,
+      "tag": "ryuuseishidou",
+      "kind": "name"
+    },
+    {
+      "id": 115906,
+      "characterId": 20026,
+      "tag": "ryuuseishidoubirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115907,
+      "characterId": 20026,
+      "tag": "ryuuseishidouedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115908,
+      "characterId": 20026,
+      "tag": "ryuuseishidoubirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115909,
+      "characterId": 20026,
+      "tag": "ryuusei",
+      "kind": "name"
+    },
+    {
+      "id": 115910,
+      "characterId": 20026,
+      "tag": "ryuuseiedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115911,
+      "characterId": 20026,
+      "tag": "bluelock",
+      "kind": "show"
+    },
+    {
+      "id": 115912,
+      "characterId": 20026,
+      "tag": "bluelockedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115913,
+      "characterId": 20027,
+      "tag": "saeitoshi",
+      "kind": "name"
+    },
+    {
+      "id": 115914,
+      "characterId": 20027,
+      "tag": "saeitoshibirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115915,
+      "characterId": 20027,
+      "tag": "saeitoshiedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115916,
+      "characterId": 20027,
+      "tag": "saeitoshibirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115917,
+      "characterId": 20027,
+      "tag": "sae",
+      "kind": "name"
+    },
+    {
+      "id": 115918,
+      "characterId": 20027,
+      "tag": "saeedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115919,
+      "characterId": 20027,
+      "tag": "bluelock",
+      "kind": "show"
+    },
+    {
+      "id": 115920,
+      "characterId": 20027,
+      "tag": "bluelockedit",
+      "kind": "show_edit"
+    },
+    {
+      "id": 115921,
+      "characterId": 20028,
+      "tag": "jinpachiego",
+      "kind": "name"
+    },
+    {
+      "id": 115922,
+      "characterId": 20028,
+      "tag": "jinpachiegobirthday",
+      "kind": "birthday"
+    },
+    {
+      "id": 115923,
+      "characterId": 20028,
+      "tag": "jinpachiegoedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115924,
+      "characterId": 20028,
+      "tag": "jinpachiegobirthdayedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115925,
+      "characterId": 20028,
+      "tag": "jinpachi",
+      "kind": "name"
+    },
+    {
+      "id": 115926,
+      "characterId": 20028,
+      "tag": "jinpachiedit",
+      "kind": "edit"
+    },
+    {
+      "id": 115927,
+      "characterId": 20028,
+      "tag": "bluelock",
+      "kind": "show"
+    },
+    {
+      "id": 115928,
+      "characterId": 20028,
+      "tag": "bluelockedit",
       "kind": "show_edit"
     }
   ],
@@ -51447,14 +52427,24 @@
       "error": null,
       "startedAt": "2026-08-20T15:36:26.764Z",
       "finishedAt": "2026-08-20T15:36:35.043Z"
+    },
+    {
+      "id": 344,
+      "source": "checkup",
+      "status": "success",
+      "charactersUpserted": 122,
+      "showsUpserted": 0,
+      "error": null,
+      "startedAt": "2026-08-22T13:04:38.457Z",
+      "finishedAt": "2026-08-22T13:07:26.956Z"
     }
   ],
   "nextIds": {
-    "shows": 9848,
-    "characters": 20016,
-    "hashtags": 115763,
+    "shows": 9849,
+    "characters": 20029,
+    "hashtags": 115929,
     "tiktokVideos": 1,
     "moments": 9641,
-    "ingestRuns": 344
+    "ingestRuns": 345
   }
 }

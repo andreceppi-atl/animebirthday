@@ -14,8 +14,10 @@
  */
 
 import { spawnSync } from "node:child_process";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, unlinkSync } from "node:fs";
 import { resolve } from "node:path";
+import { tmpdir } from "node:os";
+import { randomBytes } from "node:crypto";
 
 function loadEnvLocal() {
   const path = resolve(process.cwd(), ".env.local");
@@ -40,23 +42,39 @@ function sendIMessage(phone, text) {
     .replace(/×/g, "x")
     .replace(/®/g, "")
     .replace(/[“”]/g, '"')
-    .replace(/[‘’]/g, "'");
-  const quoted = `"${cleaned.replace(/"/g, '""')}"`;
+    .replace(/[‘’]/g, "'")
+    .replace(/\u2014/g, "-")
+    .replace(/\u2013/g, "-");
+
+  const tmp = resolve(tmpdir(), `animebirthday-brief-${randomBytes(6).toString("hex")}.txt`);
+  writeFileSync(tmp, cleaned, "utf8");
+
+  // Read from file so quotes/newlines never break AppleScript string literals
   const script = `
+set msgPath to POSIX file "${tmp}"
+set msgText to read msgPath as «class utf8»
 tell application "Messages"
   set targetService to 1st account whose service type = iMessage
   set targetBuddy to participant "${phone}" of targetService
-  send ${quoted} to targetBuddy
+  send msgText to targetBuddy
 end tell
 `;
-  const result = spawnSync("osascript", ["-e", script], {
-    encoding: "utf8",
-    timeout: 60000,
-  });
-  if (result.status !== 0) {
-    throw new Error(
-      (result.stderr || result.stdout || "osascript failed").trim(),
-    );
+  try {
+    const result = spawnSync("osascript", ["-e", script], {
+      encoding: "utf8",
+      timeout: 60000,
+    });
+    if (result.status !== 0) {
+      throw new Error(
+        (result.stderr || result.stdout || "osascript failed").trim(),
+      );
+    }
+  } finally {
+    try {
+      unlinkSync(tmp);
+    } catch {
+      /* ignore */
+    }
   }
 }
 

@@ -191,6 +191,7 @@ export async function ingestShowRosters(options?: {
       showLimit: options?.showLimit ?? 6,
       maxNewFetches: options?.maxNewFetches ?? 18,
     });
+    mergeDuplicateWikiStubs(store);
     run.status = "success";
     run.charactersUpserted = result.charactersUpserted;
     run.finishedAt = new Date().toISOString();

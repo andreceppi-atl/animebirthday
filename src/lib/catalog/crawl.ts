@@ -4,6 +4,7 @@ import {
   type AniListCharacter,
 } from "@/lib/anilist/client";
 import { linkShowsForAniListCharacter } from "@/lib/anilist/linkShows";
+import { findWikiStubTwin } from "@/lib/catalog/refresh";
 import {
   replaceHashtags,
   upsertCharacter,
@@ -76,7 +77,16 @@ export async function upsertAniListCharacterIntoStore(
   if (linked.primary) showsTouched++;
   showsTouched += linked.crossovers.length;
 
-  const existing = store.characters.find((x) => x.anilistId === remote.id);
+  const existingById = store.characters.find((x) => x.anilistId === remote.id);
+  const stubTwin =
+    existingById ??
+    findWikiStubTwin(
+      store,
+      remote.name.full,
+      remote.dateOfBirth.month,
+      remote.dateOfBirth.day,
+    );
+  const existing = existingById ?? stubTwin;
   const slug =
     existing?.slug ??
     uniqueSlug(slugify(remote.name.full), usedSlugs, remote.id);

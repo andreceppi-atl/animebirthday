@@ -8,11 +8,13 @@ alwaysApply: false
 
 The home Anime calendar (`UpcomingExplorer`) must keep these sort modes and UI chips:
 
-- Relevance (default)
+- Relevance (default) — soonest date first, then most popular (favourites) within each day
 - Popularity
 - UGC / volume
-- Date
+- Date — chronological only
 
 Also keep type filters (Birthdays / Moments / All), demo chips, moment-kind chips, days select, search, and Export CSV.
 
 Do **not** hardcode `sort: "date"` or strip the `SORTS` chips when doing labeling, sports, or export work. Wire export/API calls through the active `sort` state instead.
+
+Do **not** change Relevance back to a composite score formula without an explicit request.

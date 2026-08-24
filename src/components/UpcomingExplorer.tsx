@@ -10,7 +10,9 @@ import { formatMomentKind } from "@/lib/utils";
 type SortMode = "date" | "popularity" | "relevance" | "ugc";
 type TypeFilter = "birthday" | "moment" | "all";
 
-/** Keep these sort chips — do not remove in labeling / export work. */
+/** Keep these sort chips — do not remove in labeling / export work.
+ *  Relevance = soonest date, then most popular within each day (default).
+ */
 const SORTS: { id: SortMode; label: string }[] = [
   { id: "relevance", label: "Relevance" },
   { id: "popularity", label: "Popularity" },
@@ -143,8 +145,8 @@ export function UpcomingExplorer({
           </h2>
           <p className="mt-1 text-sm text-[var(--muted)]">
             Birthdays first for UGC prediction — flip to Moments for fights,
-            premiere / premiere anniversary, deaths, kaiju dates. Sort by
-            relevance, popularity, UGC, or date.
+            premiere / premiere anniversary, deaths, kaiju dates. Relevance =
+            closest dates, then most popular within each day.
           </p>
         </div>
         <span className="text-xs text-[var(--muted)]">

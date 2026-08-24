@@ -285,25 +285,28 @@ export async function getUpcomingCharacters(
   }
 
   items.sort((a, b) => {
-    // Soft birthday priority when mixed "all" + relevance: tiny boost
-    if (sort === "relevance" && type === "all" && a.feedKind !== b.feedKind) {
-      const boost = (x: UpcomingItem) =>
-        x.relevance + (x.feedKind === "birthday" ? 4 : 0);
-      return boost(b) - boost(a);
+    // Relevance (default): soonest first, then most popular within each day
+    if (sort === "relevance") {
+      if (a.daysUntil !== b.daysUntil) return a.daysUntil - b.daysUntil;
+      // Soft birthday priority when mixed "all" feed on the same day
+      if (type === "all" && a.feedKind !== b.feedKind) {
+        if (a.feedKind === "birthday") return -1;
+        if (b.feedKind === "birthday") return 1;
+      }
+      return b.favourites - a.favourites;
     }
     // Popularity descending (favourites), then sooner dates
     if (sort === "popularity") {
       if (b.favourites !== a.favourites) return b.favourites - a.favourites;
       return a.daysUntil - b.daysUntil;
     }
-    if (sort === "relevance") return b.relevance - a.relevance;
     if (sort === "ugc") {
       if (b.ugcScore !== a.ugcScore) return b.ugcScore - a.ugcScore;
       return a.daysUntil - b.daysUntil;
     }
-    // Date · Popularity: chronological upcoming, favourites descending within day
+    // Date: chronological upcoming only
     if (a.daysUntil !== b.daysUntil) return a.daysUntil - b.daysUntil;
-    return b.favourites - a.favourites;
+    return a.nameFull.localeCompare(b.nameFull);
   });
 
   return items.slice(0, limit);

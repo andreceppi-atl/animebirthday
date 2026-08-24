@@ -1,4 +1,8 @@
-import { hashtagSlug } from "@/lib/utils";
+import {
+  animeCalendarTypeLabel,
+  hashtagSlug,
+  premiereTimingBadge,
+} from "@/lib/utils";
 import { tiktokTagUrl } from "@/lib/tiktok/hashtags";
 import type { CharacterWithShow } from "@/lib/types";
 import type { UpcomingItem } from "@/lib/queries";
@@ -12,6 +16,10 @@ export type ExportRow = {
   hashtag: string;
   date: string;
   favourites: number;
+  type: string;
+  premiereTiming: string;
+  daysUntil: number;
+  suggestedAngle: string;
 };
 
 /** Strip AniList spoiler/markdown noise for spreadsheet cells. */
@@ -44,6 +52,10 @@ export function rowsToCsv(rows: ExportRow[]): string {
     "Hashtag",
     "Date",
     "Favourites",
+    "Type",
+    "Premiere timing",
+    "Days until",
+    "Suggested angle",
   ];
   const lines = [
     header.join(","),
@@ -57,6 +69,10 @@ export function rowsToCsv(rows: ExportRow[]): string {
         r.hashtag,
         r.date,
         r.favourites,
+        r.type,
+        r.premiereTiming,
+        r.daysUntil,
+        r.suggestedAngle,
       ]
         .map(csvCell)
         .join(","),
@@ -79,6 +95,42 @@ function primaryTag(
   return "";
 }
 
+function itemTypeLabel(item: UpcomingItem): string {
+  return animeCalendarTypeLabel(item.feedKind, item.momentKind, {
+    year: item.year,
+    nextDate: item.nextDate,
+  });
+}
+
+function itemPremiereTiming(item: UpcomingItem): string {
+  if (item.feedKind !== "moment") return "";
+  return (
+    premiereTimingBadge({
+      momentKind: item.momentKind,
+      year: item.year,
+      nextDate: item.nextDate,
+    }) ?? ""
+  );
+}
+
+function suggestedAngle(item: UpcomingItem): string {
+  if (item.feedKind === "birthday") {
+    return `Birthday UGC day-of / ±1d · lean into ${item.show?.titleEnglish || item.show?.titleRomaji || "franchise"} nostalgia + trend sound`;
+  }
+  const timing = premiereTimingBadge({
+    momentKind: item.momentKind,
+    year: item.year,
+    nextDate: item.nextDate,
+  });
+  if (timing?.startsWith("Actual")) {
+    return `First-airing / premiere window · announce + react edits, not anniversary framing`;
+  }
+  if (timing) {
+    return `Premiere anniversary · throwback edits, not "new episode" language`;
+  }
+  return `Moment play · tie franchise + date into short-form hook`;
+}
+
 /**
  * Build spreadsheet rows from the current upcoming list order.
  * Prefer a saved TikTok video URL; otherwise link the primary hashtag.
@@ -89,6 +141,9 @@ export function buildExportRows(
 ): ExportRow[] {
   return items.map((item, index) => {
     const date = `${String(item.birthMonth).padStart(2, "0")}-${String(item.birthDay).padStart(2, "0")}`;
+    const type = itemTypeLabel(item);
+    const premiereTiming = itemPremiereTiming(item);
+    const angle = suggestedAngle(item);
 
     if (item.feedKind === "moment") {
       const tag =
@@ -103,6 +158,10 @@ export function buildExportRows(
         hashtag: tag ? `#${tag}` : "",
         date,
         favourites: item.favourites,
+        type,
+        premiereTiming,
+        daysUntil: item.daysUntil,
+        suggestedAngle: angle,
       };
     }
 
@@ -131,6 +190,10 @@ export function buildExportRows(
       hashtag: tag ? `#${tag}` : "",
       date,
       favourites: item.favourites,
+      type,
+      premiereTiming,
+      daysUntil: item.daysUntil,
+      suggestedAngle: angle,
     };
   });
 }

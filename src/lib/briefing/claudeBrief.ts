@@ -31,14 +31,9 @@ export function formatMonthSummary(digest: MonthDigest): string {
 
   const biggest = birthdays.slice(0, 5);
   const biggestKeys = new Set(biggest.map((b) => `${b.name}|${b.date}`));
-  const nextUp = soonest
+  const nextLines = soonest
     .filter((b) => !biggestKeys.has(`${b.name}|${b.date}`))
     .slice(0, 4);
-  // If nextUp is thin (overlap with biggest), still show soonest top 3 as Next up
-  const nextLines =
-    nextUp.length > 0
-      ? nextUp
-      : soonest.slice(0, Math.min(3, soonest.length));
 
   const momentHits = [...digest.moments]
     .sort((a, b) => a.daysUntil - b.daysUntil)

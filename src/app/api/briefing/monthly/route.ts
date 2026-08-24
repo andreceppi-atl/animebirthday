@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
 import { buildMonthDigest } from "@/lib/briefing/monthDigest";
-import {
-  fallbackBriefFromDigest,
-  writeMonthlyBrief,
-} from "@/lib/briefing/claudeBrief";
+import { writeMonthlyBrief } from "@/lib/briefing/claudeBrief";
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 120;
+export const maxDuration = 60;
 
 function authorized(request: Request): boolean {
   const secret = process.env.CRON_SECRET;
@@ -19,8 +16,6 @@ function authorized(request: Request): boolean {
 function isDryRun(request: Request): boolean {
   const { searchParams } = new URL(request.url);
   const raw = searchParams.get("dryRun") ?? searchParams.get("dryrun");
-  // Default dry for GET without flag? No — cron wants full generate.
-  // dryRun only skips nothing now (no Twilio); kept for API compatibility.
   return raw === "1" || raw === "true";
 }
 
@@ -33,41 +28,17 @@ async function handle(request: Request) {
 
   try {
     const digest = await buildMonthDigest();
-
-    let brief: string;
-    let briefSource: "claude" | "fallback" = "claude";
-    let aiSkipped: string | null = null;
-
-    try {
-      brief = await writeMonthlyBrief(digest);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      if (dryRun) {
-        brief = fallbackBriefFromDigest(digest);
-        briefSource = "fallback";
-        aiSkipped = message;
-      } else {
-        return NextResponse.json(
-          {
-            ok: false,
-            error: "Claude briefing unavailable",
-            detail: message,
-          },
-          { status: 503 },
-        );
-      }
-    }
+    const brief = await writeMonthlyBrief(digest);
 
     return NextResponse.json({
       ok: true,
       dryRun,
-      briefSource,
-      aiSkipped,
+      briefSource: "summary",
       digest,
       brief,
       briefChars: brief.length,
       delivery:
-        "iMessage via mule LaunchAgent (scripts/send-briefing-imessage.mjs) — not Twilio",
+        "iMessage via mule LaunchAgent (scripts/send-briefing-imessage.mjs)",
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);

@@ -43,7 +43,7 @@ export async function GET(request: Request) {
   const days = Number(searchParams.get("days") ?? "60");
   const limit = Math.min(Number(searchParams.get("limit") ?? "500"), 1000);
   const q = searchParams.get("q") ?? undefined;
-  const sort = (searchParams.get("sort") as SortMode | null) ?? "date";
+  const sort = (searchParams.get("sort") as SortMode | null) ?? "relevance";
   const type = (searchParams.get("type") as TypeFilter | null) ?? "birthday";
   const demo = searchParams.get("demo") ?? undefined;
   const momentKind =

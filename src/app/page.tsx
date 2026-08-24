@@ -39,7 +39,8 @@ function itemKindLabel(item: UpcomingItem) {
 export default async function HomePage({ searchParams }: Props) {
   const params = await searchParams;
   const days = Number(params.days ?? "60");
-  const sort = "date" as const;
+  const sort =
+    (params.sort as "date" | "popularity" | "relevance" | "ugc") || "relevance";
   const type = (params.type as "birthday" | "moment" | "all") || "birthday";
   const momentKind = (params.momentKind as MomentKind | undefined) || undefined;
 

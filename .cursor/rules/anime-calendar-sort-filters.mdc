@@ -1,0 +1,18 @@
+---
+description: Keep anime calendar sort filters (relevance/popularity/UGC/date) intact
+globs: src/components/UpcomingExplorer.tsx,src/app/page.tsx,src/app/api/upcoming/route.ts,src/lib/queries.ts
+alwaysApply: false
+---
+
+# Anime calendar sort filters — do not remove
+
+The home Anime calendar (`UpcomingExplorer`) must keep these sort modes and UI chips:
+
+- Relevance (default)
+- Popularity
+- UGC / volume
+- Date
+
+Also keep type filters (Birthdays / Moments / All), demo chips, moment-kind chips, days select, search, and Export CSV.
+
+Do **not** hardcode `sort: "date"` or strip the `SORTS` chips when doing labeling, sports, or export work. Wire export/API calls through the active `sort` state instead.

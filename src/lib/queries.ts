@@ -220,7 +220,7 @@ export async function getUpcomingCharacters(
 ): Promise<UpcomingItem[]> {
   const days = options?.days ?? 60;
   const limit = options?.limit ?? 80;
-  const sort: SortMode = options?.sort ?? "date";
+  const sort: SortMode = options?.sort ?? "relevance";
   const q = options?.q?.trim().toLowerCase() ?? "";
   const demo = options?.demo?.trim().toLowerCase() ?? "";
   const minFavourites = options?.minFavourites ?? 0;

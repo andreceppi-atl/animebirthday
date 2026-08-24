@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CharacterRecord, MomentRecord, ShowRecord } from "@/lib/types";
-import { formatMomentKind } from "@/lib/utils";
+import { animeCalendarTypeLabel } from "@/lib/utils";
 
 type DayBucket = {
   characters: Array<CharacterRecord & { show: ShowRecord | null }>;
@@ -114,7 +114,10 @@ export function BirthdayCalendar({
                     {topMoment.title}
                   </p>
                   <p className="mt-0.5 text-[9px] uppercase tracking-wide text-[var(--muted)]">
-                    {formatMomentKind(topMoment.kind)}
+                    {animeCalendarTypeLabel("moment", topMoment.kind, {
+                      year: topMoment.year,
+                      nextDate: new Date(year, month - 1, cell.day),
+                    })}
                   </p>
                 </Link>
               )}

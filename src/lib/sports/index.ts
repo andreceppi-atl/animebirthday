@@ -6,7 +6,7 @@ export type {
   UpcomingSportsEvent,
 } from "./types";
 export { SPORTS } from "./types";
-export { loadSportsEventsSeed, sportLabel } from "./load";
+export { loadSportsEventsSeed, sportLabel, sportsEventLabel } from "./load";
 export {
   getUpcomingSportsEvents,
   nextSportsEventDate,

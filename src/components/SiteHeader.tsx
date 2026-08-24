@@ -14,13 +14,13 @@ export function SiteHeader() {
         </Link>
         <nav className="flex gap-5 text-sm text-[var(--muted)]">
           <Link href="/" className="hover:text-[var(--accent)]">
-            Upcoming
+            Anime calendar
           </Link>
           <Link href="/calendar" className="hover:text-[var(--accent)]">
-            Calendar
+            Month
           </Link>
           <Link href="/sports" className="hover:text-[var(--accent)]">
-            Sports
+            Sports calendar
           </Link>
         </nav>
       </div>

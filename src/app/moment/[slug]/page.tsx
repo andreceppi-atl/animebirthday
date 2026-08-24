@@ -5,8 +5,9 @@ import { getMomentBySlug } from "@/lib/queries";
 import {
   daysUntilBirthday,
   formatBirthday,
-  formatMomentKind,
+  animeCalendarTypeLabel,
   nextBirthdayDate,
+  premiereTimingBadge,
 } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +22,15 @@ export default async function MomentPage({ params }: Props) {
   const daysUntil = daysUntilBirthday(moment.month, moment.day);
   const nextDate = nextBirthdayDate(moment.month, moment.day);
   const query = moment.franchise || moment.title;
+  const typeLabel = animeCalendarTypeLabel("moment", moment.kind, {
+    year: moment.year,
+    nextDate,
+  });
+  const premiereBadge = premiereTimingBadge({
+    momentKind: moment.kind,
+    year: moment.year,
+    nextDate,
+  });
 
   return (
     <div className="mx-auto max-w-5xl px-5 pb-20 pt-10 sm:px-8">
@@ -34,11 +44,16 @@ export default async function MomentPage({ params }: Props) {
       <section className="relative mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
         <div className="animate-fade-up space-y-5">
           <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent-soft)]">
-            {formatMomentKind(moment.kind)}
+            {typeLabel}
             {daysUntil === 0
               ? " · today"
               : ` · in ${daysUntil} day${daysUntil === 1 ? "" : "s"}`}
           </p>
+          {premiereBadge ? (
+            <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--muted)]">
+              {premiereBadge}
+            </p>
+          ) : null}
           <h1 className="font-[family-name:var(--font-display)] text-5xl leading-none tracking-tight text-[var(--ink)] sm:text-6xl">
             {moment.title}
           </h1>
@@ -84,7 +99,7 @@ export default async function MomentPage({ params }: Props) {
           ) : (
             <div className="flex h-full flex-col items-center justify-center gap-2 p-6 text-center text-[var(--muted)]">
               <span className="text-xs uppercase tracking-[0.2em]">
-                {formatMomentKind(moment.kind)}
+                {typeLabel}
               </span>
               <span className="font-[family-name:var(--font-display)] text-2xl text-[var(--ink)]">
                 {moment.franchise || "JP media"}

@@ -99,12 +99,91 @@ export function formatMomentKind(kind: string | null | undefined): string {
   const labels: Record<import("@/lib/types").MomentKind, string> = {
     combat: "Combat",
     death: "Death",
-    release: "Release anniversary",
-    release_anniversary: "Release anniversary",
+    release: "Premiere anniversary",
+    release_anniversary: "Premiere anniversary",
     anniversary: "Anniversary",
     cultural: "Cultural",
     kaiju: "Kaiju",
     other: "Other",
   };
   return labels[normalizeMomentKind(kind)];
+}
+
+/**
+ * True when this release moment is the first airing / premiere itself
+ * (original year matches the upcoming occurrence year), not a later anniversary.
+ */
+export function isActualPremiere(options: {
+  momentKind?: string | null;
+  year?: number | null;
+  nextDate?: string | Date | null;
+  from?: Date;
+}): boolean {
+  const kind = normalizeMomentKind(options.momentKind);
+  if (kind !== "release_anniversary") return false;
+  if (options.year == null || !Number.isFinite(options.year)) return false;
+
+  let occurrenceYear: number;
+  if (options.nextDate) {
+    const next = new Date(options.nextDate);
+    if (Number.isNaN(next.getTime())) return false;
+    occurrenceYear = next.getFullYear();
+  } else {
+    occurrenceYear = (options.from ?? new Date()).getFullYear();
+  }
+  return options.year === occurrenceYear;
+}
+
+export function isReleaseMomentKind(kind?: string | null): boolean {
+  const raw = (kind ?? "").toLowerCase();
+  return (
+    raw === "release" ||
+    raw === "release_anniversary" ||
+    normalizeMomentKind(kind) === "release_anniversary"
+  );
+}
+
+/** Anime calendar row tag: Anime - Birthday | Anime - Premiere | Anime - Premiere anniversary | … */
+export function animeCalendarTypeLabel(
+  feedKind: "birthday" | "moment",
+  momentKind?: string | null,
+  options?: {
+    year?: number | null;
+    nextDate?: string | Date | null;
+  },
+): string {
+  if (feedKind === "birthday") return "Anime - Birthday";
+  if (isReleaseMomentKind(momentKind)) {
+    return isActualPremiere({
+      momentKind,
+      year: options?.year,
+      nextDate: options?.nextDate,
+    })
+      ? "Anime - Premiere"
+      : "Anime - Premiere anniversary";
+  }
+  return `Anime - ${formatMomentKind(momentKind)}`;
+}
+
+/** Short badge copy for sports overlap / detail — premiere vs anniversary. */
+export function premiereTimingBadge(options: {
+  momentKind?: string | null;
+  year?: number | null;
+  nextDate?: string | Date | null;
+}): string | null {
+  if (!isReleaseMomentKind(options.momentKind)) return null;
+  if (
+    isActualPremiere({
+      momentKind: options.momentKind,
+      year: options.year,
+      nextDate: options.nextDate,
+    })
+  ) {
+    return options.year != null
+      ? `Actual premiere · first airing ${options.year}`
+      : "Actual premiere · first airing";
+  }
+  return options.year != null
+    ? `Premiere anniversary · originally ${options.year}`
+    : "Premiere anniversary · not a first airing";
 }

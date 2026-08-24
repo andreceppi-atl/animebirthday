@@ -58,6 +58,7 @@ export type SportsAnimeOverlap = {
     relevance: number;
     momentKind?: string;
     franchise?: string | null;
+    year?: number | null;
     show: {
       titleEnglish: string | null;
       titleRomaji: string;

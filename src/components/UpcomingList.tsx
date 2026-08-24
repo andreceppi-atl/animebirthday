@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatBirthday, formatMomentKind } from "@/lib/utils";
+import { animeCalendarTypeLabel, formatBirthday } from "@/lib/utils";
 import type { FeedKind, MomentKind } from "@/lib/types";
 
 export type UpcomingItem = {
@@ -12,6 +12,7 @@ export type UpcomingItem = {
   birthDay: number;
   favourites: number;
   daysUntil: number;
+  nextDate?: string;
   ugcScore?: number;
   ugcEstimated?: boolean;
   relevance?: number;
@@ -74,9 +75,10 @@ export function UpcomingList({ items }: { items: UpcomingItem[] }) {
                 />
               ) : (
                 <div className="flex h-full items-center justify-center px-1 text-center text-[10px] uppercase tracking-wide text-[var(--muted)]">
-                  {item.feedKind === "moment"
-                    ? formatMomentKind(item.momentKind)
-                    : "N/A"}
+                  {animeCalendarTypeLabel(item.feedKind, item.momentKind, {
+                    year: item.year,
+                    nextDate: item.nextDate,
+                  })}
                 </div>
               )}
             </div>
@@ -89,9 +91,10 @@ export function UpcomingList({ items }: { items: UpcomingItem[] }) {
                       : "text-[var(--accent-soft)]"
                   }`}
                 >
-                  {item.feedKind === "birthday"
-                    ? "Birthday"
-                    : formatMomentKind(item.momentKind)}
+                  {animeCalendarTypeLabel(item.feedKind, item.momentKind, {
+                    year: item.year,
+                    nextDate: item.nextDate,
+                  })}
                 </span>
                 <h3 className="font-[family-name:var(--font-display)] text-xl tracking-tight text-[var(--ink)] sm:text-2xl">
                   {item.nameFull}

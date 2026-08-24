@@ -202,6 +202,7 @@ export async function getSportsAnimeOverlaps(options?: {
           relevance: item.relevance,
           momentKind: item.momentKind,
           franchise: item.franchise,
+          year: item.year ?? null,
           show: item.show,
         },
         overlapScore,

@@ -7,15 +7,7 @@ import { UpcomingList, type UpcomingItem } from "@/components/UpcomingList";
 import type { MomentKind } from "@/lib/types";
 import { formatMomentKind } from "@/lib/utils";
 
-type SortMode = "date" | "popularity" | "relevance" | "ugc";
 type TypeFilter = "birthday" | "moment" | "all";
-
-const SORTS: { id: SortMode; label: string }[] = [
-  { id: "relevance", label: "Relevance" },
-  { id: "popularity", label: "Popularity" },
-  { id: "ugc", label: "UGC / volume" },
-  { id: "date", label: "Date" },
-];
 
 const TYPES: { id: TypeFilter; label: string }[] = [
   { id: "birthday", label: "Birthdays" },
@@ -27,7 +19,7 @@ const MOMENT_KINDS: { id: MomentKind | ""; label: string }[] = [
   { id: "", label: "All kinds" },
   { id: "combat", label: "Combat" },
   { id: "death", label: "Death" },
-  { id: "release_anniversary", label: "Release anniversary" },
+  { id: "release_anniversary", label: "Premiere / anniversary" },
   { id: "kaiju", label: "Kaiju" },
   { id: "anniversary", label: "Anniversary" },
   { id: "cultural", label: "Cultural" },
@@ -47,9 +39,6 @@ export function UpcomingExplorer({
   const [pending, startTransition] = useTransition();
   const [items, setItems] = useState(initialItems);
   const [q, setQ] = useState(searchParams.get("q") ?? "");
-  const [sort, setSort] = useState<SortMode>(
-    (searchParams.get("sort") as SortMode) || "relevance",
-  );
   const [type, setType] = useState<TypeFilter>(
     (searchParams.get("type") as TypeFilter) || "birthday",
   );
@@ -61,9 +50,21 @@ export function UpcomingExplorer({
     Number(searchParams.get("days") ?? initialDays),
   );
 
+  function exportCsv() {
+    const params = new URLSearchParams({
+      days: String(days),
+      limit: "500",
+      sort: "date",
+      type,
+    });
+    if (q) params.set("q", q);
+    if (demo) params.set("demo", demo);
+    if (momentKind) params.set("momentKind", momentKind);
+    window.location.href = `/api/export/upcoming?${params}`;
+  }
+
   function syncUrl(next: {
     q?: string;
-    sort?: SortMode;
     type?: TypeFilter;
     momentKind?: MomentKind | "";
     demo?: string;
@@ -71,13 +72,11 @@ export function UpcomingExplorer({
   }) {
     const params = new URLSearchParams();
     const qq = next.q ?? q;
-    const ss = next.sort ?? sort;
     const tt = next.type ?? type;
     const mk = next.momentKind ?? momentKind;
     const dd = next.demo ?? demo;
     const dy = next.days ?? days;
     if (qq) params.set("q", qq);
-    if (ss && ss !== "relevance") params.set("sort", ss);
     if (tt && tt !== "birthday") params.set("type", tt);
     if (mk) params.set("momentKind", mk);
     if (dd) params.set("demo", dd);
@@ -88,14 +87,12 @@ export function UpcomingExplorer({
 
   function fetchList(opts?: {
     q?: string;
-    sort?: SortMode;
     type?: TypeFilter;
     momentKind?: MomentKind | "";
     demo?: string;
     days?: number;
   }) {
     const qq = opts?.q ?? q;
-    const ss = opts?.sort ?? sort;
     const tt = opts?.type ?? type;
     const mk = opts?.momentKind ?? momentKind;
     const dd = opts?.demo ?? demo;
@@ -104,7 +101,7 @@ export function UpcomingExplorer({
       const params = new URLSearchParams({
         days: String(dy),
         limit: "100",
-        sort: ss,
+        sort: "date",
         type: tt,
       });
       if (qq) params.set("q", qq);
@@ -125,11 +122,12 @@ export function UpcomingExplorer({
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 className="font-[family-name:var(--font-display)] text-3xl tracking-tight text-[var(--ink)]">
-            Upcoming · {days} days
+            Anime calendar · {days} days
           </h2>
           <p className="mt-1 text-sm text-[var(--muted)]">
             Birthdays first for UGC prediction — flip to Moments for fights,
-            release anniversaries, deaths, kaiju dates.
+            release anniversaries, deaths, kaiju dates. Always sorted by date,
+            then popularity.
           </p>
         </div>
         <span className="text-xs text-[var(--muted)]">
@@ -177,25 +175,6 @@ export function UpcomingExplorer({
               }`}
             >
               {t.label}
-            </button>
-          ))}
-          <span className="mx-1 hidden text-[var(--line)] sm:inline">|</span>
-          {SORTS.map((s) => (
-            <button
-              key={s.id}
-              type="button"
-              onClick={() => {
-                setSort(s.id);
-                syncUrl({ sort: s.id });
-                fetchList({ sort: s.id });
-              }}
-              className={`px-3 py-1.5 text-xs uppercase tracking-wider transition ${
-                sort === s.id
-                  ? "bg-[var(--ink)] text-[var(--bg)]"
-                  : "border border-[var(--line)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--ink)]"
-              }`}
-            >
-              {s.label}
             </button>
           ))}
           {type === "birthday" && (
@@ -259,14 +238,22 @@ export function UpcomingExplorer({
             <option value={30}>30 days</option>
             <option value={60}>60 days</option>
           </select>
+          <button
+            type="button"
+            onClick={exportCsv}
+            className="border border-[var(--line)] px-3 py-1.5 text-xs uppercase tracking-wider text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--ink)]"
+            title="Download CSV in current sort order"
+          >
+            Export CSV
+          </button>
         </div>
       </form>
 
       <UpcomingList items={items} />
 
       <p className="mt-6 text-xs text-[var(--muted)]">
-        Birthdays stay the default UGC calendar. Moments cover combat peaks,
-        deaths, release anniversaries, and kaiju/cultural dates.{" "}
+        Sorted by date, then popularity within each day. Export CSV matches the
+        filters above (name, anime, description, UGC or hashtag link).{" "}
         <Link href="/calendar" className="text-[var(--accent)] hover:underline">
           Open calendar
         </Link>

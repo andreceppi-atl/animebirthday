@@ -89,3 +89,14 @@ export function sportLabel(sport: Sport): string {
       return "Other";
   }
 }
+
+/** Sports calendar row tag: Sports - MLB - Opening Day */
+export function sportsEventLabel(event: {
+  title: string;
+  sport: Sport;
+  league?: string | null;
+}): string {
+  const league = (event.league || sportLabel(event.sport)).trim() || "Sports";
+  const activity = event.title.trim() || "Event";
+  return `Sports - ${league} - ${activity}`;
+}

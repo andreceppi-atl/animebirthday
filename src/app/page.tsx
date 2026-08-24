@@ -8,7 +8,7 @@ import {
   type UpcomingItem,
 } from "@/lib/queries";
 import type { MomentKind } from "@/lib/types";
-import { formatBirthday, formatMomentKind } from "@/lib/utils";
+import { formatBirthday, animeCalendarTypeLabel } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -30,19 +30,16 @@ function itemHref(item: UpcomingItem) {
 }
 
 function itemKindLabel(item: UpcomingItem) {
-  if (item.feedKind === "moment") {
-    return item.momentKind
-      ? `Moment · ${formatMomentKind(item.momentKind)}`
-      : "Moment";
-  }
-  return "Birthday";
+  return animeCalendarTypeLabel(item.feedKind, item.momentKind, {
+    year: item.year,
+    nextDate: item.nextDate,
+  });
 }
 
 export default async function HomePage({ searchParams }: Props) {
   const params = await searchParams;
   const days = Number(params.days ?? "60");
-  const sort =
-    (params.sort as "date" | "popularity" | "relevance" | "ugc") || "relevance";
+  const sort = "date" as const;
   const type = (params.type as "birthday" | "moment" | "all") || "birthday";
   const momentKind = (params.momentKind as MomentKind | undefined) || undefined;
 

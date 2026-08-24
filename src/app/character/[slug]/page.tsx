@@ -37,8 +37,8 @@ export default async function CharacterPage({ params }: Props) {
         <div className="animate-fade-up space-y-5">
           <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
             {daysUntil === 0
-              ? "Birthday today"
-              : `Birthday in ${daysUntil} day${daysUntil === 1 ? "" : "s"}`}
+              ? "Anime - Birthday · today"
+              : `Anime - Birthday · in ${daysUntil} day${daysUntil === 1 ? "" : "s"}`}
           </p>
           <h1 className="font-[family-name:var(--font-display)] text-5xl leading-none tracking-tight text-[var(--ink)] sm:text-6xl">
             {character.nameFull}

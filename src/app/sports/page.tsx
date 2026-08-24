@@ -2,13 +2,18 @@ import Link from "next/link";
 import {
   getSportsAnimeOverlaps,
   sportLabel,
+  sportsEventLabel,
   SPORTS,
   type Sport,
   type SportsAnimeOverlap,
   type UpcomingSportsEvent,
 } from "@/lib/sports";
-import { formatBirthday, formatMomentKind } from "@/lib/utils";
-import type { MomentKind } from "@/lib/types";
+import {
+  animeCalendarTypeLabel,
+  formatBirthday,
+  isActualPremiere,
+  premiereTimingBadge,
+} from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -29,15 +34,6 @@ function itemHref(item: SportsAnimeOverlap["animeItem"]) {
   return item.feedKind === "moment"
     ? `/moment/${item.slug}`
     : `/character/${item.slug}`;
-}
-
-function itemKindLabel(item: SportsAnimeOverlap["animeItem"]) {
-  if (item.feedKind === "moment") {
-    return item.momentKind
-      ? `Moment · ${formatMomentKind(item.momentKind as MomentKind)}`
-      : "Moment";
-  }
-  return "Birthday";
 }
 
 function daysLabel(daysUntil: number) {
@@ -101,26 +97,22 @@ function SportChips({
 
 function SportsHeatRow({ event }: { event: UpcomingSportsEvent }) {
   return (
-    <li className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-[var(--line)]/60 py-3 last:border-0">
-      <span className="w-16 shrink-0 text-[11px] uppercase tracking-wider text-[var(--accent)]">
-        {sportLabel(event.sport)}
-      </span>
-      <span className="font-[family-name:var(--font-display)] text-lg text-[var(--ink)]">
-        {event.title}
-      </span>
-      <span className="text-sm text-[var(--muted)]">
-        {event.dateLabel}
-        {" · "}
-        {daysLabel(event.daysUntil)}
-        {" · heat "}
-        {event.significance}
-      </span>
-      {event.league ? (
-        <span className="text-[11px] uppercase tracking-wider text-[var(--muted)]">
-          {event.league}
-          {event.team ? ` · ${event.team}` : ""}
+    <li className="border-b border-[var(--line)]/60 py-3 last:border-0">
+      <p className="text-[10px] uppercase tracking-wider text-[var(--accent)]">
+        {sportsEventLabel(event)}
+      </p>
+      <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span className="font-[family-name:var(--font-display)] text-lg text-[var(--ink)]">
+          {event.title}
         </span>
-      ) : null}
+        <span className="text-sm text-[var(--muted)]">
+          {event.dateLabel}
+          {" · "}
+          {daysLabel(event.daysUntil)}
+          {" · heat "}
+          {event.significance}
+        </span>
+      </div>
     </li>
   );
 }
@@ -128,15 +120,33 @@ function SportsHeatRow({ event }: { event: UpcomingSportsEvent }) {
 function OverlapRow({ overlap }: { overlap: SportsAnimeOverlap }) {
   const { sportsEvent: event, animeItem: item, proximityMatches, hasProximity } =
     overlap;
+  const animeType = animeCalendarTypeLabel(item.feedKind, item.momentKind, {
+    year: item.year,
+    nextDate: item.nextDate,
+  });
+  const premiereBadge = premiereTimingBadge({
+    momentKind: item.momentKind,
+    year: item.year,
+    nextDate: item.nextDate,
+  });
+  const isActual = isActualPremiere({
+    momentKind: item.momentKind,
+    year: item.year,
+    nextDate: item.nextDate,
+  });
   return (
     <li
       className={`border-b border-[var(--line)]/60 py-5 last:border-0 ${
-        hasProximity ? "pl-3 border-l-2 border-l-[var(--accent)]" : ""
+        hasProximity ? "border-l-2 border-l-[var(--accent)] pl-3" : ""
       }`}
     >
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span className="text-[11px] uppercase tracking-wider text-[var(--accent)]">
-          {sportLabel(event.sport)} × {itemKindLabel(item)}
+          {sportsEventLabel(event)}
+        </span>
+        <span className="text-[11px] text-[var(--muted)]">×</span>
+        <span className="text-[11px] uppercase tracking-wider text-[var(--accent-soft)]">
+          {animeType}
         </span>
         <span className="text-sm text-[var(--muted)]">
           {formatBirthday(event.month, event.day)} · {daysLabel(event.daysUntil)}
@@ -148,10 +158,20 @@ function OverlapRow({ overlap }: { overlap: SportsAnimeOverlap }) {
         ) : null}
       </div>
 
+      {premiereBadge ? (
+        <p
+          className={`mt-2 text-[11px] font-medium uppercase tracking-[0.14em] ${
+            isActual ? "text-[var(--accent)]" : "text-[var(--muted)]"
+          }`}
+        >
+          {premiereBadge}
+        </p>
+      ) : null}
+
       <div className="mt-2 grid gap-3 sm:grid-cols-2">
         <div>
           <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">
-            Sports heat
+            Sports calendar
           </p>
           <p className="mt-1 font-[family-name:var(--font-display)] text-xl text-[var(--ink)]">
             {event.title}
@@ -164,11 +184,13 @@ function OverlapRow({ overlap }: { overlap: SportsAnimeOverlap }) {
           </p>
           <Link
             href={itemHref(item)}
-            className="group mt-1 block font-[family-name:var(--font-display)] text-xl text-[var(--ink)] transition group-hover:text-[var(--accent)] hover:text-[var(--accent)]"
+            className="mt-1 block font-[family-name:var(--font-display)] text-xl text-[var(--ink)] transition hover:text-[var(--accent)]"
           >
             {item.nameFull}
           </Link>
           <p className="mt-1 text-sm text-[var(--muted)]">
+            {animeType}
+            {" · "}
             {item.show
               ? item.show.titleEnglish || item.show.titleRomaji
               : item.franchise || "—"}
@@ -176,6 +198,21 @@ function OverlapRow({ overlap }: { overlap: SportsAnimeOverlap }) {
               ? ` · ${item.favourites.toLocaleString()} favs`
               : ""}
           </p>
+          {premiereBadge ? (
+            <p
+              className={`mt-2 border-l-2 pl-2 text-xs leading-snug ${
+                isActual
+                  ? "border-[var(--accent)] text-[var(--ink)]"
+                  : "border-[var(--line)] text-[var(--muted)]"
+              }`}
+            >
+              {isActual
+                ? "This is the first airing / theatrical premiere — not an anniversary replay."
+                : item.year != null
+                  ? `Anniversary of the original premiere (${item.year}) — not a new first airing.`
+                  : "Anniversary of an earlier premiere — not a new first airing."}
+            </p>
+          ) : null}
         </div>
       </div>
 
@@ -216,15 +253,16 @@ export default async function SportsPage({ searchParams }: Props) {
         />
         <div className="relative max-w-2xl animate-fade-up space-y-5 pt-4 sm:pt-8">
           <p className="animate-pulse-soft text-xs uppercase tracking-[0.25em] text-[var(--accent)]">
-            AnimeBirthday
+            Sports calendar
           </p>
           <h1 className="font-[family-name:var(--font-display)] text-4xl leading-[0.95] tracking-tight text-[var(--ink)] sm:text-5xl md:text-6xl">
-            Sports overlap
+            Sports calendar
           </h1>
           <p className="max-w-lg text-base text-[var(--muted)] sm:text-lg">
-            Ride sports social spikes with the anime birthday and moment
-            calendar — MLB-first after recent heat, plus peer-culture events,
-            with franchise proximity called out.
+            High-heat sports dates as Sports - League - Activity, lined up with
+            Anime - Birthday / Combat / Premiere / Premiere anniversary. On
+            overlaps, premiere rows say whether it is a first airing or an
+            anniversary of an earlier premiere.
           </p>
         </div>
       </section>
@@ -238,7 +276,7 @@ export default async function SportsPage({ searchParams }: Props) {
 
       <section className="mb-14 animate-fade-up">
         <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
-          Upcoming sports heat
+          Upcoming · Sports - League - Activity
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl text-[var(--ink)] sm:text-3xl">
           High-signal dates ahead
@@ -267,7 +305,7 @@ export default async function SportsPage({ searchParams }: Props) {
           Same-day overlap
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl text-[var(--ink)] sm:text-3xl">
-          Anime calendar × sports
+          Sports calendar × Anime calendar
         </h2>
         <p className="mt-2 max-w-xl text-sm text-[var(--muted)]">
           Shared calendar days in the next {days} days. Left-accent rows are
@@ -308,8 +346,8 @@ export default async function SportsPage({ searchParams }: Props) {
 
         {overlaps.length === 0 ? (
           <p className="mt-6 text-sm text-[var(--muted)]">
-            No same-day anime overlaps in this window. Check Upcoming or widen
-            the filter.
+            No same-day anime overlaps in this window. Check Anime calendar or
+            widen the filter.
           </p>
         ) : null}
       </section>

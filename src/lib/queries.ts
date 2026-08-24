@@ -220,7 +220,7 @@ export async function getUpcomingCharacters(
 ): Promise<UpcomingItem[]> {
   const days = options?.days ?? 60;
   const limit = options?.limit ?? 80;
-  const sort: SortMode = options?.sort ?? "relevance";
+  const sort: SortMode = options?.sort ?? "date";
   const q = options?.q?.trim().toLowerCase() ?? "";
   const demo = options?.demo?.trim().toLowerCase() ?? "";
   const minFavourites = options?.minFavourites ?? 0;
@@ -291,9 +291,17 @@ export async function getUpcomingCharacters(
         x.relevance + (x.feedKind === "birthday" ? 4 : 0);
       return boost(b) - boost(a);
     }
-    if (sort === "popularity") return b.favourites - a.favourites;
+    // Popularity descending (favourites), then sooner dates
+    if (sort === "popularity") {
+      if (b.favourites !== a.favourites) return b.favourites - a.favourites;
+      return a.daysUntil - b.daysUntil;
+    }
     if (sort === "relevance") return b.relevance - a.relevance;
-    if (sort === "ugc") return b.ugcScore - a.ugcScore;
+    if (sort === "ugc") {
+      if (b.ugcScore !== a.ugcScore) return b.ugcScore - a.ugcScore;
+      return a.daysUntil - b.daysUntil;
+    }
+    // Date · Popularity: chronological upcoming, favourites descending within day
     if (a.daysUntil !== b.daysUntil) return a.daysUntil - b.daysUntil;
     return b.favourites - a.favourites;
   });

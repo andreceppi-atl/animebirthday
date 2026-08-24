@@ -17,11 +17,12 @@ export default async function CalendarPage({ searchParams }: Props) {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8">
       <p className="mb-2 text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
-        Calendar
+        Anime calendar · Month
       </p>
       <p className="mb-10 max-w-lg text-sm text-[var(--muted)]">
-        Birthdays take the cell when present; otherwise significant moments
-        (combat, release anniversaries, kaiju, deaths). Counts include both.
+        Anime - Birthday takes the cell when present; otherwise Anime - Combat,
+        Premiere / Premiere anniversary, Kaiju, Death, and other types. Counts
+        include both.
       </p>
       <BirthdayCalendar year={data.year} month={data.month} byDay={data.byDay} />
     </div>

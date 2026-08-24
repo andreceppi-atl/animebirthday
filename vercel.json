@@ -43,6 +43,10 @@
     {
       "path": "/api/ingest?source=monthly&days=90&pages=50",
       "schedule": "0 8 1 * *"
+    },
+    {
+      "path": "/api/briefing/monthly",
+      "schedule": "0 16 1 * *"
     }
   ]
 }

@@ -41,8 +41,13 @@ Open [http://localhost:3000](http://localhost:3000).
 | Variable | Purpose |
 |----------|---------|
 | `DATABASE_URL` | Neon Postgres (optional; app uses `data/store.json` when unset) |
-| `CRON_SECRET` | Bearer token for `/api/ingest` |
+| `CRON_SECRET` | Bearer token for `/api/ingest` and `/api/briefing/monthly` |
 | `CHARTEX_APP_ID` / `CHARTEX_APP_TOKEN` | ChartEx UGC lookup + stamp |
+| `CONFIDENT_MIN_FAVOURITES` | Min AniList favourites for public birthdays (default 500) |
+| `CONFIDENT_MIN_MOMENT_SIGNIFICANCE` | Min significance for non-AniList moments (default 50) |
+| `XAI_API_KEY` | xAI Grok for monthly SMS briefing |
+| `TWILIO_ACCOUNT_SID` / `TWILIO_AUTH_TOKEN` / `TWILIO_FROM_NUMBER` | Twilio SMS send |
+| `BRIEFING_SMS_TO` | E.164 destination for monthly brief (e.g. `+19147042663`) |
 | `WIKI_BIRTHDAY_URL` | Optional HTML wikitable URL for extra birthday coverage |
 | `WIKI_MOMENTS_URL` | Optional HTML table for extra moments |
 
@@ -61,6 +66,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | Sunday 08:00 | `saturate` | Deep saturate next-60-day birthdays |
 | Tuesday 10:00 | `factcheck` | Repair wrong character→show links; attach crossover/cameo shows |
 | 1st of month 08:00 | `monthly` | Full monthly saturate + moments |
+| 1st of month 16:00 UTC | `/api/briefing/monthly` | Grok creator SMS brief (≈ noon ET; set `BRIEFING_SMS_TO`) |
 
 Set `CRON_SECRET` in Vercel; cron requests send `Authorization: Bearer <CRON_SECRET>` (or `x-cron-secret`).
 
@@ -75,8 +81,11 @@ curl -H "Authorization: Bearer $CRON_SECRET" \
   "http://localhost:3000/api/ingest?source=checkup"
 curl -H "Authorization: Bearer $CRON_SECRET" \
   "http://localhost:3000/api/ingest?source=chartex&limit=20&moments=10"
+curl -H "Authorization: Bearer $CRON_SECRET" \
+  "http://localhost:3000/api/briefing/monthly?dryRun=1"
 ```
 
+Dry-run briefing returns `{ digest, brief, smsSkipped: true }` without Twilio. Live send needs Twilio + `BRIEFING_SMS_TO` + `XAI_API_KEY`.
 ## Scripts
 
 - `npm run seed` — ingest AniList
@@ -97,8 +106,12 @@ Wiki scrape order: Jikan (MAL, timeout-bounded) → optional `WIKI_BIRTHDAY_URL`
 
 - `/` — upcoming 60 days + filters (popularity / relevance / UGC / date) + type (birthday / moment / all)
 - `/calendar` — month grid (birthdays + moments)
+- `/sports` — month sports × anime overlap plan (Plan / Proximity / Same-day / Premieres) + CSV export
 - `/character/[slug]` — demos, hashtag deep links, ChartEx lookup, TikTok oEmbed
 - `/moment/[slug]` — JP media moment detail + ChartEx
+- `/api/export/upcoming` — collab CSV (type, premiere timing, days-until, angle)
+- `/api/export/sports-overlap` — sports overlap CSV with creator ask
+- `/api/briefing/monthly` — monthly Grok SMS (auth + optional `dryRun=1`)
 
 ### ChartEx
 

@@ -10,9 +10,8 @@ Rules:
 - Output plain text SMS-friendly paragraphs. No markdown tables. Max ~1400 characters.`;
 
 const MODELS = [
-  "claude-sonnet-4-20250514",
-  "claude-3-5-sonnet-latest",
-  "claude-3-5-haiku-latest",
+  "claude-sonnet-4-5-20250929",
+  "claude-haiku-4-5-20251001",
 ] as const;
 
 const SMS_HARD_CAP = 1500;

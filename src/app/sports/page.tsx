@@ -336,10 +336,20 @@ export default async function SportsPage({ searchParams }: Props) {
           Lane · {viewCopy[view]}
         </p>
         <ViewTabs active={view} sport={sport} days={days} />
-        <p className="mb-3 mt-6 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-          Filter · next {days} days
-        </p>
-        <SportChips active={sport} days={days} view={view} />
+        <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+              Filter · next {days} days
+            </p>
+            <SportChips active={sport} days={days} view={view} />
+          </div>
+          <a
+            href={`/api/export/sports-overlap?days=${days}&view=${view}${sport !== "all" ? `&sport=${sport}` : ""}`}
+            className="inline-flex items-center border border-[var(--line)] px-3 py-1.5 text-xs uppercase tracking-wider text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--ink)]"
+          >
+            Export CSV
+          </a>
+        </div>
       </section>
 
       <section className="mb-14 animate-fade-up">

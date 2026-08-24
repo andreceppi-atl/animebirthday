@@ -53,7 +53,7 @@ function dateLabel(month: number, day: number): string {
 }
 
 /**
- * Structured month digest for Grok briefing.
+ * Structured month digest for Claude briefing.
  * Window: from `from` through the last day of that calendar month.
  */
 export async function buildMonthDigest(from: Date = new Date()): Promise<MonthDigest> {

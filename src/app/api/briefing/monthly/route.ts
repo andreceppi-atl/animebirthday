@@ -3,7 +3,7 @@ import { buildMonthDigest } from "@/lib/briefing/monthDigest";
 import {
   fallbackBriefFromDigest,
   writeMonthlyBrief,
-} from "@/lib/briefing/grokBrief";
+} from "@/lib/briefing/claudeBrief";
 import { sendSms, smsConfigured } from "@/lib/briefing/sms";
 
 export const dynamic = "force-dynamic";
@@ -34,8 +34,8 @@ async function handle(request: Request) {
     const digest = await buildMonthDigest();
 
     let brief: string;
-    let briefSource: "grok" | "fallback" = "grok";
-    let grokSkipped: string | null = null;
+    let briefSource: "claude" | "fallback" = "claude";
+    let aiSkipped: string | null = null;
 
     try {
       brief = await writeMonthlyBrief(digest);
@@ -44,12 +44,12 @@ async function handle(request: Request) {
       if (dryRun) {
         brief = fallbackBriefFromDigest(digest);
         briefSource = "fallback";
-        grokSkipped = message;
+        aiSkipped = message;
       } else {
         return NextResponse.json(
           {
             ok: false,
-            error: "Grok briefing unavailable",
+            error: "Claude briefing unavailable",
             detail: message,
           },
           { status: 503 },
@@ -62,25 +62,26 @@ async function handle(request: Request) {
         ok: true,
         dryRun: true,
         smsSkipped: true,
+        smsNote: "Twilio optional — set TWILIO_* + BRIEFING_SMS_TO when ready",
         briefSource,
-        grokSkipped,
+        aiSkipped,
         digest,
         brief,
         briefChars: brief.length,
       });
     }
 
+    // Without Twilio yet: succeed with brief so monthly cron stays green
     if (!smsConfigured()) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "Twilio / BRIEFING_SMS_TO not configured. Set TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM_NUMBER, BRIEFING_SMS_TO.",
-          brief,
-          briefChars: brief.length,
-        },
-        { status: 503 },
-      );
+      return NextResponse.json({
+        ok: true,
+        smsSkipped: true,
+        smsNote:
+          "Twilio not configured yet. Brief generated; add TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM_NUMBER, BRIEFING_SMS_TO to enable SMS.",
+        briefSource,
+        brief,
+        briefChars: brief.length,
+      });
     }
 
     const { sid } = await sendSms(brief);
@@ -88,6 +89,7 @@ async function handle(request: Request) {
       ok: true,
       sid,
       briefChars: brief.length,
+      briefSource,
       brief,
     });
   } catch (err) {

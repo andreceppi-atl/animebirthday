@@ -4,7 +4,6 @@ import {
   fallbackBriefFromDigest,
   writeMonthlyBrief,
 } from "@/lib/briefing/claudeBrief";
-import { sendSms, smsConfigured } from "@/lib/briefing/sms";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
@@ -20,6 +19,8 @@ function authorized(request: Request): boolean {
 function isDryRun(request: Request): boolean {
   const { searchParams } = new URL(request.url);
   const raw = searchParams.get("dryRun") ?? searchParams.get("dryrun");
+  // Default dry for GET without flag? No — cron wants full generate.
+  // dryRun only skips nothing now (no Twilio); kept for API compatibility.
   return raw === "1" || raw === "true";
 }
 
@@ -57,40 +58,16 @@ async function handle(request: Request) {
       }
     }
 
-    if (dryRun) {
-      return NextResponse.json({
-        ok: true,
-        dryRun: true,
-        smsSkipped: true,
-        smsNote: "Twilio optional — set TWILIO_* + BRIEFING_SMS_TO when ready",
-        briefSource,
-        aiSkipped,
-        digest,
-        brief,
-        briefChars: brief.length,
-      });
-    }
-
-    // Without Twilio yet: succeed with brief so monthly cron stays green
-    if (!smsConfigured()) {
-      return NextResponse.json({
-        ok: true,
-        smsSkipped: true,
-        smsNote:
-          "Twilio not configured yet. Brief generated; add TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM_NUMBER, BRIEFING_SMS_TO to enable SMS.",
-        briefSource,
-        brief,
-        briefChars: brief.length,
-      });
-    }
-
-    const { sid } = await sendSms(brief);
     return NextResponse.json({
       ok: true,
-      sid,
-      briefChars: brief.length,
+      dryRun,
       briefSource,
+      aiSkipped,
+      digest,
       brief,
+      briefChars: brief.length,
+      delivery:
+        "iMessage via mule LaunchAgent (scripts/send-briefing-imessage.mjs) — not Twilio",
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Install on the mule Mac (iMessage signed in):
+    cp scripts/com.animebirthday.monthly-brief.plist ~/Library/LaunchAgents/
+    # edit WorkingDirectory / path to node if needed
+    launchctl load ~/Library/LaunchAgents/com.animebirthday.monthly-brief.plist
+
+  Runs locally at 12:10 on the 1st of each month (Mac local time).
+  Vercel still generates the Claude brief; this job fetches + iMessages it.
+-->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.animebirthday.monthly-brief</string>
+    <key>WorkingDirectory</key>
+    <string>/Users/lilwall-e/animebirthday</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/zsh</string>
+      <string>/Users/lilwall-e/animebirthday/scripts/send-briefing-imessage.sh</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Day</key>
+      <integer>1</integer>
+      <key>Hour</key>
+      <integer>12</integer>
+      <key>Minute</key>
+      <integer>10</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/lilwall-e/animebirthday/data/briefing-imessage.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/lilwall-e/animebirthday/data/briefing-imessage.err.log</string>
+  </dict>
+</plist>

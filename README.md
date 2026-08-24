@@ -46,8 +46,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `CONFIDENT_MIN_FAVOURITES` | Min AniList favourites for public birthdays (default 500) |
 | `CONFIDENT_MIN_MOMENT_SIGNIFICANCE` | Min significance for non-AniList moments (default 50) |
 | `ANTHROPIC_API_KEY` | Claude for monthly creator briefing |
-| `TWILIO_ACCOUNT_SID` / `TWILIO_AUTH_TOKEN` / `TWILIO_FROM_NUMBER` | Optional Twilio SMS (cron still generates brief without these) |
-| `BRIEFING_SMS_TO` | E.164 destination when Twilio is configured |
+| `BRIEFING_IMESSAGE_TO` / `BRIEFING_SMS_TO` | E.164 phone for mule iMessage delivery (e.g. `+19147042663`) |
 | `WIKI_BIRTHDAY_URL` | Optional HTML wikitable URL for extra birthday coverage |
 | `WIKI_MOMENTS_URL` | Optional HTML table for extra moments |
 
@@ -66,7 +65,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | Sunday 08:00 | `saturate` | Deep saturate next-60-day birthdays |
 | Tuesday 10:00 | `factcheck` | Repair wrong character→show links; attach crossover/cameo shows |
 | 1st of month 08:00 | `monthly` | Full monthly saturate + moments |
-| 1st of month 16:00 UTC | `/api/briefing/monthly` | Claude creator brief (SMS when Twilio set; ≈ noon ET) |
+| 1st of month 16:00 UTC | `/api/briefing/monthly` | Claude creator brief (mule iMessages it locally) |
 
 Set `CRON_SECRET` in Vercel; cron requests send `Authorization: Bearer <CRON_SECRET>` (or `x-cron-secret`).
 
@@ -85,7 +84,18 @@ curl -H "Authorization: Bearer $CRON_SECRET" \
   "http://localhost:3000/api/briefing/monthly?dryRun=1"
 ```
 
-Dry-run briefing returns `{ digest, brief, smsSkipped: true }` without sending SMS. Live cron generates a Claude brief even without Twilio; add Twilio + `BRIEFING_SMS_TO` when you want texts.
+Monthly briefing: Vercel generates the Claude brief; the **mule Mac** delivers it over **iMessage** (same pattern as the sold-out tracker — no Twilio).
+
+```bash
+# print only
+node scripts/send-briefing-imessage.mjs --dry-print
+# send via Messages.app
+node scripts/send-briefing-imessage.mjs
+# schedule on mule (1st of month 12:10 local)
+cp scripts/com.animebirthday.monthly-brief.plist ~/Library/LaunchAgents/
+launchctl unload ~/Library/LaunchAgents/com.animebirthday.monthly-brief.plist 2>/dev/null || true
+launchctl load ~/Library/LaunchAgents/com.animebirthday.monthly-brief.plist
+```
 ## Scripts
 
 - `npm run seed` — ingest AniList

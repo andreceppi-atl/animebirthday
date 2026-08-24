@@ -6,8 +6,9 @@
     # edit WorkingDirectory / path to node if needed
     launchctl load ~/Library/LaunchAgents/com.animebirthday.monthly-brief.plist
 
-  Runs locally at 12:10 on the 1st of each month (Mac local time).
-  Vercel still generates the Claude brief; this job fetches + iMessages it.
+  Runs ONLY at 12:10 on the 1st of each month (Mac local time).
+  Script also refuses to send on other days unless --force.
+  Vercel generates the summary; this job fetches + iMessages it.
 -->
 <plist version="1.0">
   <dict>

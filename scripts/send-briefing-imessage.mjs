@@ -1,20 +1,26 @@
 #!/usr/bin/env node
 /**
- * Fetch the monthly Claude brief from prod and deliver via macOS iMessage
- * (same approach as sold-out tracker — no Twilio).
+ * Monthly iMessage brief — ONLY sends on the 1st of the month.
  *
- * Usage (from repo root, on the mule Mac with Messages signed in):
- *   node scripts/send-briefing-imessage.mjs
- *   node scripts/send-briefing-imessage.mjs --dry-print   # print only
+ * Usage (mule Mac, Messages signed in):
+ *   node scripts/send-briefing-imessage.mjs              # send if today is the 1st
+ *   node scripts/send-briefing-imessage.mjs --dry-print  # print only (any day)
+ *   node scripts/send-briefing-imessage.mjs --force      # send anyway (manual test)
  *
- * Env (from .env.local or process env):
+ * Env (.env.local):
  *   CRON_SECRET
- *   BRIEFING_IMESSAGE_TO or BRIEFING_SMS_TO  (E.164, e.g. +19147042663)
- *   BRIEFING_API_URL  (default https://animebirthday.vercel.app/api/briefing/monthly)
+ *   BRIEFING_IMESSAGE_TO or BRIEFING_SMS_TO
+ *   BRIEFING_API_URL (default https://animebirthday.vercel.app/api/briefing/monthly)
  */
 
 import { spawnSync } from "node:child_process";
-import { readFileSync, writeFileSync, existsSync, unlinkSync } from "node:fs";
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  unlinkSync,
+  mkdirSync,
+} from "node:fs";
 import { resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { randomBytes } from "node:crypto";
@@ -37,6 +43,37 @@ function loadEnvLocal() {
   }
 }
 
+function monthStamp(d = new Date()) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function sentMarkerPath() {
+  return resolve(process.cwd(), "data", "briefing-imessage-sent.json");
+}
+
+function alreadySentThisMonth() {
+  const path = sentMarkerPath();
+  if (!existsSync(path)) return false;
+  try {
+    const data = JSON.parse(readFileSync(path, "utf8"));
+    return data?.month === monthStamp();
+  } catch {
+    return false;
+  }
+}
+
+function markSentThisMonth() {
+  mkdirSync(resolve(process.cwd(), "data"), { recursive: true });
+  writeFileSync(
+    sentMarkerPath(),
+    JSON.stringify(
+      { month: monthStamp(), sentAt: new Date().toISOString() },
+      null,
+      2,
+    ) + "\n",
+  );
+}
+
 function sendIMessage(phone, text) {
   const cleaned = text
     .replace(/×/g, "x")
@@ -46,10 +83,12 @@ function sendIMessage(phone, text) {
     .replace(/\u2014/g, "-")
     .replace(/\u2013/g, "-");
 
-  const tmp = resolve(tmpdir(), `animebirthday-brief-${randomBytes(6).toString("hex")}.txt`);
+  const tmp = resolve(
+    tmpdir(),
+    `animebirthday-brief-${randomBytes(6).toString("hex")}.txt`,
+  );
   writeFileSync(tmp, cleaned, "utf8");
 
-  // Read from file so quotes/newlines never break AppleScript string literals
   const script = `
 set msgPath to POSIX file "${tmp}"
 set msgText to read msgPath as «class utf8»
@@ -81,6 +120,24 @@ end tell
 async function main() {
   loadEnvLocal();
   const dryPrint = process.argv.includes("--dry-print");
+  const force = process.argv.includes("--force");
+  const today = new Date();
+  const isFirstOfMonth = today.getDate() === 1;
+
+  if (!dryPrint && !force && !isFirstOfMonth) {
+    console.log(
+      `skip: only sends on the 1st of the month (today=${today.toDateString()}). Use --force to override, --dry-print to preview.`,
+    );
+    process.exit(0);
+  }
+
+  if (!dryPrint && !force && alreadySentThisMonth()) {
+    console.log(
+      `skip: already sent for ${monthStamp()} (see data/briefing-imessage-sent.json)`,
+    );
+    process.exit(0);
+  }
+
   const secret = process.env.CRON_SECRET?.trim();
   const phone = (
     process.env.BRIEFING_IMESSAGE_TO ||
@@ -102,7 +159,6 @@ async function main() {
   }
 
   const url = new URL(apiUrl);
-  // Prefer real Claude brief; dryRun=1 only allows fallback if Claude fails
   url.searchParams.set("dryRun", "1");
 
   const res = await fetch(url, {
@@ -123,7 +179,6 @@ async function main() {
     return;
   }
 
-  // iMessage is happier with shorter chunks if needed
   const chunks = [];
   const body = String(data.brief);
   const max = 1400;
@@ -145,6 +200,16 @@ async function main() {
     sendIMessage(phone, part);
     console.log(`sent chunk ${i + 1}/${chunks.length} → ${phone}`);
   }
+
+  if (!force || isFirstOfMonth) {
+    markSentThisMonth();
+  }
+  // --force mid-month: don't mark, so the real 1st still sends
+  console.log(
+    force && !isFirstOfMonth
+      ? "sent with --force (did not mark month; 1st will still send)"
+      : `marked sent for ${monthStamp()}`,
+  );
 }
 
 main().catch((err) => {

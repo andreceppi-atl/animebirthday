@@ -19,6 +19,9 @@ export function SiteHeader() {
           <Link href="/calendar" className="hover:text-[var(--accent)]">
             Calendar
           </Link>
+          <Link href="/sports" className="hover:text-[var(--accent)]">
+            Sports
+          </Link>
         </nav>
       </div>
     </header>

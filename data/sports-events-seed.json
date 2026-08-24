@@ -1,0 +1,778 @@
+[
+  {
+    "id": "mlb-tokyo-series-2025",
+    "title": "MLB Tokyo Series (Dodgers vs Cubs)",
+    "sport": "mlb",
+    "month": 3,
+    "day": 18,
+    "year": 2025,
+    "recurring": false,
+    "significance": 92,
+    "summary": "Season openers at Tokyo Dome with Ohtani, Yamamoto, Imanaga, Suzuki \u2014 massive JP\u00d7MLB social spike.",
+    "tags": [
+      "tokyo",
+      "opening",
+      "ohtani",
+      "japan",
+      "international"
+    ],
+    "league": "MLB",
+    "team": "Los Angeles Dodgers",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Touch",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-opening-day-2025",
+    "title": "MLB Opening Day 2025",
+    "sport": "mlb",
+    "month": 3,
+    "day": 27,
+    "year": 2025,
+    "recurring": false,
+    "significance": 90,
+    "summary": "Traditional Opening Day \u2014 all clubs in action; earliest North American opener in MLB history at the time.",
+    "tags": [
+      "opening-day",
+      "season-start"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Touch",
+      "Cross Game",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-jackie-robinson-day",
+    "title": "Jackie Robinson Day",
+    "sport": "mlb",
+    "month": 4,
+    "day": 15,
+    "year": null,
+    "recurring": true,
+    "significance": 88,
+    "summary": "League-wide #42 tribute \u2014 cultural MLB peak beyond box scores.",
+    "tags": [
+      "jackie-robinson",
+      "culture",
+      "legacy"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-rivalry-weekend-2026",
+    "title": "MLB Rivalry Weekend",
+    "sport": "mlb",
+    "month": 5,
+    "day": 16,
+    "year": 2026,
+    "recurring": false,
+    "significance": 84,
+    "summary": "Regional rivalry slate (Subway Series, Crosstown Classic, Freeway Series, etc.) \u2014 high clip heat.",
+    "tags": [
+      "rivalry",
+      "yankees",
+      "mets",
+      "dodgers",
+      "angels"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Touch",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-lou-gehrig-day",
+    "title": "Lou Gehrig Day",
+    "sport": "mlb",
+    "month": 6,
+    "day": 2,
+    "year": null,
+    "recurring": true,
+    "significance": 78,
+    "summary": "ALS awareness day across MLB \u2014 quiet but strong storytelling / tribute social.",
+    "tags": [
+      "lou-gehrig",
+      "als",
+      "tribute"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-all-star-2025",
+    "title": "MLB All-Star Game 2025",
+    "sport": "mlb",
+    "month": 7,
+    "day": 15,
+    "year": 2025,
+    "recurring": false,
+    "significance": 91,
+    "summary": "Midsummer Classic at Truist Park (Atlanta) \u2014 Home Run Derby eve spikes UGC hard.",
+    "tags": [
+      "all-star",
+      "home-run-derby"
+    ],
+    "league": "MLB",
+    "team": "Atlanta Braves",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-all-star-2026",
+    "title": "MLB All-Star Game 2026",
+    "sport": "mlb",
+    "month": 7,
+    "day": 14,
+    "year": 2026,
+    "recurring": false,
+    "significance": 93,
+    "summary": "96th All-Star Game at Citizens Bank Park (Philadelphia) \u2014 America 250 midsummer spotlight.",
+    "tags": [
+      "all-star",
+      "philadelphia",
+      "america250"
+    ],
+    "league": "MLB",
+    "team": "Philadelphia Phillies",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Touch",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-little-league-classic",
+    "title": "MLB Little League Classic",
+    "sport": "mlb",
+    "month": 8,
+    "day": 17,
+    "year": null,
+    "recurring": true,
+    "significance": 80,
+    "summary": "Williamsport classic \u2014 youth baseball nostalgia crosses hard with sports anime edits.",
+    "tags": [
+      "little-league",
+      "williamsport",
+      "youth"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Cross Game",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-roberto-clemente-day",
+    "title": "Roberto Clemente Day",
+    "sport": "mlb",
+    "month": 9,
+    "day": 15,
+    "year": null,
+    "recurring": true,
+    "significance": 82,
+    "summary": "League-wide Clemente tribute \u2014 heritage and charity storytelling day.",
+    "tags": [
+      "clemente",
+      "heritage",
+      "tribute"
+    ],
+    "league": "MLB",
+    "team": "Pittsburgh Pirates",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-regular-season-finale-2026",
+    "title": "MLB Regular Season Finale 2026",
+    "sport": "mlb",
+    "month": 9,
+    "day": 27,
+    "year": 2026,
+    "recurring": false,
+    "significance": 86,
+    "summary": "Final day of the 2026 regular season \u2014 playoff race climax and clinch chaos.",
+    "tags": [
+      "finale",
+      "playoff-race",
+      "clinch"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Touch",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-postseason-window",
+    "title": "MLB Postseason Window (typical)",
+    "sport": "mlb",
+    "month": 10,
+    "day": 1,
+    "year": null,
+    "recurring": true,
+    "significance": 89,
+    "summary": "Early October Wild Card / Division Series cultural heat \u2014 October baseball begins.",
+    "tags": [
+      "playoffs",
+      "october",
+      "postseason"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-world-series-2025-start",
+    "title": "World Series 2025 Game 1",
+    "sport": "mlb",
+    "month": 10,
+    "day": 24,
+    "year": 2025,
+    "recurring": false,
+    "significance": 97,
+    "summary": "2025 Fall Classic opened Dodgers vs Blue Jays \u2014 peak MLB social.",
+    "tags": [
+      "world-series",
+      "fall-classic"
+    ],
+    "league": "MLB",
+    "team": "Los Angeles Dodgers",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Touch",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-world-series-2026-start",
+    "title": "World Series 2026 Window Opens",
+    "sport": "mlb",
+    "month": 10,
+    "day": 23,
+    "year": 2026,
+    "recurring": false,
+    "significance": 98,
+    "summary": "Scheduled 2026 World Series start window (potential Game 7 through Oct 31).",
+    "tags": [
+      "world-series",
+      "fall-classic",
+      "october"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Touch",
+      "Cross Game",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-opening-night-2026",
+    "title": "MLB Opening Night 2026 (Giants vs Yankees)",
+    "sport": "mlb",
+    "month": 3,
+    "day": 25,
+    "year": 2026,
+    "recurring": false,
+    "significance": 91,
+    "summary": "Standalone opener at Oracle Park \u2014 Yankees at Giants before full Opening Day.",
+    "tags": [
+      "opening-night",
+      "yankees",
+      "giants"
+    ],
+    "league": "MLB",
+    "team": "San Francisco Giants",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "baseball"
+    ]
+  },
+  {
+    "id": "mlb-opening-day-2026",
+    "title": "MLB Opening Day 2026",
+    "sport": "mlb",
+    "month": 3,
+    "day": 26,
+    "year": 2026,
+    "recurring": false,
+    "significance": 94,
+    "summary": "Traditional Opening Day \u2014 earliest scheduled full slate in MLB history.",
+    "tags": [
+      "opening-day",
+      "season-start"
+    ],
+    "league": "MLB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Touch",
+      "Cross Game",
+      "baseball"
+    ]
+  },
+  {
+    "id": "nfl-super-bowl-lx",
+    "title": "Super Bowl LX",
+    "sport": "nfl",
+    "month": 2,
+    "day": 8,
+    "year": 2026,
+    "recurring": false,
+    "significance": 99,
+    "summary": "Super Bowl LX at Levi's Stadium \u2014 annual US sports social ceiling.",
+    "tags": [
+      "super-bowl",
+      "championship"
+    ],
+    "league": "NFL",
+    "animeProximityHints": [
+      "Eyeshield 21",
+      "football",
+      "American football"
+    ]
+  },
+  {
+    "id": "nfl-kickoff-2026",
+    "title": "NFL Kickoff 2026",
+    "sport": "nfl",
+    "month": 9,
+    "day": 9,
+    "year": 2026,
+    "recurring": false,
+    "significance": 92,
+    "summary": "2026 season kickoff \u2014 defending champions host; football content flood begins.",
+    "tags": [
+      "kickoff",
+      "season-start",
+      "week-1"
+    ],
+    "league": "NFL",
+    "team": "Seattle Seahawks",
+    "animeProximityHints": [
+      "Eyeshield 21",
+      "football",
+      "American football"
+    ]
+  },
+  {
+    "id": "nba-finals-window",
+    "title": "NBA Finals Window (typical)",
+    "sport": "nba",
+    "month": 6,
+    "day": 12,
+    "year": null,
+    "recurring": true,
+    "significance": 94,
+    "summary": "Mid-June Finals heat \u2014 championship series peaks social for basketball anime edits.",
+    "tags": [
+      "finals",
+      "championship",
+      "june"
+    ],
+    "league": "NBA",
+    "animeProximityHints": [
+      "Kuroko no Basket",
+      "Kuroko's Basketball",
+      "Slam Dunk",
+      "The First Slam Dunk",
+      "Ahiru no Sora",
+      "Dear Boys",
+      "basketball"
+    ]
+  },
+  {
+    "id": "nhl-stanley-cup-window",
+    "title": "Stanley Cup Final Window (typical)",
+    "sport": "nhl",
+    "month": 6,
+    "day": 15,
+    "year": null,
+    "recurring": true,
+    "significance": 85,
+    "summary": "Late-spring / early-summer Cup Final \u2014 niche but intense hockey crossover edits.",
+    "tags": [
+      "stanley-cup",
+      "finals"
+    ],
+    "league": "NHL",
+    "animeProximityHints": [
+      "Yuki Yuna",
+      "hockey"
+    ]
+  },
+  {
+    "id": "fifa-world-cup-2026-kickoff",
+    "title": "FIFA World Cup 2026 Kickoff",
+    "sport": "soccer",
+    "month": 6,
+    "day": 11,
+    "year": 2026,
+    "recurring": false,
+    "significance": 99,
+    "summary": "48-team World Cup opens across USA / Canada / Mexico \u2014 global football social max.",
+    "tags": [
+      "world-cup",
+      "fifa",
+      "kickoff"
+    ],
+    "league": "FIFA",
+    "animeProximityHints": [
+      "Blue Lock",
+      "Captain Tsubasa",
+      "Inazuma Eleven",
+      "Giant Killing",
+      "Ao Ashi",
+      "soccer",
+      "football"
+    ]
+  },
+  {
+    "id": "fifa-world-cup-2026-final",
+    "title": "FIFA World Cup 2026 Final",
+    "sport": "soccer",
+    "month": 7,
+    "day": 19,
+    "year": 2026,
+    "recurring": false,
+    "significance": 100,
+    "summary": "World Cup Final at MetLife Stadium \u2014 once-every-four-years creator gold.",
+    "tags": [
+      "world-cup",
+      "fifa",
+      "final"
+    ],
+    "league": "FIFA",
+    "animeProximityHints": [
+      "Blue Lock",
+      "Captain Tsubasa",
+      "Inazuma Eleven",
+      "Giant Killing",
+      "Ao Ashi",
+      "soccer",
+      "football"
+    ]
+  },
+  {
+    "id": "olympics-milano-cortina-2026-open",
+    "title": "Milano Cortina 2026 Winter Olympics Open",
+    "sport": "olympics",
+    "month": 2,
+    "day": 6,
+    "year": 2026,
+    "recurring": false,
+    "significance": 96,
+    "summary": "XXV Winter Olympics opening \u2014 multi-sport cultural takeover.",
+    "tags": [
+      "olympics",
+      "winter",
+      "opening-ceremony"
+    ],
+    "league": "IOC",
+    "animeProximityHints": [
+      "Yuri!!! on Ice",
+      "Haikyuu",
+      "Haikyuu!!",
+      "Free!",
+      "olympics"
+    ]
+  },
+  {
+    "id": "wimbledon-fortnight",
+    "title": "Wimbledon Fortnight (typical start)",
+    "sport": "tennis",
+    "month": 6,
+    "day": 30,
+    "year": null,
+    "recurring": true,
+    "significance": 86,
+    "summary": "Grass-court Grand Slam fortnight \u2014 tennis anime and athlete edit window.",
+    "tags": [
+      "grand-slam",
+      "wimbledon",
+      "tennis"
+    ],
+    "league": "ATP/WTA",
+    "animeProximityHints": [
+      "The Prince of Tennis",
+      "Tennis no Ouji-sama",
+      "Baby Steps",
+      "tennis"
+    ]
+  },
+  {
+    "id": "ufc-international-fight-week",
+    "title": "UFC International Fight Week (typical)",
+    "sport": "combat_sports",
+    "month": 7,
+    "day": 5,
+    "year": null,
+    "recurring": true,
+    "significance": 83,
+    "summary": "Vegas fight-week cluster around Independence Day \u2014 combat sports \u00d7 shonen fight edits.",
+    "tags": [
+      "ufc",
+      "mma",
+      "fight-week"
+    ],
+    "league": "UFC",
+    "animeProximityHints": [
+      "Hajime no Ippo",
+      "Baki",
+      "Kengan Ashura",
+      "Megalo Box",
+      "Fighting Spirit",
+      "boxing",
+      "martial arts"
+    ]
+  },
+  {
+    "id": "nba-opening-night-typical",
+    "title": "NBA Opening Night (typical)",
+    "sport": "nba",
+    "month": 10,
+    "day": 22,
+    "year": null,
+    "recurring": true,
+    "significance": 87,
+    "summary": "Late-October tip-off \u2014 basketball content season restart.",
+    "tags": [
+      "opening-night",
+      "season-start"
+    ],
+    "league": "NBA",
+    "animeProximityHints": [
+      "Kuroko no Basket",
+      "Kuroko's Basketball",
+      "Slam Dunk",
+      "The First Slam Dunk",
+      "Ahiru no Sora",
+      "basketball"
+    ]
+  },
+  {
+    "id": "volleyball-nations-league-finals-typical",
+    "title": "VNL Finals Window (typical)",
+    "sport": "other",
+    "month": 7,
+    "day": 20,
+    "year": null,
+    "recurring": true,
+    "significance": 81,
+    "summary": "Volleyball Nations League finals heat \u2014 Haikyuu crossover magnet.",
+    "tags": [
+      "volleyball",
+      "vnl",
+      "nations-league"
+    ],
+    "league": "FIVB",
+    "animeProximityHints": [
+      "Haikyuu",
+      "Haikyuu!!",
+      "Attack No.1",
+      "volley",
+      "volleyball"
+    ]
+  },
+  {
+    "id": "march-madness-final-four-typical",
+    "title": "March Madness Final Four (typical)",
+    "sport": "nba",
+    "month": 4,
+    "day": 5,
+    "year": null,
+    "recurring": true,
+    "significance": 90,
+    "summary": "NCAA Final Four weekend \u2014 college basketball social spike (peer heat to NBA).",
+    "tags": [
+      "march-madness",
+      "ncaa",
+      "final-four"
+    ],
+    "league": "NCAA",
+    "animeProximityHints": [
+      "Kuroko no Basket",
+      "Kuroko's Basketball",
+      "Slam Dunk",
+      "basketball"
+    ]
+  },
+  {
+    "id": "npb-japan-series-window",
+    "title": "NPB Japan Series Window (typical)",
+    "sport": "mlb",
+    "month": 10,
+    "day": 26,
+    "year": null,
+    "recurring": true,
+    "significance": 88,
+    "summary": "Nippon Professional Baseball championship series \u2014 peak JP baseball social, strong Ace of Diamond / Major crossover.",
+    "tags": [
+      "npb",
+      "japan-series",
+      "baseball"
+    ],
+    "league": "NPB",
+    "animeProximityHints": [
+      "Major",
+      "Ace of Diamond",
+      "Diamond no Ace",
+      "Ace of the Diamond",
+      "Oofuri",
+      "Ookiku Furikabutte",
+      "Touch",
+      "Cross Game",
+      "baseball"
+    ]
+  },
+  {
+    "id": "fivb-world-champ-window",
+    "title": "FIVB Volleyball World Championship Window (typical)",
+    "sport": "other",
+    "month": 9,
+    "day": 20,
+    "year": null,
+    "recurring": true,
+    "significance": 84,
+    "summary": "Men's/women's world championship cluster \u2014 Haikyuu edit magnet during volleyball social peaks.",
+    "tags": [
+      "volleyball",
+      "fivb",
+      "world-championship"
+    ],
+    "league": "FIVB",
+    "animeProximityHints": [
+      "Haikyuu",
+      "Haikyuu!!",
+      "Attack No.1",
+      "volley",
+      "volleyball"
+    ]
+  },
+  {
+    "id": "champions-league-matchday-oct",
+    "title": "UCL Matchday Heat (typical mid-Oct)",
+    "sport": "soccer",
+    "month": 10,
+    "day": 9,
+    "year": null,
+    "recurring": true,
+    "significance": 85,
+    "summary": "Champions League midweek slate \u2014 club football social spike for Blue Lock / Tsubasa edits.",
+    "tags": [
+      "ucl",
+      "champions-league",
+      "soccer"
+    ],
+    "league": "UEFA",
+    "animeProximityHints": [
+      "Blue Lock",
+      "Captain Tsubasa",
+      "Inazuma Eleven",
+      "Giant Killing",
+      "Ao Ashi",
+      "soccer",
+      "football"
+    ]
+  },
+  {
+    "id": "boxing-heavyweight-title-window",
+    "title": "Boxing Title-Fight Window (typical late Oct)",
+    "sport": "combat_sports",
+    "month": 10,
+    "day": 30,
+    "year": null,
+    "recurring": true,
+    "significance": 82,
+    "summary": "Late-year PPV title-fight cluster \u2014 boxing / combat anime crossover heat.",
+    "tags": [
+      "boxing",
+      "ppv",
+      "title-fight"
+    ],
+    "league": "Boxing",
+    "animeProximityHints": [
+      "Hajime no Ippo",
+      "Fighting Spirit",
+      "Megalo Box",
+      "Baki",
+      "Kengan Ashura",
+      "boxing",
+      "martial arts"
+    ]
+  }
+]

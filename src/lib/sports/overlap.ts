@@ -163,7 +163,7 @@ export async function getSportsAnimeOverlaps(options?: {
   days: number;
   sport: Sport | "all";
 }> {
-  const days = options?.days ?? 60;
+  const days = options?.days ?? 31;
   const sport = options?.sport ?? "all";
   const limit = options?.limit ?? 60;
   const animeLimit = options?.animeLimit ?? 300;

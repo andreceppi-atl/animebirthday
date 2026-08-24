@@ -17,6 +17,7 @@ import {
   pgUpdateCharacterUgc,
   pgUpdateMomentUgc,
 } from "@/lib/db/postgres";
+import { isConfidentCharacter, isConfidentMoment } from "@/lib/confidence";
 import { daysUntilBirthday, nextBirthdayDate, normalizeMomentKind } from "@/lib/utils";
 import type {
   CharacterWithShow,
@@ -228,10 +229,12 @@ export async function getUpcomingCharacters(
   const type: TypeFilter = options?.type ?? "birthday";
   const momentKind = options?.momentKind ?? "";
 
-  const [characters, moments] = await Promise.all([
+  const [rawCharacters, rawMoments] = await Promise.all([
     type === "moment" ? Promise.resolve([]) : loadCharacters(),
     type === "birthday" ? Promise.resolve([]) : loadMoments(),
   ]);
+  const characters = rawCharacters.filter(isConfidentCharacter);
+  const moments = rawMoments.filter(isConfidentMoment);
 
   let items: UpcomingItem[] = [
     ...characters.map(characterToFeedItem),
@@ -437,10 +440,12 @@ export async function getTopPriorityThisMonth(
 }
 
 export async function getCalendarMonth(year: number, month: number) {
-  const [characters, moments] = await Promise.all([
+  const [rawCharacters, rawMoments] = await Promise.all([
     loadCharacters(),
     loadMoments(),
   ]);
+  const characters = rawCharacters.filter(isConfidentCharacter);
+  const moments = rawMoments.filter(isConfidentMoment);
   const daysInMonth = new Date(year, month, 0).getDate();
 
   const byDay: Record<

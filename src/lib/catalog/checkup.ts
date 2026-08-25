@@ -147,6 +147,8 @@ export async function runCatalogCheckup(options?: {
       delayMs: 550,
     });
     const rosterTouched = roster.charactersUpserted;
+    // Roster/priority can add AniList twins of leftover wiki stubs (e.g. King).
+    const mergedLate = mergeDuplicateWikiStubs(store);
 
     // Persist AniList/wiki repairs before UGC (stamp reads from Postgres/store)
     await persistWorkingStore(store);
@@ -225,6 +227,7 @@ export async function runCatalogCheckup(options?: {
     run.charactersUpserted =
       mergedStubs +
       mergedAfter +
+      mergedLate +
       fieldsUpdated +
       stubsEnriched +
       priorityTouched +
@@ -233,7 +236,7 @@ export async function runCatalogCheckup(options?: {
     run.finishedAt = new Date().toISOString();
 
     const actions = {
-      mergedStubs: mergedStubs + mergedAfter,
+      mergedStubs: mergedStubs + mergedAfter + mergedLate,
       fieldsUpdated,
       stubsEnriched,
       priorityTouched,

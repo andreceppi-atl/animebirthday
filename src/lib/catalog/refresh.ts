@@ -66,6 +66,24 @@ function mergeStubIntoKeeper(
   keeper.updatedAt = new Date().toISOString();
 }
 
+/** Wiki stub with the same name + birthday as an AniList character. */
+export function findWikiStubTwin(
+  store: StoreData,
+  nameFull: string,
+  birthMonth: number,
+  birthDay: number,
+): CharacterRecord | undefined {
+  const key = nameKey(nameFull);
+  return store.characters.find(
+    (c) =>
+      !c.anilistId &&
+      c.source === "wiki" &&
+      nameKey(c.nameFull) === key &&
+      c.birthMonth === birthMonth &&
+      c.birthDay === birthDay,
+  );
+}
+
 /** Collapse wiki stubs that duplicate an AniList character (same name + birthday). */
 export function mergeDuplicateWikiStubs(store: StoreData): number {
   let merged = 0;
@@ -301,10 +319,16 @@ export async function ensurePriorityCharacters(
         continue;
       }
 
+      const stubTwin = findWikiStubTwin(
+        store,
+        remote.name.full,
+        remote.dateOfBirth.month,
+        remote.dateOfBirth.day,
+      );
       const linked = await linkShowsForAniListCharacter(store, remote);
       const base = slugify(remote.name.full) || `character-${remote.id}`;
-      let slug = base;
-      if (usedSlugs.has(slug)) slug = `${base}-${remote.id}`;
+      let slug = stubTwin?.slug ?? base;
+      if (!stubTwin && usedSlugs.has(slug)) slug = `${base}-${remote.id}`;
       usedSlugs.add(slug);
 
       const showTitle =
@@ -399,7 +423,8 @@ export async function refreshCatalog(options?: {
       limit: options?.enrichLimit ?? 35,
     });
     const priorityTouched = await ensurePriorityCharacters(store);
-    const mergedStubsTotal = mergedStubs + mergedAfter;
+    const mergedLate = mergeDuplicateWikiStubs(store);
+    const mergedStubsTotal = mergedStubs + mergedAfter + mergedLate;
 
     run.status = "success";
     run.charactersUpserted =
